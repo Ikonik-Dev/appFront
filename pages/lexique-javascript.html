@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lexique JavaScript - Terminologie et concepts</title>
+    <link rel="stylesheet" href="../assets/styles/style.css" />
+    <link rel="stylesheet" href="../assets/styles/lexique.css" />
+  </head>
+  <body class="no-syntax-highlighting">
+    <div class="course-content glass-container no-auto-highlight">
+      <header class="course-header">
+        <h1>📗 Lexique JavaScript - Terminologie et concepts</h1>
+        <p class="course-subtitle">
+          Référence complète des termes et concepts JavaScript essentiels
+        </p>
+      </header>
+
+      <main class="course-main">
+        <!-- Barre de recherche -->
+        <section class="search-section">
+          <div class="search-container">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="🔍 Rechercher un terme..."
+              class="search-input"
+            />
+          </div>
+        </section>
+
+        <!-- Concepts de base -->
+        <section class="lexique-section" data-category="basics">
+          <h2>🔤 Concepts de base</h2>
+          <div class="lexique-grid">
+            <div class="lexique-item" data-term="variable">
+              <h3>Variable</h3>
+              <p class="description">
+                Conteneur nommé qui stocke une valeur. En JavaScript moderne, on
+                utilise
+                <code>let</code> et <code>const</code> pour déclarer des
+                variables.
+              </p>
+              <div class="code-example">
+                <pre><code>let nom = "Alice";
+const age = 25;
+var ancienneVariable = "déprécié";</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-term="fonction">
+              <h3>Fonction</h3>
+              <p class="description">
+                Bloc de code réutilisable qui effectue une tâche spécifique.
+                Peut recevoir des paramètres et retourner une valeur.
+              </p>
+              <div class="code-example">
+                <pre><code>function saluer(nom) {
+  return `Bonjour ${nom}!`;
+}
+
+const saluerArrow = (nom) => `Bonjour ${nom}!`;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-term="objet">
+              <h3>Objet</h3>
+              <p class="description">
+                Collection de propriétés (clé-valeur) qui représente une entité.
+                Structure de données fondamentale en JavaScript.
+              </p>
+              <div class="code-example">
+                <pre><code>const personne = {
+  nom: "Alice",
+  age: 25,
+  saluer() {
+    return `Je suis ${this.nom}`;
+  }
+};</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-term="array">
+              <h3>Array (Tableau)</h3>
+              <p class="description">
+                Liste ordonnée d'éléments. Chaque élément a un index numérique
+                commençant à 0.
+              </p>
+              <div class="code-example">
+                <pre><code>const fruits = ["pomme", "banane", "orange"];
+fruits.push("kiwi");
+console.log(fruits[0]); // "pomme"</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-term="scope">
+              <h3>Scope (Portée)</h3>
+              <p class="description">
+                Zone du code où une variable est accessible. JavaScript a une
+                portée de fonction, de bloc et globale.
+              </p>
+              <div class="code-example">
+                <pre><code>let global = "accessible partout";
+
+function exemple() {
+  let locale = "accessible dans la fonction";
+  if (true) {
+    let bloc = "accessible dans le bloc";
+  }
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-term="closure">
+              <h3>Closure (Fermeture)</h3>
+              <p class="description">
+                Fonction qui a accès aux variables de sa portée externe, même
+                après que cette portée soit fermée.
+              </p>
+              <div class="code-example">
+                <pre><code>function creerCompteur() {
+  let count = 0;
+  return function() {
+    return ++count;
+  };
+}
+
+const compteur = creerCompteur();
+console.log(compteur()); // 1</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Types de données -->
+        <section class="lexique-section" data-category="types">
+          <h2>🏷️ Types de données</h2>
+          <div class="lexique-grid">
+            <div class="lexique-item" data-term="string">
+              <h3>String (Chaîne)</h3>
+              <p class="description">
+                Type de données représentant du texte. Peut être créé avec des
+                guillemets simples, doubles ou des template literals.
+              </p>
+              <div class="code-example">
+                <pre><code>const simple = 'Texte simple';
+const double = "Texte double";
+const template = `Texte avec ${variable}`;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-term="number">
+              <h3>Number (Nombre)</h3>
+              <p class="description">
+                Type numérique qui représente les entiers et les nombres
+                décimaux. JavaScript n'a qu'un seul type numérique.
+              </p>
+              <div class="code-example">
+                <pre><code>const entier = 42;
+const decimal = 3.14;
+const negatif = -10;
+const infini = Infinity;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-term="boolean">
+              <h3>Boolean (Booléen)</h3>
+              <p class="description">
+                Type logique qui ne peut avoir que deux valeurs : true ou false.
+                Utilisé pour les conditions et la logique.
+              </p>
+              <div class="code-example">
+                <pre><code>const vrai = true;
+const faux = false;
+const resultat = 5 > 3; // true</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-term="null">
+              <h3>Null</h3>
+              <p class="description">
+                Valeur primitive qui représente intentionnellement l'absence de
+                valeur. Différent de undefined.
+              </p>
+              <div class="code-example">
+                <pre><code>let valeur = null; // absence intentionnelle
+console.log(typeof null); // "object" (quirk historique)</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-term="undefined">
+              <h3>Undefined</h3>
+              <p class="description">
+                Valeur par défaut des variables déclarées mais non initialisées,
+                ou des propriétés inexistantes.
+              </p>
+              <div class="code-example">
+                <pre><code>let nonInitialisee;
+console.log(nonInitialisee); // undefined
+console.log(objet.proprieteInexistante); // undefined</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-term="symbol">
+              <h3>Symbol</h3>
+              <p class="description">
+                Type primitif unique introduit en ES6. Chaque Symbol est unique
+                et peut servir comme clé de propriété d'objet.
+              </p>
+              <div class="code-example">
+                <pre><code>const sym1 = Symbol("description");
+const sym2 = Symbol("description");
+console.log(sym1 === sym2); // false</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Programmation asynchrone -->
+        <section class="lexique-section" data-category="async">
+          <h2>⏰ Programmation asynchrone</h2>
+          <div class="lexique-grid">
+            <div class="lexique-item" data-term="callback">
+              <h3>Callback</h3>
+              <p class="description">
+                Fonction passée en paramètre à une autre fonction pour être
+                exécutée plus tard, souvent après une opération asynchrone.
+              </p>
+              <div class="code-example">
+                <pre><code>function traiterDonnees(donnees, callback) {
+  // Traitement...
+  callback(resultat);
+}
+
+traiterDonnees(data, function(resultat) {
+  console.log(resultat);
+});</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-term="promise">
+              <h3>Promise</h3>
+              <p class="description">
+                Objet représentant la completion future d'une opération
+                asynchrone. Peut être dans l'état pending, fulfilled, ou
+                rejected.
+              </p>
+              <div class="code-example">
+                <pre><code>const promesse = new Promise((resolve, reject) => {
+  // Opération asynchrone
+  if (succes) {
+    resolve(resultat);
+  } else {
+    reject(erreur);
+  }
+});</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-term="async-await">
+              <h3>Async/Await</h3>
+              <p class="description">
+                Syntaxe moderne pour gérer les opérations asynchrones de manière
+                plus lisible, basée sur les Promises.
+              </p>
+              <div class="code-example">
+                <pre><code>async function obtenirDonnees() {
+  try {
+    const response = await fetch('/api/data');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-term="event-loop">
+              <h3>Event Loop</h3>
+              <p class="description">
+                Mécanisme qui permet à JavaScript de gérer les opérations
+                asynchrones malgré son caractère single-threaded.
+              </p>
+              <div class="code-example">
+                <pre><code>console.log("1");
+setTimeout(() => console.log("2"), 0);
+console.log("3");
+// Sortie: 1, 3, 2</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- DOM et événements -->
+        <section class="lexique-section" data-category="dom">
+          <h2>🌐 DOM et événements</h2>
+          <div class="lexique-grid">
+            <div class="lexique-item" data-term="dom">
+              <h3>DOM (Document Object Model)</h3>
+              <p class="description">
+                Interface de programmation qui représente la structure HTML
+                comme un arbre d'objets JavaScript manipulables.
+              </p>
+              <div class="code-example">
+                <pre><code>const element = document.getElementById('monId');
+element.textContent = 'Nouveau contenu';
+element.classList.add('nouvelle-classe');</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-term="event">
+              <h3>Event (Événement)</h3>
+              <p class="description">
+                Action qui se produit dans le navigateur (clic, chargement,
+                saisie) à laquelle on peut réagir avec des event listeners.
+              </p>
+              <div class="code-example">
+                <pre><code>button.addEventListener('click', function(event) {
+  event.preventDefault();
+  console.log('Bouton cliqué!');
+});</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-term="event-bubbling">
+              <h3>Event Bubbling</h3>
+              <p class="description">
+                Propagation d'un événement de l'élément cible vers ses parents
+                dans l'arbre DOM.
+              </p>
+              <div class="code-example">
+                <pre><code>// L'événement remonte de l'enfant vers le parent
+parent.addEventListener('click', () => {
+  console.log('Parent cliqué');
+});
+
+enfant.addEventListener('click', (e) => {
+  e.stopPropagation(); // Arrête la propagation
+});</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-term="selector">
+              <h3>Selector (Sélecteur)</h3>
+              <p class="description">
+                Chaîne de caractères utilisée pour cibler des éléments DOM via
+                querySelector et querySelectorAll.
+              </p>
+              <div class="code-example">
+                <pre><code>const element = document.querySelector('.classe');
+const elements = document.querySelectorAll('div p');
+const byId = document.getElementById('monId');</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ES6+ et concepts modernes -->
+        <section class="lexique-section" data-category="modern">
+          <h2>🆕 ES6+ et concepts modernes</h2>
+          <div class="lexique-grid">
+            <div class="lexique-item" data-term="arrow-function">
+              <h3>Arrow Function</h3>
+              <p class="description">
+                Syntaxe concise pour définir des fonctions introduite en ES6. A
+                un comportement différent avec le contexte 'this'.
+              </p>
+              <div class="code-example">
+                <pre><code>// Fonction traditionnelle
+function add(a, b) { return a + b; }
+
+// Arrow function
+const add = (a, b) => a + b;
+const square = x => x * x;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-term="destructuring">
+              <h3>Destructuring</h3>
+              <p class="description">
+                Syntaxe permettant d'extraire des valeurs d'objets ou de
+                tableaux dans des variables distinctes.
+              </p>
+              <div class="code-example">
+                <pre><code>// Destructuring d'objet
+const {nom, age} = personne;
+
+// Destructuring de tableau
+const [premier, second] = tableau;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-term="spread-operator">
+              <h3>Spread Operator (...)</h3>
+              <p class="description">
+                Opérateur qui permet d'étendre un itérable (tableau, objet) dans
+                un autre contexte.
+              </p>
+              <div class="code-example">
+                <pre><code>const arr1 = [1, 2, 3];
+const arr2 = [...arr1, 4, 5]; // [1, 2, 3, 4, 5]
+
+const obj = {a: 1, ...autreObj, b: 2};</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-term="template-literal">
+              <h3>Template Literal</h3>
+              <p class="description">
+                Chaînes de caractères délimitées par des backticks permettant
+                l'interpolation de variables et les chaînes multi-lignes.
+              </p>
+              <div class="code-example">
+                <pre><code>const nom = "Alice";
+const message = `Bonjour ${nom}!
+Comment allez-vous?`;
+
+const html = `&lt;div class="${classe}"&gt;
+  ${contenu}
+&lt;/div&gt;`;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-term="module">
+              <h3>Module</h3>
+              <p class="description">
+                Système d'organisation du code permettant d'importer et exporter
+                des fonctionnalités entre fichiers.
+              </p>
+              <div class="code-example">
+                <pre><code>// Export
+export const fonction = () => {};
+export default class MaClasse {}
+
+// Import
+import { fonction } from './module.js';
+import MaClasse from './module.js';</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-term="class">
+              <h3>Class</h3>
+              <p class="description">
+                Syntaxe moderne pour créer des constructeurs et gérer
+                l'héritage, introduite en ES6 comme sucre syntaxique sur les
+                prototypes.
+              </p>
+              <div class="code-example">
+                <pre><code>class Animal {
+  constructor(nom) {
+    this.nom = nom;
+  }
+  
+  parler() {
+    console.log(`${this.nom} fait du bruit`);
+  }
+}
+
+class Chien extends Animal {
+  parler() {
+    console.log(`${this.nom} aboie`);
+  }
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      // Fonctionnalité de recherche
+      document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.getElementById("searchInput");
+        const lexiqueItems = document.querySelectorAll(".lexique-item");
+
+        searchInput.addEventListener("input", function () {
+          const searchTerm = this.value.toLowerCase();
+
+          lexiqueItems.forEach((item) => {
+            const term = item.dataset.term || "";
+            const title = item.querySelector("h3").textContent.toLowerCase();
+            const description = item
+              .querySelector(".description")
+              .textContent.toLowerCase();
+
+            const matches =
+              term.includes(searchTerm) ||
+              title.includes(searchTerm) ||
+              description.includes(searchTerm);
+
+            if (matches || searchTerm === "") {
+              item.style.display = "block";
+              item.classList.remove("hidden");
+            } else {
+              item.style.display = "none";
+              item.classList.add("hidden");
+            }
+          });
+
+          // Masquer les sections vides
+          document.querySelectorAll(".lexique-section").forEach((section) => {
+            const visibleItems = section.querySelectorAll(
+              ".lexique-item:not(.hidden)"
+            );
+            if (visibleItems.length === 0 && searchTerm !== "") {
+              section.style.display = "none";
+            } else {
+              section.style.display = "block";
+            }
+          });
+        });
+
+        // Animation d'apparition des éléments
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("animate-fade-in");
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        lexiqueItems.forEach((item) => {
+          observer.observe(item);
+        });
+
+        // Protection contre la colorisation syntaxique automatique
+        // Désactiver explicitement la colorisation pour cette page
+        if (window.applySyntaxHighlighting) {
+          const originalFunction = window.applySyntaxHighlighting;
+          window.applySyntaxHighlighting = function () {
+            console.log(
+              "🚫 Colorisation syntaxique bloquée sur la page lexique-javascript"
+            );
+            return;
+          };
+        }
+      });
+    </script>
+  </body>
+</html>

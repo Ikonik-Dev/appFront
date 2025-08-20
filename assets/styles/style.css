@@ -193,7 +193,8 @@
 
 .comparison-side pre {
   margin: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
   border-radius: var(--radius-md);
   padding: var(--space-md);
   overflow-x: auto;
@@ -1157,4 +1158,449 @@ section:focus {
     gap: 15px;
     padding: 15px;
   }
+}
+
+/* =============================================
+   STYLES POUR LES PAGES DE COURS
+   ============================================= */
+
+.course-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--space-xl);
+  line-height: 1.7;
+}
+
+.course-header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.course-header h1 {
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.course-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.course-main {
+  margin-bottom: var(--space-xl);
+}
+
+.course-section {
+  margin-bottom: var(--space-xl);
+  padding: var(--space-lg);
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+}
+
+.course-section h2 {
+  color: var(--accent-color);
+  font-size: 1.8rem;
+  margin-bottom: var(--space-md);
+  border-left: 4px solid var(--accent-color);
+  padding-left: var(--space-md);
+}
+
+.course-section h3 {
+  color: var(--text-primary);
+  font-size: 1.4rem;
+  margin: var(--space-lg) 0 var(--space-md) 0;
+}
+
+.course-section h4 {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  margin: var(--space-md) 0 var(--space-sm) 0;
+}
+
+.course-section p {
+  margin-bottom: var(--space-md);
+  color: var(--text-primary);
+}
+
+.course-section ul,
+.course-section ol {
+  margin: var(--space-md) 0;
+  padding-left: var(--space-xl);
+}
+
+.course-section li {
+  margin-bottom: var(--space-sm);
+  color: var(--text-primary);
+}
+
+.course-section li strong {
+  color: var(--accent-color);
+}
+
+.code-example {
+  margin: var(--space-lg) 0;
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  font-family: var(--font-mono);
+  color: #f8f8f2;
+  overflow-x: auto;
+  position: relative;
+  border-left: 4px solid var(--accent-color);
+}
+
+.code-example::before {
+  content: "Code";
+  position: absolute;
+  top: -10px;
+  right: var(--space-md);
+  background: var(--gradient-secondary);
+  color: white;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.code-example pre {
+  margin: 0;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  padding: var(--space-md);
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  line-height: 1.7;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.code-example code {
+  color: #f8f8f2;
+  background: none;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* Coloration syntaxique pour code-example */
+.code-example .keyword {
+  color: #ff79c6;
+}
+
+.code-example .string {
+  color: #f1fa8c;
+}
+
+.code-example .comment {
+  color: #6272a4;
+}
+
+.code-example .function {
+  color: #50fa7b;
+}
+
+.code-example .number {
+  color: #bd93f9;
+}
+
+.code-example .tag {
+  color: #ff79c6;
+}
+
+.code-example .attribute {
+  color: #50fa7b;
+}
+
+.code-example .value {
+  color: #f1fa8c;
+}
+
+/* Code inline dans le texte */
+code {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--accent-color);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: "Fira Code", monospace;
+  font-size: 0.9em;
+}
+
+.course-footer {
+  text-align: center;
+  padding: var(--space-xl);
+  border-top: 2px solid var(--accent-color);
+}
+
+.download-pdf-btn {
+  background: var(--gradient-accent);
+  color: white;
+  border: none;
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+  min-width: 250px;
+}
+
+.download-pdf-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.download-pdf-btn:active {
+  transform: translateY(0);
+}
+
+/* Navigation avec select pour les cours */
+.course-select-container {
+  position: relative;
+  margin: 0 var(--space-md);
+}
+
+.course-select {
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  min-width: 150px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.course-select:hover {
+  border-color: var(--accent-color);
+  transform: translateY(-1px);
+}
+
+.course-select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.2);
+}
+
+.course-select option {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  padding: var(--space-sm);
+}
+
+/* Responsive pour les cours */
+@media (max-width: 768px) {
+  .course-content {
+    padding: var(--space-lg);
+  }
+
+  .course-header h1 {
+    font-size: 2rem;
+  }
+
+  .course-section {
+    padding: var(--space-md);
+  }
+
+  .code-example {
+    padding: var(--space-sm);
+    margin: var(--space-md) 0;
+  }
+
+  .code-example pre {
+    padding: var(--space-sm);
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .code-example code {
+    font-size: 0.8rem;
+  }
+
+  .download-pdf-btn {
+    min-width: auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .code-example {
+    padding: var(--space-xs);
+  }
+
+  .code-example pre {
+    padding: var(--space-xs);
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
+  .code-example code {
+    font-size: 0.75rem;
+  }
+} /* Masquer le bouton PDF lors de l'impression */
+@media print {
+  .course-footer,
+  .download-pdf-btn {
+    display: none !important;
+  }
+}
+
+/* =============================================
+   COLORATION SYNTAXIQUE HARMONISÉE
+   ============================================= */
+
+/* === COLORATION HTML === */
+.html-comment {
+  color: #6272a4;
+  font-style: italic;
+  opacity: 0.8;
+}
+.html-doctype {
+  color: #ff79c6;
+  font-weight: 600;
+}
+.html-tag {
+  color: #ff79c6;
+  font-weight: 500;
+}
+.html-bracket {
+  color: #f8f8f2;
+}
+.html-attribute {
+  color: #50fa7b;
+}
+.html-operator {
+  color: #f8f8f2;
+}
+.html-value {
+  color: #f1fa8c;
+}
+
+/* === COLORATION CSS === */
+.css-comment {
+  color: #6272a4;
+  font-style: italic;
+  opacity: 0.8;
+}
+.css-element {
+  color: #ff79c6;
+}
+.css-class {
+  color: #50fa7b;
+  font-weight: 500;
+}
+.css-id {
+  color: #8be9fd;
+  font-weight: 500;
+}
+.css-pseudo {
+  color: #bd93f9;
+}
+.css-property {
+  color: #8be9fd;
+}
+.css-operator {
+  color: #f8f8f2;
+}
+.css-value {
+  color: #f1fa8c;
+}
+.css-number {
+  color: #bd93f9;
+  font-weight: 500;
+}
+.css-unit {
+  color: #ffb86c;
+}
+.css-function {
+  color: #50fa7b;
+  font-weight: 500;
+}
+.css-variable {
+  color: #bd93f9;
+  font-style: italic;
+}
+
+/* === COLORATION JAVASCRIPT === */
+.js-comment {
+  color: #6272a4;
+  font-style: italic;
+  opacity: 0.8;
+}
+.js-keyword {
+  color: #ff79c6;
+  font-weight: 600;
+}
+.js-literal {
+  color: #bd93f9;
+  font-weight: 500;
+}
+.js-string {
+  color: #f1fa8c;
+}
+.js-template {
+  color: #50fa7b;
+}
+.js-number {
+  color: #bd93f9;
+  font-weight: 500;
+}
+.js-function {
+  color: #50fa7b;
+  font-weight: 500;
+}
+.js-property {
+  color: #8be9fd;
+}
+.js-operator {
+  color: #f8f8f2;
+}
+
+/* === COMPATIBILITÉ ANCIENS STYLES === */
+/* Maintenir la compatibilité avec les anciens sélecteurs */
+.keyword {
+  color: #ff79c6;
+  font-weight: 600;
+}
+.string {
+  color: #f1fa8c;
+}
+.comment {
+  color: #6272a4;
+  font-style: italic;
+  opacity: 0.8;
+}
+.function {
+  color: #50fa7b;
+  font-weight: 500;
+}
+.number {
+  color: #bd93f9;
+  font-weight: 500;
+}
+.tag {
+  color: #ff79c6;
+  font-weight: 500;
+}
+.attribute {
+  color: #50fa7b;
+}
+.value {
+  color: #f1fa8c;
 }

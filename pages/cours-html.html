@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cours HTML - Concepts de base</title>
+  </head>
+  <body>
+    <div class="course-content glass-container">
+      <header class="course-header">
+        <h1>📝 Cours HTML - Les fondamentaux</h1>
+        <p class="course-subtitle">Apprenez les bases essentielles du HTML</p>
+      </header>
+
+      <main class="course-main">
+        <section class="course-section">
+          <h2>🚀 Introduction au HTML</h2>
+          <p>
+            HTML (HyperText Markup Language) est le langage de balisage standard
+            pour créer des pages web. Il décrit la structure et le contenu d'une
+            page web à l'aide de balises.
+          </p>
+
+          <h3>Qu'est-ce qu'une balise ?</h3>
+          <p>
+            Une balise HTML est un élément qui indique au navigateur comment
+            afficher le contenu. Les balises sont entourées de crochets
+            angulaires <code>&lt;&gt;</code>.
+          </p>
+
+          <div class="code-example">
+            <h4>Exemple de balise :</h4>
+            <pre><code><span class="tag">&lt;h1&gt;</span>Ceci est un titre<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;p&gt;</span>Ceci est un paragraphe<span class="tag">&lt;/p&gt;</span></code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>🏗️ Structure de base d'un document HTML</h2>
+          <p>Chaque document HTML doit avoir une structure de base :</p>
+
+          <div class="code-example">
+            <pre><code><span class="tag">&lt;!DOCTYPE <span class="attribute">html</span>&gt;</span>
+<span class="tag">&lt;html <span class="attribute">lang</span>=<span class="value">"fr"</span>&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;meta <span class="attribute">charset</span>=<span class="value">"UTF-8"</span>&gt;</span>
+    <span class="tag">&lt;meta <span class="attribute">name</span>=<span class="value">"viewport"</span> <span class="attribute">content</span>=<span class="value">"width=device-width, initial-scale=1.0"</span>&gt;</span>
+    <span class="tag">&lt;title&gt;</span>Titre de la page<span class="tag">&lt;/title&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;h1&gt;</span>Contenu de la page<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></code></pre>
+          </div>
+
+          <h3>Explication des éléments :</h3>
+          <ul>
+            <li>
+              <strong>&lt;!DOCTYPE html&gt;</strong> : Déclare le type de
+              document
+            </li>
+            <li><strong>&lt;html&gt;</strong> : Élément racine du document</li>
+            <li><strong>&lt;head&gt;</strong> : Contient les métadonnées</li>
+            <li><strong>&lt;body&gt;</strong> : Contient le contenu visible</li>
+          </ul>
+        </section>
+
+        <section class="course-section">
+          <h2>📝 Balises de contenu essentielles</h2>
+
+          <h3>Titres et paragraphes</h3>
+          <div class="code-example">
+            <pre><code><span class="tag">&lt;h1&gt;</span>Titre principal<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;h2&gt;</span>Sous-titre<span class="tag">&lt;/h2&gt;</span>
+<span class="tag">&lt;h3&gt;</span>Titre de niveau 3<span class="tag">&lt;/h3&gt;</span>
+<span class="tag">&lt;p&gt;</span>Un paragraphe de texte.<span class="tag">&lt;/p&gt;</span></code></pre>
+          </div>
+
+          <h3>Formatage du texte</h3>
+          <div class="code-example">
+            <pre><code><span class="tag">&lt;strong&gt;</span>Texte en gras<span class="tag">&lt;/strong&gt;</span>
+<span class="tag">&lt;em&gt;</span>Texte en italique<span class="tag">&lt;/em&gt;</span>
+<span class="tag">&lt;u&gt;</span>Texte souligné<span class="tag">&lt;/u&gt;</span>
+<span class="tag">&lt;code&gt;</span>Code informatique<span class="tag">&lt;/code&gt;</span></code></pre>
+          </div>
+
+          <h3>Listes</h3>
+          <div class="code-example">
+            <h4>Liste non ordonnée :</h4>
+            <pre><code><span class="tag">&lt;ul&gt;</span>
+    <span class="tag">&lt;li&gt;</span>Premier élément<span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;li&gt;</span>Deuxième élément<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span></code></pre>
+
+            <h4>Liste ordonnée :</h4>
+            <pre><code><span class="tag">&lt;ol&gt;</span>
+    <span class="tag">&lt;li&gt;</span>Premier élément<span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;li&gt;</span>Deuxième élément<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ol&gt;</span></code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>🔗 Liens et images</h2>
+
+          <h3>Créer des liens</h3>
+          <div class="code-example">
+            <pre><code>&lt;a href="https://www.example.com"&gt;Lien externe&lt;/a&gt;
+&lt;a href="page.html"&gt;Lien interne&lt;/a&gt;
+&lt;a href="#section"&gt;Lien vers une section&lt;/a&gt;</code></pre>
+          </div>
+
+          <h3>Insérer des images</h3>
+          <div class="code-example">
+            <pre><code>&lt;img src="image.jpg" alt="Description de l'image"&gt;</code></pre>
+          </div>
+          <p>
+            <strong>Important :</strong> L'attribut <code>alt</code> est
+            essentiel pour l'accessibilité.
+          </p>
+        </section>
+
+        <section class="course-section">
+          <h2>📋 Formulaires de base</h2>
+          <div class="code-example">
+            <pre><code>&lt;form&gt;
+    &lt;label for="nom"&gt;Nom :&lt;/label&gt;
+    &lt;input type="text" id="nom" name="nom"&gt;
+    
+    &lt;label for="email"&gt;Email :&lt;/label&gt;
+    &lt;input type="email" id="email" name="email"&gt;
+    
+    &lt;button type="submit"&gt;Envoyer&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>🎯 Points clés à retenir</h2>
+          <ul>
+            <li>HTML structure le contenu avec des balises</li>
+            <li>Chaque balise ouvrante doit avoir une balise fermante</li>
+            <li>Les attributs donnent des informations supplémentaires</li>
+            <li>L'indentation améliore la lisibilité du code</li>
+            <li>Toujours valider votre HTML</li>
+          </ul>
+        </section>
+
+        <section class="course-section">
+          <h2>🚀 Concepts intermédiaires - HTML Sémantique</h2>
+          <p>
+            Le HTML sémantique utilise des balises qui ont une signification
+            précise, améliorant l'accessibilité et le SEO.
+          </p>
+
+          <h3>Balises sémantiques HTML5</h3>
+          <div class="code-example">
+            <pre><code>&lt;header&gt;
+    &lt;nav&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#accueil"&gt;Accueil&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#services"&gt;Services&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+    &lt;article&gt;
+        &lt;header&gt;
+            &lt;h1&gt;Titre de l'article&lt;/h1&gt;
+            &lt;time datetime="2025-08-20"&gt;20 août 2025&lt;/time&gt;
+        &lt;/header&gt;
+        
+        &lt;section&gt;
+            &lt;h2&gt;Introduction&lt;/h2&gt;
+            &lt;p&gt;Contenu de l'article...&lt;/p&gt;
+        &lt;/section&gt;
+        
+        &lt;aside&gt;
+            &lt;h3&gt;Info complémentaire&lt;/h3&gt;
+            &lt;p&gt;Informations connexes...&lt;/p&gt;
+        &lt;/aside&gt;
+    &lt;/article&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+    &lt;p&gt;&copy; 2025 Mon Site Web&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+          </div>
+
+          <h3>Pourquoi utiliser la sémantique ?</h3>
+          <ul>
+            <li>
+              <strong>SEO amélioré :</strong> Les moteurs de recherche
+              comprennent mieux votre contenu
+            </li>
+            <li>
+              <strong>Accessibilité :</strong> Les lecteurs d'écran naviguent
+              plus facilement
+            </li>
+            <li>
+              <strong>Maintenance :</strong> Le code est plus lisible et
+              organisé
+            </li>
+            <li>
+              <strong>Future-proof :</strong> Compatible avec les futures
+              technologies
+            </li>
+          </ul>
+        </section>
+
+        <section class="course-section">
+          <h2>⚡ Attributs avancés et métadonnées</h2>
+
+          <h3>Attributs data-* personnalisés</h3>
+          <p>
+            Permettent de stocker des données personnalisées dans les éléments
+            HTML.
+          </p>
+          <div class="code-example">
+            <pre><code>&lt;div class="produit" 
+     data-prix="29.99" 
+     data-categorie="electronique" 
+     data-stock="15"&gt;
+    Smartphone XYZ
+&lt;/div&gt;
+
+&lt;script&gt;
+// Accès via JavaScript
+const produit = document.querySelector('.produit');
+console.log(produit.dataset.prix); // "29.99"
+console.log(produit.dataset.categorie); // "electronique"
+&lt;/script&gt;</code></pre>
+          </div>
+
+          <h3>Métadonnées et Open Graph</h3>
+          <div class="code-example">
+            <pre><code>&lt;head&gt;
+    &lt;!-- SEO de base --&gt;
+    &lt;meta name="description" content="Description de la page pour les moteurs de recherche"&gt;
+    &lt;meta name="keywords" content="html, sémantique, web, développement"&gt;
+    
+    &lt;!-- Open Graph pour les réseaux sociaux --&gt;
+    &lt;meta property="og:title" content="Titre affiché sur Facebook/Twitter"&gt;
+    &lt;meta property="og:description" content="Description pour le partage social"&gt;
+    &lt;meta property="og:image" content="https://monsite.com/image-partage.jpg"&gt;
+    &lt;meta property="og:url" content="https://monsite.com/page"&gt;
+    
+    &lt;!-- Twitter Cards --&gt;
+    &lt;meta name="twitter:card" content="summary_large_image"&gt;
+    &lt;meta name="twitter:title" content="Titre pour Twitter"&gt;
+&lt;/head&gt;</code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>🎨 Formulaires avancés</h2>
+
+          <h3>Types d'input modernes</h3>
+          <div class="code-example">
+            <pre><code>&lt;form&gt;
+    &lt;!-- Input avec validation native --&gt;
+    &lt;label for="email"&gt;Email :&lt;/label&gt;
+    &lt;input type="email" id="email" required 
+           placeholder="votre@email.com"
+           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"&gt;
+    
+    &lt;!-- Input numérique avec contraintes --&gt;
+    &lt;label for="age"&gt;Âge :&lt;/label&gt;
+    &lt;input type="number" id="age" min="0" max="120" step="1"&gt;
+    
+    &lt;!-- Input date et couleur --&gt;
+    &lt;label for="naissance"&gt;Date de naissance :&lt;/label&gt;
+    &lt;input type="date" id="naissance"&gt;
+    
+    &lt;label for="couleur"&gt;Couleur préférée :&lt;/label&gt;
+    &lt;input type="color" id="couleur"&gt;
+    
+    &lt;!-- Slider et range --&gt;
+    &lt;label for="volume"&gt;Volume : &lt;span id="volume-valeur"&gt;&lt;/span&gt;&lt;/label&gt;
+    &lt;input type="range" id="volume" min="0" max="100" value="50"
+           oninput="document.getElementById('volume-valeur').textContent = this.value"&gt;
+&lt;/form&gt;</code></pre>
+          </div>
+
+          <h3>Validation HTML5 et attributs avancés</h3>
+          <div class="code-example">
+            <pre><code>&lt;form novalidate&gt;  &lt;!-- Désactive la validation native pour utiliser JS --&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;Informations personnelles&lt;/legend&gt;
+        
+        &lt;input type="text" 
+               required 
+               minlength="2" 
+               maxlength="50"
+               autocomplete="given-name"
+               aria-describedby="nom-aide"&gt;
+        &lt;small id="nom-aide"&gt;Entre 2 et 50 caractères&lt;/small&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;!-- Liste de suggestions --&gt;
+    &lt;label for="ville"&gt;Ville :&lt;/label&gt;
+    &lt;input list="villes" id="ville" name="ville"&gt;
+    &lt;datalist id="villes"&gt;
+        &lt;option value="Paris"&gt;
+        &lt;option value="Lyon"&gt;
+        &lt;option value="Marseille"&gt;
+    &lt;/datalist&gt;
+&lt;/form&gt;</code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>🔧 Techniques avancées</h2>
+
+          <h3>Web Components et Custom Elements</h3>
+          <p>Introduction aux composants personnalisés HTML modernes :</p>
+          <div class="code-example">
+            <pre><code>&lt;!-- Utilisation d'un composant personnalisé --&gt;
+&lt;mon-composant titre="Hello World" couleur="bleu"&gt;
+    &lt;p slot="contenu"&gt;Contenu du composant&lt;/p&gt;
+&lt;/mon-composant&gt;
+
+&lt;script&gt;
+class MonComposant extends HTMLElement {
+    constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+    }
+    
+    connectedCallback() {
+        const titre = this.getAttribute('titre');
+        const couleur = this.getAttribute('couleur');
+        
+        this.shadowRoot.innerHTML = \`
+            &lt;style&gt;
+                .composant { color: \${couleur}; }
+            &lt;/style&gt;
+            &lt;div class="composant"&gt;
+                &lt;h3&gt;\${titre}&lt;/h3&gt;
+                &lt;slot name="contenu"&gt;&lt;/slot&gt;
+            &lt;/div&gt;
+        \`;
+    }
+}
+
+customElements.define('mon-composant', MonComposant);
+&lt;/script&gt;</code></pre>
+          </div>
+
+          <h3>Performance et optimisation</h3>
+          <div class="code-example">
+            <pre><code>&lt;!-- Lazy loading pour les images --&gt;
+&lt;img src="image.jpg" 
+     loading="lazy" 
+     alt="Description"
+     width="400" height="300"&gt;
+
+&lt;!-- Preload des ressources critiques --&gt;
+&lt;link rel="preload" href="font.woff2" as="font" type="font/woff2" crossorigin&gt;
+&lt;link rel="prefetch" href="page-suivante.html"&gt;
+
+&lt;!-- Images responsives --&gt;
+&lt;picture&gt;
+    &lt;source media="(min-width: 800px)" srcset="image-large.jpg"&gt;
+    &lt;source media="(min-width: 400px)" srcset="image-medium.jpg"&gt;
+    &lt;img src="image-small.jpg" alt="Image responsive"&gt;
+&lt;/picture&gt;</code></pre>
+          </div>
+        </section>
+      </main>
+
+      <footer class="course-footer">
+        <button
+          class="download-pdf-btn glass-button"
+          onclick="downloadPDF('cours-html')"
+        >
+          📄 Télécharger le cours en PDF
+        </button>
+      </footer>
+    </div>
+  </body>
+</html>

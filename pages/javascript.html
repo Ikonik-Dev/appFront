@@ -362,6 +362,172 @@ list.<span class="function">addEventListener</span>(<span class="string">'click'
           </div>
         </div>
       </section>
+
+      <section id="js-modules" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Modules ES6+</h2>
+          <p class="section-description">
+            Organisation du code avec import/export
+          </p>
+        </div>
+
+        <div class="content-area">
+          <h3>Import et Export</h3>
+
+          <div class="demo-area">
+            <div class="modules-demo-container">
+              <h4>Simulation de modules</h4>
+              <div class="modules-controls">
+                <button class="btn btn-primary" onclick="demonstrateModules()">
+                  Charger un module
+                </button>
+                <button
+                  class="btn btn-secondary"
+                  onclick="demonstrateNamedExports()"
+                >
+                  Exports nommés
+                </button>
+                <button
+                  class="btn btn-success"
+                  onclick="demonstrateDynamicImport()"
+                >
+                  Import dynamique
+                </button>
+              </div>
+              <div id="modulesResults" class="modules-results"></div>
+            </div>
+          </div>
+
+          <div class="code-area">
+            <pre><code class="code-highlight">
+<span class="comment">// math.js - Module utilitaire</span>
+<span class="keyword">export</span> <span class="keyword">const</span> <span class="function">PI</span> = <span class="number">3.14159</span>;
+
+<span class="keyword">export</span> <span class="keyword">function</span> <span class="function">add</span><span class="keyword">(a, b)</span> {
+    <span class="keyword">return</span> a + b;
+}
+
+<span class="keyword">export</span> <span class="keyword">function</span> <span class="function">multiply</span><span class="keyword">(a, b)</span> {
+    <span class="keyword">return</span> a * b;
+}
+
+<span class="comment">// Export par défaut</span>
+<span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="function">calculator</span><span class="keyword">(operation, a, b)</span> {
+    <span class="keyword">switch</span> (operation) {
+        <span class="keyword">case</span> <span class="string">'add'</span>: <span class="keyword">return</span> <span class="function">add</span>(a, b);
+        <span class="keyword">case</span> <span class="string">'multiply'</span>: <span class="keyword">return</span> <span class="function">multiply</span>(a, b);
+        <span class="keyword">default</span>: <span class="keyword">return</span> <span class="number">0</span>;
+    }
+}
+
+<span class="comment">// app.js - Utilisation des modules</span>
+<span class="keyword">import</span> calculator, { PI, add, multiply } <span class="keyword">from</span> <span class="string">'./math.js'</span>;
+
+<span class="comment">// Import avec alias</span>
+<span class="keyword">import</span> { add <span class="keyword">as</span> addition } <span class="keyword">from</span> <span class="string">'./math.js'</span>;
+
+<span class="comment">// Import de tout</span>
+<span class="keyword">import</span> * <span class="keyword">as</span> MathUtils <span class="keyword">from</span> <span class="string">'./math.js'</span>;
+
+console.<span class="function">log</span>(<span class="function">calculator</span>(<span class="string">'add'</span>, <span class="number">5</span>, <span class="number">3</span>)); <span class="comment">// 8</span>
+console.<span class="function">log</span>(PI); <span class="comment">// 3.14159</span>
+console.<span class="function">log</span>(MathUtils.<span class="function">multiply</span>(<span class="number">4</span>, <span class="number">2</span>)); <span class="comment">// 8</span>
+                        </code></pre>
+          </div>
+        </div>
+
+        <div class="content-area">
+          <h3>Import dynamique</h3>
+
+          <div class="demo-area">
+            <div class="dynamic-import-demo">
+              <h4>Chargement conditionnel</h4>
+              <div class="import-controls">
+                <button class="btn btn-primary" onclick="loadFeatureModule()">
+                  Charger une fonctionnalité
+                </button>
+                <button
+                  class="btn btn-secondary"
+                  onclick="loadLanguageModule()"
+                >
+                  Charger une langue
+                </button>
+              </div>
+              <div id="dynamicImportResults" class="import-results"></div>
+            </div>
+          </div>
+
+          <div class="code-area">
+            <pre><code class="code-highlight">
+<span class="comment">// Import dynamique avec async/await</span>
+<span class="keyword">const</span> <span class="function">loadModule</span> = <span class="keyword">async</span> <span class="keyword">(moduleName)</span> => {
+    <span class="keyword">try</span> {
+        <span class="comment">// Import conditionnel</span>
+        <span class="keyword">const</span> <span class="function">module</span> = <span class="keyword">await</span> <span class="keyword">import</span>(<span class="string">`./modules/${moduleName}.js`</span>);
+        
+        <span class="comment">// Utilisation du module chargé</span>
+        <span class="keyword">return</span> module.<span class="keyword">default</span>;
+    } <span class="keyword">catch</span> (error) {
+        console.<span class="function">error</span>(<span class="string">'Erreur de chargement:'</span>, error);
+    }
+};
+
+<span class="comment">// Chargement conditionnel basé sur l'utilisateur</span>
+<span class="keyword">const</span> <span class="function">initializeApp</span> = <span class="keyword">async</span> <span class="keyword">()</span> => {
+    <span class="keyword">const</span> <span class="function">userPrefs</span> = <span class="function">getUserPreferences</span>();
+    
+    <span class="keyword">if</span> (userPrefs.<span class="function">language</span> === <span class="string">'fr'</span>) {
+        <span class="keyword">const</span> <span class="function">frModule</span> = <span class="keyword">await</span> <span class="keyword">import</span>(<span class="string">'./i18n/fr.js'</span>);
+        <span class="function">setLanguage</span>(frModule.<span class="function">translations</span>);
+    }
+    
+    <span class="keyword">if</span> (userPrefs.<span class="function">theme</span> === <span class="string">'dark'</span>) {
+        <span class="keyword">const</span> <span class="function">darkTheme</span> = <span class="keyword">await</span> <span class="keyword">import</span>(<span class="string">'./themes/dark.js'</span>);
+        <span class="function">applyTheme</span>(darkTheme.<span class="keyword">default</span>);
+    }
+};
+
+<span class="comment">// Import avec destructuration</span>
+<span class="keyword">const</span> { <span class="function">createUser</span>, <span class="function">deleteUser</span> } = <span class="keyword">await</span> <span class="keyword">import</span>(<span class="string">'./api/users.js'</span>);
+                        </code></pre>
+          </div>
+        </div>
+
+        <div class="content-area">
+          <h3>Organisation modulaire</h3>
+
+          <div class="code-area">
+            <pre><code class="code-highlight">
+<span class="comment">// Structure de projet modulaire</span>
+src/
+├── components/
+│   ├── Button.js
+│   ├── Modal.js
+│   └── index.js  <span class="comment">// Re-exports</span>
+├── utils/
+│   ├── validation.js
+│   ├── formatting.js
+│   └── api.js
+├── services/
+│   ├── UserService.js
+│   └── DataService.js
+└── app.js
+
+<span class="comment">// components/index.js - Point d'entrée du package</span>
+<span class="keyword">export</span> { <span class="keyword">default</span> <span class="keyword">as</span> Button } <span class="keyword">from</span> <span class="string">'./Button.js'</span>;
+<span class="keyword">export</span> { <span class="keyword">default</span> <span class="keyword">as</span> Modal } <span class="keyword">from</span> <span class="string">'./Modal.js'</span>;
+
+<span class="comment">// app.js - Import simplifié</span>
+<span class="keyword">import</span> { Button, Modal } <span class="keyword">from</span> <span class="string">'./components/index.js'</span>;
+
+<span class="comment">// Ou import groupé</span>
+<span class="keyword">import</span> * <span class="keyword">as</span> Components <span class="keyword">from</span> <span class="string">'./components/index.js'</span>;
+
+<span class="keyword">const</span> <span class="function">myButton</span> = <span class="keyword">new</span> Components.<span class="function">Button</span>();
+                        </code></pre>
+          </div>
+        </div>
+      </section>
     </main>
   </div>
 </div>
@@ -529,6 +695,62 @@ list.<span class="function">addEventListener</span>(<span class="string">'click'
 
   .api-results {
     min-height: 100px;
+  }
+
+  .modules-demo-container,
+  .dynamic-import-demo {
+    background: var(--glass-bg-dark);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-md);
+  }
+
+  .modules-controls,
+  .import-controls {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-md);
+  }
+
+  .modules-results,
+  .import-results {
+    margin-top: var(--space-md);
+    padding: var(--space-md);
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius-md);
+    color: #f8f8f2;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    max-height: 250px;
+    overflow-y: auto;
+    border: 1px solid var(--glass-border);
+  }
+
+  .module-info {
+    background: var(--glass-bg-light);
+    padding: var(--space-md);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-sm);
+    border-left: 3px solid var(--accent);
+  }
+
+  .module-info h5 {
+    color: var(--accent);
+    margin-bottom: var(--space-xs);
+    font-size: 0.95rem;
+  }
+
+  .module-export {
+    background: rgba(79, 172, 254, 0.1);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-xs);
+    margin-right: var(--space-xs);
+    margin-bottom: var(--space-xs);
+    display: inline-block;
+    color: #4facfe;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
   }
 
   .loading {
@@ -1006,6 +1228,223 @@ list.<span class="function">addEventListener</span>(<span class="string">'click'
     element.innerHTML = `<div class="error">❌ ${message}</div>`;
   }
 
+  // Fonctions pour les modules
+  function demonstrateModules() {
+    const results = document.getElementById("modulesResults");
+    if (!results) return;
+
+    // Simulation d'un module math.js
+    const mathModule = {
+      PI: 3.14159,
+      add: (a, b) => a + b,
+      multiply: (a, b) => a * b,
+      default: function calculator(operation, a, b) {
+        switch (operation) {
+          case "add":
+            return this.add(a, b);
+          case "multiply":
+            return this.multiply(a, b);
+          default:
+            return 0;
+        }
+      },
+    };
+
+    const output = [];
+    output.push(`<div class="module-info">`);
+    output.push(`<h5>📦 Module math.js chargé</h5>`);
+    output.push(`<span class="module-export">PI: ${mathModule.PI}</span>`);
+    output.push(
+      `<span class="module-export">add(5, 3): ${mathModule.add(5, 3)}</span>`
+    );
+    output.push(
+      `<span class="module-export">multiply(4, 2): ${mathModule.multiply(
+        4,
+        2
+      )}</span>`
+    );
+    output.push(
+      `<span class="module-export">calculator('add', 10, 5): ${mathModule.default(
+        "add",
+        10,
+        5
+      )}</span>`
+    );
+    output.push(`</div>`);
+
+    results.innerHTML = output.join("");
+  }
+
+  function demonstrateNamedExports() {
+    const results = document.getElementById("modulesResults");
+    if (!results) return;
+
+    // Simulation de différents types d'exports
+    const userModule = {
+      createUser: (name, email) => ({
+        id: Date.now(),
+        name,
+        email,
+        created: new Date(),
+      }),
+      validateEmail: (email) => email.includes("@"),
+      userRoles: ["admin", "user", "guest"],
+      DEFAULT_SETTINGS: { theme: "dark", language: "fr" },
+    };
+
+    const output = [];
+    output.push(`<div class="module-info">`);
+    output.push(`<h5>👥 Module users.js - Exports nommés</h5>`);
+
+    const newUser = userModule.createUser("Alice", "alice@example.com");
+    output.push(
+      `<span class="module-export">createUser: ${JSON.stringify(
+        newUser
+      )}</span><br>`
+    );
+    output.push(
+      `<span class="module-export">validateEmail: ${userModule.validateEmail(
+        "test@email.com"
+      )}</span><br>`
+    );
+    output.push(
+      `<span class="module-export">userRoles: [${userModule.userRoles.join(
+        ", "
+      )}]</span><br>`
+    );
+    output.push(
+      `<span class="module-export">DEFAULT_SETTINGS: ${JSON.stringify(
+        userModule.DEFAULT_SETTINGS
+      )}</span>`
+    );
+    output.push(`</div>`);
+
+    results.innerHTML = output.join("");
+  }
+
+  async function demonstrateDynamicImport() {
+    const results = document.getElementById("dynamicImportResults");
+    if (!results) return;
+
+    try {
+      showLoading(results, "Chargement dynamique du module...");
+
+      // Simulation d'un import dynamique
+      await delay(1200);
+
+      const featureModule = {
+        name: "AdvancedFeatures",
+        version: "2.1.0",
+        features: ["dataVisualization", "advancedFilters", "exportTools"],
+        init: () => "Module initialisé avec succès!",
+        getInfo: function () {
+          return `${this.name} v${this.version} - ${this.features.length} fonctionnalités`;
+        },
+      };
+
+      const output = [];
+      output.push(`<div class="module-info">`);
+      output.push(`<h5>⚡ Import dynamique réussi</h5>`);
+      output.push(
+        `<span class="module-export">Module: ${featureModule.getInfo()}</span><br>`
+      );
+      output.push(
+        `<span class="module-export">Init: ${featureModule.init()}</span><br>`
+      );
+      output.push(
+        `<span class="module-export">Fonctionnalités: ${featureModule.features.join(
+          ", "
+        )}</span>`
+      );
+      output.push(`</div>`);
+
+      displaySuccess(results, output.join(""));
+    } catch (error) {
+      displayError(results, `Erreur de chargement: ${error.message}`);
+    }
+  }
+
+  async function loadFeatureModule() {
+    const results = document.getElementById("dynamicImportResults");
+    if (!results) return;
+
+    try {
+      showLoading(results, "Chargement conditionnel...");
+      await delay(800);
+
+      const module = {
+        name: "ConditionalFeature",
+        loaded: new Date().toLocaleTimeString(),
+        data: {
+          charts: ["bar", "line", "pie"],
+          filters: ["date", "category", "status"],
+          exports: ["pdf", "excel", "csv"],
+        },
+      };
+
+      const output = [];
+      output.push(`<div class="module-info">`);
+      output.push(`<h5>🎯 Module conditionnel chargé</h5>`);
+      output.push(`<p><strong>Nom:</strong> ${module.name}</p>`);
+      output.push(`<p><strong>Chargé à:</strong> ${module.loaded}</p>`);
+      Object.entries(module.data).forEach(([key, value]) => {
+        output.push(
+          `<span class="module-export">${key}: [${value.join(", ")}]</span><br>`
+        );
+      });
+      output.push(`</div>`);
+
+      displaySuccess(results, output.join(""));
+    } catch (error) {
+      displayError(results, error.message);
+    }
+  }
+
+  async function loadLanguageModule() {
+    const results = document.getElementById("dynamicImportResults");
+    if (!results) return;
+
+    try {
+      showLoading(results, "Chargement du pack de langue...");
+      await delay(600);
+
+      const langModule = {
+        code: "fr-FR",
+        name: "Français",
+        translations: {
+          welcome: "Bienvenue",
+          goodbye: "Au revoir",
+          loading: "Chargement en cours...",
+          error: "Une erreur est survenue",
+          success: "Opération réussie",
+        },
+        dateFormat: "DD/MM/YYYY",
+        currency: "EUR",
+      };
+
+      const output = [];
+      output.push(`<div class="module-info">`);
+      output.push(
+        `<h5>🌍 Pack de langue: ${langModule.name} (${langModule.code})</h5>`
+      );
+      output.push(
+        `<p><strong>Format de date:</strong> ${langModule.dateFormat}</p>`
+      );
+      output.push(`<p><strong>Devise:</strong> ${langModule.currency}</p>`);
+      output.push(`<p><strong>Traductions:</strong></p>`);
+      Object.entries(langModule.translations).forEach(([key, value]) => {
+        output.push(
+          `<span class="module-export">${key}: "${value}"</span><br>`
+        );
+      });
+      output.push(`</div>`);
+
+      displaySuccess(results, output.join(""));
+    } catch (error) {
+      displayError(results, error.message);
+    }
+  }
+
   // Exposer toutes les fonctions nécessaires au contexte global pour les onclick
   window.demonstrateDestructuring = demonstrateDestructuring;
   window.selectElements = selectElements;
@@ -1017,4 +1456,12 @@ list.<span class="function">addEventListener</span>(<span class="string">'click'
   window.addListItem = addListItem;
   window.fetchUserData = fetchUserData;
   window.fetchWithError = fetchWithError;
+  window.fetchMultipleData = fetchMultipleData;
+
+  // Fonctions des modules
+  window.demonstrateModules = demonstrateModules;
+  window.demonstrateNamedExports = demonstrateNamedExports;
+  window.demonstrateDynamicImport = demonstrateDynamicImport;
+  window.loadFeatureModule = loadFeatureModule;
+  window.loadLanguageModule = loadLanguageModule;
 </script>

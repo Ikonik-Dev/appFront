@@ -83,6 +83,18 @@ class Navigation extends BaseComponent {
           `
             )
             .join("")}
+          <li class="nav-item course-select-container" role="none">
+            <select class="course-select" aria-label="Sélectionner un cours">
+              <option value="">📚 Cours</option>
+              ${APP_CONFIG.courses
+                .map(
+                  (course) => `
+                <option value="${course.id}">${course.icon} ${course.title}</option>
+              `
+                )
+                .join("")}
+            </select>
+          </li>
         </ul>
       </nav>
     `;
@@ -90,6 +102,7 @@ class Navigation extends BaseComponent {
 
   bindEvents() {
     const navLinks = this.element.querySelectorAll(".nav-link");
+    const courseSelect = this.element.querySelector(".course-select");
 
     navLinks.forEach((link, index) => {
       // Gestion des clics
@@ -146,6 +159,29 @@ class Navigation extends BaseComponent {
         navLinks[targetIndex].focus();
       });
     });
+
+    // Gestion du select des cours
+    if (courseSelect) {
+      this.addEventListener(courseSelect, "change", (e) => {
+        const courseId = e.target.value;
+        if (courseId) {
+          // Naviguer vers la page de cours
+          if (
+            window.RouterInstance &&
+            typeof window.RouterInstance.navigateTo === "function"
+          ) {
+            window.RouterInstance.navigateTo(courseId);
+          } else {
+            // Fallback navigation
+            window.location.hash = courseId;
+          }
+          // Réinitialiser le select
+          setTimeout(() => {
+            e.target.value = "";
+          }, 100);
+        }
+      });
+    }
 
     // Amélioration : Support du live region pour annoncer les changements
     this.createLiveRegion();

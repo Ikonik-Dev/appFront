@@ -40,6 +40,19 @@ class RouterManager {
       });
     });
 
+    // Enregistrement des routes pour les cours
+    if (APP_CONFIG.courses) {
+      APP_CONFIG.courses.forEach((course) => {
+        this.routes.set(course.id, {
+          id: course.id,
+          title: course.title,
+          icon: course.icon,
+          loader: () => this.loadPage(course.id),
+          template: null,
+        });
+      });
+    }
+
     DEBUG.log("Routes registered:", Array.from(this.routes.keys()));
   }
 

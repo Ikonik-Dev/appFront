@@ -22,6 +22,44 @@ const APP_CONFIG = {
     { id: "accessibility", title: "Accessibilité", icon: "♿" },
     { id: "dashboard", title: "Dashboard", icon: "📊" },
   ],
+  courses: [
+    {
+      id: "cours-html",
+      title: "Cours HTML",
+      icon: "📝",
+      description: "Les bases du HTML",
+    },
+    {
+      id: "cours-css",
+      title: "Cours CSS",
+      icon: "🎨",
+      description: "Les fondamentaux du CSS",
+    },
+    {
+      id: "cours-javascript",
+      title: "Cours JavaScript",
+      icon: "⚡",
+      description: "Introduction au JavaScript",
+    },
+    {
+      id: "lexique-html",
+      title: "Lexique HTML",
+      icon: "📖",
+      description: "Dictionnaire des balises HTML",
+    },
+    {
+      id: "lexique-css",
+      title: "Lexique CSS",
+      icon: "📚",
+      description: "Dictionnaire des propriétés CSS",
+    },
+    {
+      id: "lexique-javascript",
+      title: "Lexique JavaScript",
+      icon: "📗",
+      description: "Terminologie et concepts JavaScript",
+    },
+  ],
   animations: {
     duration: 300,
     easing: "ease-in-out",

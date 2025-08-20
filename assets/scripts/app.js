@@ -615,3 +615,236 @@ if (document.readyState === "loading") {
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { App, ApplicationBootstrap };
 }
+
+/* =============================================
+   FONCTION DE TÉLÉCHARGEMENT PDF
+   ============================================= */
+
+/**
+ * Fonction globale pour télécharger un cours en PDF
+ * @param {string} courseId - L'identifiant du cours
+ */
+function downloadPDF(courseId) {
+  try {
+    DEBUG.log("Attempting to download PDF for course:", courseId);
+
+    // Obtenir le contenu de la page de cours
+    const courseContent = document.querySelector(".course-content");
+    if (!courseContent) {
+      throw new Error("Contenu du cours non trouvé");
+    }
+
+    // Créer une nouvelle fenêtre pour l'impression
+    const printWindow = window.open("", "_blank");
+    if (!printWindow) {
+      throw new Error(
+        "Impossible d'ouvrir la fenêtre d'impression. Vérifiez que les pop-ups sont autorisés."
+      );
+    }
+
+    // Obtenir le titre du cours
+    const courseTitle =
+      courseContent.querySelector("h1")?.textContent || "Cours";
+
+    // Générer le HTML pour l'impression/PDF
+    const printHTML = generatePrintHTML(courseContent, courseTitle);
+
+    // Écrire le contenu dans la nouvelle fenêtre
+    printWindow.document.write(printHTML);
+    printWindow.document.close();
+
+    // Attendre que le contenu soit chargé puis déclencher l'impression
+    printWindow.onload = function () {
+      setTimeout(() => {
+        printWindow.print();
+        // Fermer la fenêtre après impression (optionnel)
+        setTimeout(() => {
+          printWindow.close();
+        }, 1000);
+      }, 500);
+    };
+
+    // Notifier l'utilisateur
+    if (
+      window.NotificationManager &&
+      typeof window.NotificationManager.show === "function"
+    ) {
+      window.NotificationManager.show(
+        `Préparation du PDF "${courseTitle}" en cours...`,
+        "info"
+      );
+    }
+  } catch (error) {
+    DEBUG.error("Erreur lors du téléchargement PDF:", error);
+
+    // Notifier l'erreur à l'utilisateur
+    if (
+      window.NotificationManager &&
+      typeof window.NotificationManager.show === "function"
+    ) {
+      window.NotificationManager.show(`Erreur: ${error.message}`, "error");
+    } else {
+      alert(`Erreur lors de la génération du PDF: ${error.message}`);
+    }
+  }
+}
+
+/**
+ * Génère le HTML formaté pour l'impression PDF
+ * @param {HTMLElement} content - Le contenu à imprimer
+ * @param {string} title - Le titre du document
+ * @returns {string} HTML formaté pour l'impression
+ */
+function generatePrintHTML(content, title) {
+  const today = new Date().toLocaleDateString("fr-FR");
+
+  return `
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${title} - RNCP DWWM 2023</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: white;
+            color: #333;
+        }
+        
+        .print-header {
+            text-align: center;
+            border-bottom: 2px solid #00ff88;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .print-header h1 {
+            color: #00ff88;
+            margin: 0 0 10px 0;
+            font-size: 2rem;
+        }
+        
+        .print-meta {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .course-section {
+            margin-bottom: 30px;
+            break-inside: avoid;
+        }
+        
+        .course-section h2 {
+            color: #00ff88;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            border-left: 4px solid #00ff88;
+            padding-left: 15px;
+        }
+        
+        .course-section h3 {
+            color: #333;
+            font-size: 1.3rem;
+            margin: 20px 0 10px 0;
+        }
+        
+        .course-section h4 {
+            color: #555;
+            font-size: 1.1rem;
+            margin: 15px 0 8px 0;
+        }
+        
+        .code-example {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-left: 4px solid #00ff88;
+            padding: 15px;
+            margin: 15px 0;
+            break-inside: avoid;
+        }
+        
+        .code-example pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        code {
+            background: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .print-footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media print {
+            body {
+                margin: 0;
+                padding: 15px;
+            }
+            
+            .print-header {
+                break-after: avoid;
+            }
+            
+            .course-section {
+                break-inside: avoid;
+            }
+            
+            .code-example {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="print-header">
+        <h1>${title}</h1>
+        <div class="print-meta">
+            RNCP DWWM 2023 - Formation Front-End<br>
+            Généré le ${today}
+        </div>
+    </div>
+    
+    <div class="print-content">
+        ${content.innerHTML}
+    </div>
+    
+    <div class="print-footer">
+        <p>Document généré automatiquement - RNCP DWWM 2023</p>
+        <p>Pour plus d'informations, consultez l'application complète</p>
+    </div>
+</body>
+</html>`;
+}
+
+// Exposer la fonction globalement
+window.downloadPDF = downloadPDF;

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lexique HTML - Dictionnaire des balises</title>
+    <link rel="stylesheet" href="../assets/styles/style.css" />
+    <link rel="stylesheet" href="../assets/styles/lexique.css" />
+  </head>
+  <body>
+    <div class="course-content glass-container">
+      <header class="course-header">
+        <h1>📖 Lexique HTML - Dictionnaire des balises</h1>
+        <p class="course-subtitle">
+          Référence complète des balises HTML les plus couramment utilisées
+        </p>
+      </header>
+
+      <main class="course-main">
+        <!-- Barre de recherche -->
+        <section class="search-section">
+          <div class="search-container">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="🔍 Rechercher une balise..."
+              class="search-input"
+            />
+          </div>
+        </section>
+
+        <!-- Balises de structure -->
+        <section class="lexique-section" data-category="structure">
+          <h2>🏗️ Balises de structure</h2>
+          <div class="lexique-grid">
+            <div class="lexique-item" data-tag="html">
+              <h3>&lt;html&gt;</h3>
+              <p class="description">
+                Élément racine d'un document HTML. Contient tout le contenu de
+                la page.
+              </p>
+              <div class="code-example">
+                <pre><code>&lt;html lang="fr"&gt;
+  &lt;!-- Contenu de la page --&gt;
+&lt;/html&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="head">
+              <h3>&lt;head&gt;</h3>
+              <p class="description">
+                Contient les métadonnées du document (titre, liens CSS, scripts,
+                etc.).
+              </p>
+              <div class="code-example">
+                <pre><code>&lt;head&gt;
+  &lt;title&gt;Titre de la page&lt;/title&gt;
+  &lt;meta charset="UTF-8"&gt;
+&lt;/head&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="body">
+              <h3>&lt;body&gt;</h3>
+              <p class="description">
+                Contient tout le contenu visible de la page web.
+              </p>
+              <div class="code-example">
+                <pre><code>&lt;body&gt;
+  &lt;h1&gt;Contenu visible&lt;/h1&gt;
+&lt;/body&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="header">
+              <h3>&lt;header&gt;</h3>
+              <p class="description">
+                Représente l'en-tête d'une section ou d'une page.
+              </p>
+              <div class="code-example">
+                <pre><code>&lt;header&gt;
+  &lt;h1&gt;Titre principal&lt;/h1&gt;
+  &lt;nav&gt;Navigation&lt;/nav&gt;
+&lt;/header&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="main">
+              <h3>&lt;main&gt;</h3>
+              <p class="description">
+                Représente le contenu principal d'un document.
+              </p>
+              <div class="code-example">
+                <pre><code>&lt;main&gt;
+  &lt;article&gt;Contenu principal&lt;/article&gt;
+&lt;/main&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="footer">
+              <h3>&lt;footer&gt;</h3>
+              <p class="description">
+                Représente le pied de page d'une section ou d'une page.
+              </p>
+              <div class="code-example">
+                <pre><code>&lt;footer&gt;
+  &lt;p&gt;&copy; 2023 Mon site&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Balises de titre -->
+        <section class="lexique-section" data-category="headings">
+          <h2>📝 Balises de titre</h2>
+          <div class="lexique-grid">
+            <div class="lexique-item" data-tag="h1-h6">
+              <h3>&lt;h1&gt; à &lt;h6&gt;</h3>
+              <p class="description">
+                Définissent les titres de différents niveaux (h1 = plus
+                important, h6 = moins important).
+              </p>
+              <div class="code-example">
+                <pre><code>&lt;h1&gt;Titre principal&lt;/h1&gt;
+&lt;h2&gt;Sous-titre&lt;/h2&gt;
+&lt;h3&gt;Titre de section&lt;/h3&gt;
+&lt;h4&gt;Titre de sous-section&lt;/h4&gt;
+&lt;h5&gt;Titre de niveau 5&lt;/h5&gt;
+&lt;h6&gt;Titre de niveau 6&lt;/h6&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Balises de contenu -->
+        <section class="lexique-section" data-category="content">
+          <h2>📄 Balises de contenu</h2>
+          <div class="lexique-grid">
+            <div class="lexique-item" data-tag="p">
+              <h3>&lt;p&gt;</h3>
+              <p class="description">Définit un paragraphe de texte.</p>
+              <div class="code-example">
+                <pre><code>&lt;p&gt;Ceci est un paragraphe.&lt;/p&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="span">
+              <h3>&lt;span&gt;</h3>
+              <p class="description">
+                Élément générique en ligne pour grouper du contenu.
+              </p>
+              <div class="code-example">
+                <pre><code>&lt;p&gt;Texte avec &lt;span class="highlight"&gt;mise en évidence&lt;/span&gt;&lt;/p&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="div">
+              <h3>&lt;div&gt;</h3>
+              <p class="description">
+                Élément générique de bloc pour grouper du contenu.
+              </p>
+              <div class="code-example">
+                <pre><code>&lt;div class="container"&gt;
+  &lt;p&gt;Contenu groupé&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="article">
+              <h3>&lt;article&gt;</h3>
+              <p class="description">
+                Représente un contenu autonome et indépendant.
+              </p>
+              <div class="code-example">
+                <pre><code>&lt;article&gt;
+  &lt;h2&gt;Titre de l'article&lt;/h2&gt;
+  &lt;p&gt;Contenu de l'article...&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="section">
+              <h3>&lt;section&gt;</h3>
+              <p class="description">
+                Représente une section générique d'un document.
+              </p>
+              <div class="code-example">
+                <pre><code>&lt;section&gt;
+  &lt;h2&gt;Titre de la section&lt;/h2&gt;
+  &lt;p&gt;Contenu...&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Balises de mise en forme -->
+        <section class="lexique-section" data-category="formatting">
+          <h2>✨ Balises de mise en forme</h2>
+          <div class="lexique-grid">
+            <div class="lexique-item" data-tag="strong">
+              <h3>&lt;strong&gt;</h3>
+              <p class="description">
+                Indique une importance forte (texte en gras).
+              </p>
+              <div class="code-example">
+                <pre><code>&lt;p&gt;Ceci est &lt;strong&gt;très important&lt;/strong&gt;.&lt;/p&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="em">
+              <h3>&lt;em&gt;</h3>
+              <p class="description">
+                Indique une emphase (texte en italique).
+              </p>
+              <div class="code-example">
+                <pre><code>&lt;p&gt;Ceci est &lt;em&gt;emphase&lt;/em&gt;.&lt;/p&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="code">
+              <h3>&lt;code&gt;</h3>
+              <p class="description">Représente du code informatique.</p>
+              <div class="code-example">
+                <pre><code>&lt;p&gt;Utilisez &lt;code&gt;console.log()&lt;/code&gt; pour débugger.&lt;/p&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="pre">
+              <h3>&lt;pre&gt;</h3>
+              <p class="description">
+                Texte préformaté qui preserve les espaces et sauts de ligne.
+              </p>
+              <div class="code-example">
+                <pre><code>&lt;pre&gt;
+function hello() {
+    console.log("Hello!");
+}
+&lt;/pre&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Balises de listes -->
+        <section class="lexique-section" data-category="lists">
+          <h2>📋 Balises de listes</h2>
+          <div class="lexique-grid">
+            <div class="lexique-item" data-tag="ul">
+              <h3>&lt;ul&gt;</h3>
+              <p class="description">Liste non ordonnée (à puces).</p>
+              <div class="code-example">
+                <pre><code>&lt;ul&gt;
+  &lt;li&gt;Premier élément&lt;/li&gt;
+  &lt;li&gt;Deuxième élément&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="ol">
+              <h3>&lt;ol&gt;</h3>
+              <p class="description">Liste ordonnée (numérotée).</p>
+              <div class="code-example">
+                <pre><code>&lt;ol&gt;
+  &lt;li&gt;Premier élément&lt;/li&gt;
+  &lt;li&gt;Deuxième élément&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="li">
+              <h3>&lt;li&gt;</h3>
+              <p class="description">Élément de liste.</p>
+              <div class="code-example">
+                <pre><code>&lt;ul&gt;
+  &lt;li&gt;Élément de liste&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Balises de liens et médias -->
+        <section class="lexique-section" data-category="media">
+          <h2>🔗 Balises de liens et médias</h2>
+          <div class="lexique-grid">
+            <div class="lexique-item" data-tag="a">
+              <h3>&lt;a&gt;</h3>
+              <p class="description">Crée un lien hypertexte.</p>
+              <div class="code-example">
+                <pre><code>&lt;a href="https://example.com"&gt;Lien externe&lt;/a&gt;
+&lt;a href="#section"&gt;Lien interne&lt;/a&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="img">
+              <h3>&lt;img&gt;</h3>
+              <p class="description">
+                Insère une image (balise auto-fermante).
+              </p>
+              <div class="code-example">
+                <pre><code>&lt;img src="image.jpg" alt="Description de l'image"&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="video">
+              <h3>&lt;video&gt;</h3>
+              <p class="description">Insère une vidéo.</p>
+              <div class="code-example">
+                <pre><code>&lt;video controls&gt;
+  &lt;source src="video.mp4" type="video/mp4"&gt;
+&lt;/video&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="audio">
+              <h3>&lt;audio&gt;</h3>
+              <p class="description">Insère un fichier audio.</p>
+              <div class="code-example">
+                <pre><code>&lt;audio controls&gt;
+  &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Balises de formulaire -->
+        <section class="lexique-section" data-category="forms">
+          <h2>📝 Balises de formulaire</h2>
+          <div class="lexique-grid">
+            <div class="lexique-item" data-tag="form">
+              <h3>&lt;form&gt;</h3>
+              <p class="description">
+                Crée un formulaire pour collecter des données.
+              </p>
+              <div class="code-example">
+                <pre><code>&lt;form action="/submit" method="post"&gt;
+  &lt;!-- Champs du formulaire --&gt;
+&lt;/form&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="input">
+              <h3>&lt;input&gt;</h3>
+              <p class="description">
+                Champ de saisie (texte, email, mot de passe, etc.).
+              </p>
+              <div class="code-example">
+                <pre><code>&lt;input type="text" placeholder="Votre nom"&gt;
+&lt;input type="email" required&gt;
+&lt;input type="password"&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="textarea">
+              <h3>&lt;textarea&gt;</h3>
+              <p class="description">Zone de texte multi-lignes.</p>
+              <div class="code-example">
+                <pre><code>&lt;textarea rows="4" cols="50"&gt;
+Texte par défaut...
+&lt;/textarea&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="select">
+              <h3>&lt;select&gt;</h3>
+              <p class="description">Liste déroulante de sélection.</p>
+              <div class="code-example">
+                <pre><code>&lt;select&gt;
+  &lt;option value="1"&gt;Option 1&lt;/option&gt;
+  &lt;option value="2"&gt;Option 2&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="button">
+              <h3>&lt;button&gt;</h3>
+              <p class="description">Bouton cliquable.</p>
+              <div class="code-example">
+                <pre><code>&lt;button type="submit"&gt;Envoyer&lt;/button&gt;
+&lt;button type="button"&gt;Annuler&lt;/button&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="label">
+              <h3>&lt;label&gt;</h3>
+              <p class="description">Étiquette pour un champ de formulaire.</p>
+              <div class="code-example">
+                <pre><code>&lt;label for="nom"&gt;Nom :&lt;/label&gt;
+&lt;input type="text" id="nom"&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Balises de tableau -->
+        <section class="lexique-section" data-category="tables">
+          <h2>📊 Balises de tableau</h2>
+          <div class="lexique-grid">
+            <div class="lexique-item" data-tag="table">
+              <h3>&lt;table&gt;</h3>
+              <p class="description">Crée un tableau.</p>
+              <div class="code-example">
+                <pre><code>&lt;table&gt;
+  &lt;thead&gt;...&lt;/thead&gt;
+  &lt;tbody&gt;...&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="tr">
+              <h3>&lt;tr&gt;</h3>
+              <p class="description">Ligne de tableau.</p>
+              <div class="code-example">
+                <pre><code>&lt;tr&gt;
+  &lt;td&gt;Cellule 1&lt;/td&gt;
+  &lt;td&gt;Cellule 2&lt;/td&gt;
+&lt;/tr&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="td">
+              <h3>&lt;td&gt;</h3>
+              <p class="description">Cellule de données dans un tableau.</p>
+              <div class="code-example">
+                <pre><code>&lt;td&gt;Contenu de la cellule&lt;/td&gt;</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-tag="th">
+              <h3>&lt;th&gt;</h3>
+              <p class="description">Cellule d'en-tête de tableau.</p>
+              <div class="code-example">
+                <pre><code>&lt;th&gt;Titre de colonne&lt;/th&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Script pour la recherche -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.getElementById("searchInput");
+        const lexiqueItems = document.querySelectorAll(".lexique-item");
+
+        searchInput.addEventListener("input", function () {
+          const searchTerm = this.value.toLowerCase();
+
+          lexiqueItems.forEach(function (item) {
+            const tagName = item.dataset.tag;
+            const description = item.querySelector(".description").textContent;
+            const content = (tagName + " " + description).toLowerCase();
+
+            if (content.includes(searchTerm)) {
+              item.style.display = "block";
+            } else {
+              item.style.display = "none";
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

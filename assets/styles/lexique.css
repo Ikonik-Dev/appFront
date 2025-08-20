@@ -1,0 +1,315 @@
+/* =============================================
+   STYLES POUR LES PAGES LEXIQUE
+   ============================================= */
+
+/* Section de recherche */
+.search-section {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.search-container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Sections du lexique */
+.lexique-section {
+  margin-bottom: 3rem;
+}
+
+.lexique-section h2 {
+  color: var(--accent-color);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  font-size: 1.5rem;
+}
+
+/* Grille des éléments */
+.lexique-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* Éléments individuels du lexique */
+.lexique-item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.lexique-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--accent-color),
+    var(--secondary-color)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lexique-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.lexique-item:hover::before {
+  opacity: 1;
+}
+
+.lexique-item h3 {
+  color: var(--accent-color);
+  margin: 0 0 0.8rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: "Courier New", monospace;
+}
+
+.lexique-item .description {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Exemples de code */
+.lexique-item .code-example {
+  margin-top: 1rem;
+}
+
+.lexique-item .code-example h4 {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 500;
+}
+
+.lexique-item .code-example pre {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.lexique-item .code-example code {
+  color: #f8f8f2;
+  font-family: "Courier New", "Monaco", "Lucida Console", monospace;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .lexique-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .lexique-item {
+    padding: 1rem;
+  }
+
+  .search-input {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+
+  .lexique-section h2 {
+    font-size: 1.3rem;
+  }
+
+  .lexique-item h3 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .lexique-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lexique-item .code-example pre {
+    padding: 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .search-container {
+    padding: 0 1rem;
+  }
+}
+
+/* Animations pour les catégories */
+.lexique-section[data-category="structure"] .lexique-item:hover {
+  border-color: #ff6b6b;
+}
+
+.lexique-section[data-category="headings"] .lexique-item:hover {
+  border-color: #4ecdc4;
+}
+
+.lexique-section[data-category="content"] .lexique-item:hover {
+  border-color: #45b7d1;
+}
+
+.lexique-section[data-category="formatting"] .lexique-item:hover {
+  border-color: #96ceb4;
+}
+
+.lexique-section[data-category="lists"] .lexique-item:hover {
+  border-color: #feca57;
+}
+
+.lexique-section[data-category="media"] .lexique-item:hover {
+  border-color: #ff9ff3;
+}
+
+.lexique-section[data-category="forms"] .lexique-item:hover {
+  border-color: #54a0ff;
+}
+
+.lexique-section[data-category="tables"] .lexique-item:hover {
+  border-color: #5f27cd;
+}
+
+.lexique-section[data-category="layout"] .lexique-item:hover {
+  border-color: #00d2d3;
+}
+
+.lexique-section[data-category="dimensions"] .lexique-item:hover {
+  border-color: #ff9f43;
+}
+
+.lexique-section[data-category="spacing"] .lexique-item:hover {
+  border-color: #10ac84;
+}
+
+.lexique-section[data-category="colors"] .lexique-item:hover {
+  border-color: #ee5a24;
+}
+
+.lexique-section[data-category="text"] .lexique-item:hover {
+  border-color: #0984e3;
+}
+
+.lexique-section[data-category="border"] .lexique-item:hover {
+  border-color: #a29bfe;
+}
+
+.lexique-section[data-category="flexbox"] .lexique-item:hover {
+  border-color: #fd79a8;
+}
+
+.lexique-section[data-category="animation"] .lexique-item:hover {
+  border-color: #fdcb6e;
+}
+
+.lexique-section[data-category="variables"] .lexique-item:hover {
+  border-color: #6c5ce7;
+}
+
+.lexique-section[data-category="functions"] .lexique-item:hover {
+  border-color: #fd79a8;
+}
+
+.lexique-section[data-category="strings"] .lexique-item:hover {
+  border-color: #00b894;
+}
+
+.lexique-section[data-category="arrays"] .lexique-item:hover {
+  border-color: #e17055;
+}
+
+.lexique-section[data-category="dom"] .lexique-item:hover {
+  border-color: #0984e3;
+}
+
+.lexique-section[data-category="async"] .lexique-item:hover {
+  border-color: #a29bfe;
+}
+
+.lexique-section[data-category="objects"] .lexique-item:hover {
+  border-color: #fdcb6e;
+}
+
+/* Effet de brillance sur les exemples de code */
+.lexique-item:hover .code-example pre {
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+  border-color: rgba(0, 123, 255, 0.3);
+}
+
+/* Style pour les balises dans les exemples HTML */
+.code-example .tag {
+  color: #569cd6;
+}
+
+.code-example .attribute {
+  color: #9cdcfe;
+}
+
+.code-example .value {
+  color: #ce9178;
+}
+
+/* Indicateur de recherche */
+.lexique-item[style*="display: none"] {
+  display: none !important;
+}
+
+/* Animation d'apparition */
+.lexique-item {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
