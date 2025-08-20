@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulaires - RNCP DWWM 2023</title>
+  </head>
+  <body>
+    <div class="page-content">
+      <section class="forms-section">
+        <div class="section-header">
+          <h2 class="section-title">📋 Formulaires Interactifs</h2>
+          <p class="section-subtitle">
+            Exemples de formulaires modernes avec validation, accessibilité et
+            expérience utilisateur optimisée
+          </p>
+        </div>
+
+        <div class="forms-grid">
+          <!-- Formulaire de contact -->
+          <div class="form-card">
+            <div class="card-header">
+              <div class="card-icon">✉️</div>
+              <h3>Formulaire de Contact</h3>
+            </div>
+            <div class="card-content">
+              <form class="contact-form" id="contactForm" novalidate>
+                <div class="form-group">
+                  <label for="contact-name" class="form-label">
+                    Nom complet
+                    <span class="required" aria-label="champ obligatoire"
+                      >*</span
+                    >
+                  </label>
+                  <input
+                    type="text"
+                    id="contact-name"
+                    name="name"
+                    class="form-input"
+                    required
+                    aria-describedby="contact-name-help contact-name-error"
+                    autocomplete="name"
+                  />
+                  <div id="contact-name-help" class="form-help">
+                    Entrez votre nom et prénom
+                  </div>
+                  <div
+                    id="contact-name-error"
+                    class="form-error"
+                    role="alert"
+                  ></div>
+                </div>
+
+                <div class="form-group">
+                  <label for="contact-email" class="form-label">
+                    Email
+                    <span class="required" aria-label="champ obligatoire"
+                      >*</span
+                    >
+                  </label>
+                  <input
+                    type="email"
+                    id="contact-email"
+                    name="email"
+                    class="form-input"
+                    required
+                    aria-describedby="contact-email-help contact-email-error"
+                    autocomplete="email"
+                  />
+                  <div id="contact-email-help" class="form-help">
+                    Format : nom@exemple.com
+                  </div>
+                  <div
+                    id="contact-email-error"
+                    class="form-error"
+                    role="alert"
+                  ></div>
+                </div>
+
+                <div class="form-group">
+                  <label for="contact-subject" class="form-label">Sujet</label>
+                  <select
+                    id="contact-subject"
+                    name="subject"
+                    class="form-select"
+                    aria-describedby="contact-subject-help"
+                  >
+                    <option value="">Choisissez un sujet</option>
+                    <option value="info">Demande d'information</option>
+                    <option value="support">Support technique</option>
+                    <option value="collaboration">Collaboration</option>
+                    <option value="other">Autre</option>
+                  </select>
+                  <div id="contact-subject-help" class="form-help">
+                    Optionnel - aide à catégoriser votre message
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="contact-message" class="form-label">
+                    Message
+                    <span class="required" aria-label="champ obligatoire"
+                      >*</span
+                    >
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    class="form-textarea"
+                    rows="5"
+                    required
+                    aria-describedby="contact-message-help contact-message-error"
+                    maxlength="1000"
+                  ></textarea>
+                  <div id="contact-message-help" class="form-help">
+                    <span id="message-counter">0/1000 caractères</span>
+                  </div>
+                  <div
+                    id="contact-message-error"
+                    class="form-error"
+                    role="alert"
+                  ></div>
+                </div>
+
+                <div class="form-group checkbox-group">
+                  <label class="checkbox-label">
+                    <input
+                      type="checkbox"
+                      id="contact-newsletter"
+                      name="newsletter"
+                      class="form-checkbox"
+                    />
+                    <span class="checkmark"></span>
+                    <span class="checkbox-text"
+                      >Je souhaite recevoir la newsletter</span
+                    >
+                  </label>
+                </div>
+
+                <div class="form-group checkbox-group">
+                  <label class="checkbox-label">
+                    <input
+                      type="checkbox"
+                      id="contact-terms"
+                      name="terms"
+                      class="form-checkbox"
+                      required
+                    />
+                    <span class="checkmark"></span>
+                    <span class="checkbox-text">
+                      J'accepte les
+                      <a href="#" class="form-link">conditions d'utilisation</a>
+                      <span class="required" aria-label="champ obligatoire"
+                        >*</span
+                      >
+                    </span>
+                  </label>
+                  <div
+                    id="contact-terms-error"
+                    class="form-error"
+                    role="alert"
+                  ></div>
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary">
+                    <span class="btn-text">Envoyer le message</span>
+                    <span class="btn-loading" style="display: none"
+                      >Envoi en cours...</span
+                    >
+                  </button>
+                  <button type="reset" class="btn btn-secondary">
+                    Réinitialiser
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Formulaire d'inscription -->
+          <div class="form-card">
+            <div class="card-header">
+              <div class="card-icon">👤</div>
+              <h3>Inscription Utilisateur</h3>
+            </div>
+            <div class="card-content">
+              <form class="registration-form" id="registrationForm" novalidate>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="reg-firstname" class="form-label">
+                      Prénom <span class="required">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="reg-firstname"
+                      name="firstname"
+                      class="form-input"
+                      required
+                      aria-describedby="reg-firstname-error"
+                      autocomplete="given-name"
+                    />
+                    <div
+                      id="reg-firstname-error"
+                      class="form-error"
+                      role="alert"
+                    ></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="reg-lastname" class="form-label">
+                      Nom <span class="required">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="reg-lastname"
+                      name="lastname"
+                      class="form-input"
+                      required
+                      aria-describedby="reg-lastname-error"
+                      autocomplete="family-name"
+                    />
+                    <div
+                      id="reg-lastname-error"
+                      class="form-error"
+                      role="alert"
+                    ></div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="reg-email" class="form-label">
+                    Email <span class="required">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    id="reg-email"
+                    name="email"
+                    class="form-input"
+                    required
+                    aria-describedby="reg-email-error"
+                    autocomplete="email"
+                  />
+                  <div
+                    id="reg-email-error"
+                    class="form-error"
+                    role="alert"
+                  ></div>
+                </div>
+
+                <div class="form-group">
+                  <label for="reg-password" class="form-label">
+                    Mot de passe <span class="required">*</span>
+                  </label>
+                  <div class="password-field">
+                    <input
+                      type="password"
+                      id="reg-password"
+                      name="password"
+                      class="form-input"
+                      required
+                      aria-describedby="reg-password-help reg-password-error"
+                      autocomplete="new-password"
+                    />
+                    <button
+                      type="button"
+                      class="password-toggle"
+                      onclick="togglePassword('reg-password')"
+                      aria-label="Afficher/masquer le mot de passe"
+                    >
+                      👁️
+                    </button>
+                  </div>
+                  <div id="reg-password-help" class="form-help">
+                    Minimum 8 caractères avec au moins une majuscule, une
+                    minuscule et un chiffre
+                  </div>
+                  <div class="password-strength">
+                    <div class="strength-bar">
+                      <div
+                        class="strength-fill"
+                        id="password-strength-fill"
+                      ></div>
+                    </div>
+                    <div class="strength-text" id="password-strength-text">
+                      Trop faible
+                    </div>
+                  </div>
+                  <div
+                    id="reg-password-error"
+                    class="form-error"
+                    role="alert"
+                  ></div>
+                </div>
+
+                <div class="form-group">
+                  <label for="reg-confirm-password" class="form-label">
+                    Confirmer le mot de passe <span class="required">*</span>
+                  </label>
+                  <div class="password-field">
+                    <input
+                      type="password"
+                      id="reg-confirm-password"
+                      name="confirmPassword"
+                      class="form-input"
+                      required
+                      aria-describedby="reg-confirm-password-error"
+                      autocomplete="new-password"
+                    />
+                    <button
+                      type="button"
+                      class="password-toggle"
+                      onclick="togglePassword('reg-confirm-password')"
+                      aria-label="Afficher/masquer la confirmation"
+                    >
+                      👁️
+                    </button>
+                  </div>
+                  <div
+                    id="reg-confirm-password-error"
+                    class="form-error"
+                    role="alert"
+                  ></div>
+                </div>
+
+                <div class="form-group">
+                  <label for="reg-birthdate" class="form-label"
+                    >Date de naissance</label
+                  >
+                  <input
+                    type="date"
+                    id="reg-birthdate"
+                    name="birthdate"
+                    class="form-input"
+                    aria-describedby="reg-birthdate-help"
+                    autocomplete="bday"
+                  />
+                  <div id="reg-birthdate-help" class="form-help">
+                    Optionnel - utilisé pour les statistiques
+                  </div>
+                </div>
+
+                <fieldset class="form-group fieldset-group">
+                  <legend class="fieldset-legend">Genre</legend>
+                  <div class="radio-group">
+                    <label class="radio-label">
+                      <input
+                        type="radio"
+                        name="gender"
+                        value="male"
+                        class="form-radio"
+                      />
+                      <span class="radio-mark"></span>
+                      <span class="radio-text">Homme</span>
+                    </label>
+                    <label class="radio-label">
+                      <input
+                        type="radio"
+                        name="gender"
+                        value="female"
+                        class="form-radio"
+                      />
+                      <span class="radio-mark"></span>
+                      <span class="radio-text">Femme</span>
+                    </label>
+                    <label class="radio-label">
+                      <input
+                        type="radio"
+                        name="gender"
+                        value="other"
+                        class="form-radio"
+                      />
+                      <span class="radio-mark"></span>
+                      <span class="radio-text">Autre</span>
+                    </label>
+                    <label class="radio-label">
+                      <input
+                        type="radio"
+                        name="gender"
+                        value="prefer-not-to-say"
+                        class="form-radio"
+                      />
+                      <span class="radio-mark"></span>
+                      <span class="radio-text">Préfère ne pas dire</span>
+                    </label>
+                  </div>
+                </fieldset>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary">
+                    S'inscrire
+                  </button>
+                  <button type="reset" class="btn btn-secondary">
+                    Effacer
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Formulaire de recherche avancée -->
+          <div class="form-card">
+            <div class="card-header">
+              <div class="card-icon">🔍</div>
+              <h3>Recherche Avancée</h3>
+            </div>
+            <div class="card-content">
+              <form class="search-form" id="searchForm">
+                <div class="form-group">
+                  <label for="search-query" class="form-label"
+                    >Terme de recherche</label
+                  >
+                  <div class="search-field">
+                    <input
+                      type="search"
+                      id="search-query"
+                      name="query"
+                      class="form-input"
+                      placeholder="Que recherchez-vous ?"
+                      aria-describedby="search-suggestions"
+                      autocomplete="off"
+                    />
+                    <button
+                      type="submit"
+                      class="search-btn"
+                      aria-label="Lancer la recherche"
+                    >
+                      🔍
+                    </button>
+                  </div>
+                  <div
+                    id="search-suggestions"
+                    class="search-suggestions"
+                    role="listbox"
+                    aria-label="Suggestions de recherche"
+                  ></div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="search-category" class="form-label"
+                      >Catégorie</label
+                    >
+                    <select
+                      id="search-category"
+                      name="category"
+                      class="form-select"
+                    >
+                      <option value="">Toutes les catégories</option>
+                      <option value="articles">Articles</option>
+                      <option value="tutorials">Tutoriels</option>
+                      <option value="documentation">Documentation</option>
+                      <option value="examples">Exemples</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="search-sort" class="form-label"
+                      >Trier par</label
+                    >
+                    <select id="search-sort" name="sort" class="form-select">
+                      <option value="relevance">Pertinence</option>
+                      <option value="date">Date</option>
+                      <option value="title">Titre</option>
+                      <option value="popularity">Popularité</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="search-tags" class="form-label">Tags</label>
+                  <div class="tags-input" id="tags-container">
+                    <input
+                      type="text"
+                      id="search-tags"
+                      placeholder="Ajouter un tag..."
+                      class="tag-input"
+                      aria-describedby="tags-help"
+                    />
+                  </div>
+                  <div id="tags-help" class="form-help">
+                    Appuyez sur Entrée pour ajouter un tag
+                  </div>
+                </div>
+
+                <fieldset class="form-group fieldset-group">
+                  <legend class="fieldset-legend">Options de recherche</legend>
+                  <div class="checkbox-group">
+                    <label class="checkbox-label">
+                      <input
+                        type="checkbox"
+                        name="options"
+                        value="exact"
+                        class="form-checkbox"
+                      />
+                      <span class="checkmark"></span>
+                      <span class="checkbox-text">Recherche exacte</span>
+                    </label>
+                    <label class="checkbox-label">
+                      <input
+                        type="checkbox"
+                        name="options"
+                        value="case-sensitive"
+                        class="form-checkbox"
+                      />
+                      <span class="checkmark"></span>
+                      <span class="checkbox-text">Sensible à la casse</span>
+                    </label>
+                    <label class="checkbox-label">
+                      <input
+                        type="checkbox"
+                        name="options"
+                        value="include-archived"
+                        class="form-checkbox"
+                      />
+                      <span class="checkmark"></span>
+                      <span class="checkbox-text"
+                        >Inclure les éléments archivés</span
+                      >
+                    </label>
+                  </div>
+                </fieldset>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary">
+                    Rechercher
+                  </button>
+                  <button type="reset" class="btn btn-secondary">
+                    Réinitialiser
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Formulaire de feedback -->
+          <div class="form-card">
+            <div class="card-header">
+              <div class="card-icon">⭐</div>
+              <h3>Évaluation & Feedback</h3>
+            </div>
+            <div class="card-content">
+              <form class="feedback-form" id="feedbackForm">
+                <div class="form-group">
+                  <fieldset class="rating-fieldset">
+                    <legend class="fieldset-legend">Note générale</legend>
+                    <div
+                      class="rating-group"
+                      role="radiogroup"
+                      aria-label="Note sur 5 étoiles"
+                    >
+                      <input
+                        type="radio"
+                        id="star5"
+                        name="rating"
+                        value="5"
+                        class="rating-input"
+                      />
+                      <label
+                        for="star5"
+                        class="rating-label"
+                        aria-label="5 étoiles"
+                        >⭐</label
+                      >
+                      <input
+                        type="radio"
+                        id="star4"
+                        name="rating"
+                        value="4"
+                        class="rating-input"
+                      />
+                      <label
+                        for="star4"
+                        class="rating-label"
+                        aria-label="4 étoiles"
+                        >⭐</label
+                      >
+                      <input
+                        type="radio"
+                        id="star3"
+                        name="rating"
+                        value="3"
+                        class="rating-input"
+                      />
+                      <label
+                        for="star3"
+                        class="rating-label"
+                        aria-label="3 étoiles"
+                        >⭐</label
+                      >
+                      <input
+                        type="radio"
+                        id="star2"
+                        name="rating"
+                        value="2"
+                        class="rating-input"
+                      />
+                      <label
+                        for="star2"
+                        class="rating-label"
+                        aria-label="2 étoiles"
+                        >⭐</label
+                      >
+                      <input
+                        type="radio"
+                        id="star1"
+                        name="rating"
+                        value="1"
+                        class="rating-input"
+                      />
+                      <label
+                        for="star1"
+                        class="rating-label"
+                        aria-label="1 étoile"
+                        >⭐</label
+                      >
+                    </div>
+                  </fieldset>
+                </div>
+
+                <div class="form-group">
+                  <label for="feedback-comment" class="form-label"
+                    >Commentaire</label
+                  >
+                  <textarea
+                    id="feedback-comment"
+                    name="comment"
+                    class="form-textarea"
+                    rows="4"
+                    placeholder="Partagez votre expérience..."
+                    aria-describedby="feedback-help"
+                  ></textarea>
+                  <div id="feedback-help" class="form-help">
+                    Votre avis nous aide à améliorer l'application
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="feedback-email" class="form-label"
+                    >Email (optionnel)</label
+                  >
+                  <input
+                    type="email"
+                    id="feedback-email"
+                    name="email"
+                    class="form-input"
+                    placeholder="Pour vous recontacter si nécessaire"
+                    autocomplete="email"
+                  />
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary">
+                    Envoyer l'évaluation
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Zone de résultats -->
+        <div class="results-section" id="formResults">
+          <h3>Résultats des formulaires</h3>
+          <div class="results-content" id="resultsContent">
+            <p>Les données des formulaires soumis apparaîtront ici.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <style>
+      .forms-section {
+        padding: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1rem;
+      }
+
+      .section-subtitle {
+        font-size: 1.2rem;
+        opacity: 0.8;
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .forms-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .form-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        padding: 2rem;
+        transition: all 0.3s ease;
+      }
+
+      .form-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(79, 172, 254, 0.4);
+        box-shadow: 0 20px 40px rgba(79, 172, 254, 0.1);
+      }
+
+      .card-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .card-icon {
+        font-size: 2rem;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(79, 172, 254, 0.1);
+        border-radius: 12px;
+      }
+
+      .card-header h3 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #fff;
+        margin: 0;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .form-label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #fff;
+      }
+
+      .required {
+        color: #f87171;
+      }
+
+      .form-input,
+      .form-select,
+      .form-textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      /* Styles spécifiques pour les options des select */
+      .form-select option {
+        background: #2c3e50;
+        color: #ffffff;
+        padding: 0.5rem;
+        border: none;
+      }
+
+      .form-select option:hover,
+      .form-select option:focus {
+        background: #4facfe;
+        color: #ffffff;
+      }
+
+      .form-select option:checked {
+        background: #4facfe;
+        color: #ffffff;
+        font-weight: 600;
+      }
+
+      .form-input:focus,
+      .form-select:focus,
+      .form-textarea:focus {
+        outline: none;
+        border-color: #4facfe;
+        box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.2);
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .form-input::placeholder,
+      .form-textarea::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .form-help {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.7);
+        margin-top: 0.25rem;
+      }
+
+      .form-error {
+        font-size: 0.85rem;
+        color: #f87171;
+        margin-top: 0.25rem;
+        min-height: 1.2em;
+      }
+
+      .form-input.error,
+      .form-select.error,
+      .form-textarea.error {
+        border-color: #f87171;
+        box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.2);
+      }
+
+      .form-input.success,
+      .form-select.success,
+      .form-textarea.success {
+        border-color: #4ade80;
+        box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.2);
+      }
+
+      /* Checkboxes et radios personnalisés */
+      .checkbox-group,
+      .radio-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .checkbox-label,
+      .radio-label {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        cursor: pointer;
+        font-weight: normal;
+      }
+
+      .form-checkbox,
+      .form-radio {
+        opacity: 0;
+        position: absolute;
+      }
+
+      .checkmark,
+      .radio-mark {
+        width: 20px;
+        height: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        border-radius: 4px;
+        position: relative;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+      }
+
+      .radio-mark {
+        border-radius: 50%;
+      }
+
+      .form-checkbox:checked + .checkmark {
+        background: #4facfe;
+        border-color: #4facfe;
+      }
+
+      .form-radio:checked + .radio-mark {
+        background: #4facfe;
+        border-color: #4facfe;
+      }
+
+      .form-checkbox:checked + .checkmark::after {
+        content: "✓";
+        position: absolute;
+        color: white;
+        font-size: 14px;
+        top: -2px;
+        left: 2px;
+      }
+
+      .form-radio:checked + .radio-mark::after {
+        content: "";
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: white;
+        border-radius: 50%;
+        top: 4px;
+        left: 4px;
+      }
+
+      .form-checkbox:focus + .checkmark,
+      .form-radio:focus + .radio-mark {
+        box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.3);
+      }
+
+      /* Champs de mot de passe */
+      .password-field {
+        position: relative;
+      }
+
+      .password-toggle {
+        position: absolute;
+        right: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+        padding: 0.25rem;
+        border-radius: 4px;
+      }
+
+      .password-toggle:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .password-toggle:focus {
+        outline: 2px solid #4facfe;
+        outline-offset: 2px;
+      }
+
+      .password-strength {
+        margin-top: 0.5rem;
+      }
+
+      .strength-bar {
+        width: 100%;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .strength-fill {
+        height: 100%;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+      }
+
+      .strength-text {
+        font-size: 0.8rem;
+        margin-top: 0.25rem;
+      }
+
+      /* Champ de recherche */
+      .search-field {
+        position: relative;
+      }
+
+      .search-btn {
+        position: absolute;
+        right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #4facfe;
+        border: none;
+        color: white;
+        width: 36px;
+        height: 36px;
+        border-radius: 6px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .search-btn:hover {
+        background: #3b8bfe;
+      }
+
+      .search-btn:focus {
+        outline: 2px solid #4facfe;
+        outline-offset: 2px;
+      }
+
+      .search-suggestions {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(30, 30, 60, 0.95);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        max-height: 200px;
+        overflow-y: auto;
+        z-index: 10;
+        display: none;
+      }
+
+      .suggestion-item {
+        padding: 0.75rem;
+        cursor: pointer;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .suggestion-item:hover {
+        background: rgba(79, 172, 254, 0.1);
+      }
+
+      /* Tags input */
+      .tags-input {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        min-height: 45px;
+        align-items: center;
+      }
+
+      .tag-input {
+        border: none;
+        background: transparent;
+        color: white;
+        flex: 1;
+        min-width: 120px;
+        padding: 0.25rem;
+      }
+
+      .tag-input:focus {
+        outline: none;
+      }
+
+      .tag-item {
+        background: #4facfe;
+        color: white;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+      }
+
+      .tag-remove {
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 0;
+        font-weight: bold;
+      }
+
+      /* Rating stars */
+      .rating-fieldset {
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        padding: 1rem;
+        margin: 0;
+      }
+
+      .fieldset-legend {
+        color: #fff;
+        font-weight: 600;
+        padding: 0 0.5rem;
+      }
+
+      .rating-group {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        gap: 0.25rem;
+      }
+
+      .rating-input {
+        opacity: 0;
+        position: absolute;
+      }
+
+      .rating-label {
+        font-size: 2rem;
+        color: rgba(255, 255, 255, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .rating-input:checked ~ .rating-label,
+      .rating-label:hover,
+      .rating-label:hover ~ .rating-label {
+        color: #fbbf24;
+      }
+
+      .rating-input:focus + .rating-label {
+        outline: 2px solid #4facfe;
+        outline-offset: 2px;
+      }
+
+      /* Fieldsets */
+      .fieldset-group {
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        padding: 1rem;
+        margin: 0;
+      }
+
+      /* Boutons */
+      .form-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        min-width: 120px;
+        justify-content: center;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+      }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .btn:focus {
+        outline: 2px solid #4facfe;
+        outline-offset: 2px;
+      }
+
+      .btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      /* Liens dans les formulaires */
+      .form-link {
+        color: #4facfe;
+        text-decoration: underline;
+      }
+
+      .form-link:hover {
+        color: #3b8bfe;
+      }
+
+      .form-link:focus {
+        outline: 2px solid #4facfe;
+        outline-offset: 2px;
+      }
+
+      /* Section résultats */
+      .results-section {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        padding: 2rem;
+        margin-top: 2rem;
+      }
+
+      .results-section h3 {
+        color: #4facfe;
+        margin-bottom: 1rem;
+      }
+
+      .results-content {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        padding: 1rem;
+        font-family: "Courier New", monospace;
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .forms-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .forms-section {
+          padding: 1rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+
+        .form-actions {
+          flex-direction: column;
+        }
+
+        .btn {
+          width: 100%;
+        }
+      }
+    </style>
+
+    <script>
+      // Gestion des formulaires
+      document.addEventListener("DOMContentLoaded", function () {
+        // Initialiser tous les formulaires
+        initContactForm();
+        initRegistrationForm();
+        initSearchForm();
+        initFeedbackForm();
+      });
+
+      // Formulaire de contact
+      function initContactForm() {
+        const form = document.getElementById("contactForm");
+        const messageField = document.getElementById("contact-message");
+        const counter = document.getElementById("message-counter");
+
+        // Compteur de caractères
+        messageField.addEventListener("input", function () {
+          const count = this.value.length;
+          counter.textContent = `${count}/1000 caractères`;
+
+          if (count > 950) {
+            counter.style.color = "#f87171";
+          } else if (count > 800) {
+            counter.style.color = "#fbbf24";
+          } else {
+            counter.style.color = "rgba(255, 255, 255, 0.7)";
+          }
+        });
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          if (validateContactForm()) {
+            showFormResult("Contact", new FormData(form));
+          }
+        });
+      }
+
+      function validateContactForm() {
+        const name = document.getElementById("contact-name");
+        const email = document.getElementById("contact-email");
+        const message = document.getElementById("contact-message");
+        const terms = document.getElementById("contact-terms");
+
+        let isValid = true;
+
+        // Validation nom
+        if (!name.value.trim()) {
+          showFieldError("contact-name-error", "Le nom est obligatoire");
+          name.classList.add("error");
+          isValid = false;
+        } else {
+          clearFieldError("contact-name-error");
+          name.classList.remove("error");
+          name.classList.add("success");
+        }
+
+        // Validation email
+        if (!email.value.trim()) {
+          showFieldError("contact-email-error", "L'email est obligatoire");
+          email.classList.add("error");
+          isValid = false;
+        } else if (!isValidEmail(email.value)) {
+          showFieldError("contact-email-error", "Format d'email invalide");
+          email.classList.add("error");
+          isValid = false;
+        } else {
+          clearFieldError("contact-email-error");
+          email.classList.remove("error");
+          email.classList.add("success");
+        }
+
+        // Validation message
+        if (!message.value.trim()) {
+          showFieldError("contact-message-error", "Le message est obligatoire");
+          message.classList.add("error");
+          isValid = false;
+        } else {
+          clearFieldError("contact-message-error");
+          message.classList.remove("error");
+          message.classList.add("success");
+        }
+
+        // Validation conditions
+        if (!terms.checked) {
+          showFieldError(
+            "contact-terms-error",
+            "Vous devez accepter les conditions"
+          );
+          isValid = false;
+        } else {
+          clearFieldError("contact-terms-error");
+        }
+
+        return isValid;
+      }
+
+      // Formulaire d'inscription
+      function initRegistrationForm() {
+        const form = document.getElementById("registrationForm");
+        const passwordField = document.getElementById("reg-password");
+        const confirmField = document.getElementById("reg-confirm-password");
+
+        // Validation en temps réel du mot de passe
+        passwordField.addEventListener("input", function () {
+          checkPasswordStrength(this.value);
+          if (confirmField.value) {
+            validatePasswordConfirm();
+          }
+        });
+
+        confirmField.addEventListener("input", validatePasswordConfirm);
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          if (validateRegistrationForm()) {
+            showFormResult("Inscription", new FormData(form));
+          }
+        });
+      }
+
+      function checkPasswordStrength(password) {
+        const strengthFill = document.getElementById("password-strength-fill");
+        const strengthText = document.getElementById("password-strength-text");
+
+        let strength = 0;
+        let label = "Trop faible";
+        let color = "#f87171";
+
+        if (password.length >= 8) strength += 1;
+        if (/[a-z]/.test(password)) strength += 1;
+        if (/[A-Z]/.test(password)) strength += 1;
+        if (/[0-9]/.test(password)) strength += 1;
+        if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+
+        switch (strength) {
+          case 1:
+          case 2:
+            label = "Faible";
+            color = "#f87171";
+            break;
+          case 3:
+            label = "Moyen";
+            color = "#fbbf24";
+            break;
+          case 4:
+            label = "Fort";
+            color = "#4ade80";
+            break;
+          case 5:
+            label = "Très fort";
+            color = "#22c55e";
+            break;
+        }
+
+        strengthFill.style.width = `${(strength / 5) * 100}%`;
+        strengthFill.style.background = color;
+        strengthText.textContent = label;
+        strengthText.style.color = color;
+      }
+
+      function validatePasswordConfirm() {
+        const password = document.getElementById("reg-password").value;
+        const confirm = document.getElementById("reg-confirm-password").value;
+        const errorDiv = document.getElementById("reg-confirm-password-error");
+
+        if (confirm && password !== confirm) {
+          showFieldError(
+            "reg-confirm-password-error",
+            "Les mots de passe ne correspondent pas"
+          );
+          document
+            .getElementById("reg-confirm-password")
+            .classList.add("error");
+        } else if (confirm) {
+          clearFieldError("reg-confirm-password-error");
+          document
+            .getElementById("reg-confirm-password")
+            .classList.remove("error");
+          document
+            .getElementById("reg-confirm-password")
+            .classList.add("success");
+        }
+      }
+
+      function validateRegistrationForm() {
+        // Validation simplifiée pour la démo
+        const required = [
+          "reg-firstname",
+          "reg-lastname",
+          "reg-email",
+          "reg-password",
+          "reg-confirm-password",
+        ];
+        let isValid = true;
+
+        required.forEach((id) => {
+          const field = document.getElementById(id);
+          if (!field.value.trim()) {
+            field.classList.add("error");
+            isValid = false;
+          } else {
+            field.classList.remove("error");
+            field.classList.add("success");
+          }
+        });
+
+        return isValid;
+      }
+
+      // Formulaire de recherche
+      function initSearchForm() {
+        const form = document.getElementById("searchForm");
+        const tagsInput = document.getElementById("search-tags");
+        const tagsContainer = document.getElementById("tags-container");
+        const searchQuery = document.getElementById("search-query");
+
+        // Gestion des tags
+        tagsInput.addEventListener("keydown", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            addTag(this.value.trim());
+            this.value = "";
+          }
+        });
+
+        // Suggestions de recherche
+        searchQuery.addEventListener("input", function () {
+          showSearchSuggestions(this.value);
+        });
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          showFormResult("Recherche", new FormData(form));
+        });
+      }
+
+      function addTag(tagText) {
+        if (!tagText) return;
+
+        const tagsContainer = document.getElementById("tags-container");
+        const tagsInput = document.getElementById("search-tags");
+
+        const tagElement = document.createElement("div");
+        tagElement.className = "tag-item";
+        tagElement.innerHTML = `
+                <span>${tagText}</span>
+                <button type="button" class="tag-remove" onclick="removeTag(this)" aria-label="Supprimer le tag ${tagText}">×</button>
+            `;
+
+        tagsContainer.insertBefore(tagElement, tagsInput);
+      }
+
+      function removeTag(button) {
+        button.parentElement.remove();
+      }
+
+      function showSearchSuggestions(query) {
+        if (!query.trim()) return;
+
+        const suggestions = [
+          "JavaScript",
+          "HTML5",
+          "CSS3",
+          "React",
+          "Vue.js",
+          "Angular",
+          "Node.js",
+          "TypeScript",
+        ];
+        const filtered = suggestions.filter((s) =>
+          s.toLowerCase().includes(query.toLowerCase())
+        );
+
+        // Affichage simplifié pour la démo
+        console.log("Suggestions:", filtered);
+      }
+
+      // Formulaire de feedback
+      function initFeedbackForm() {
+        const form = document.getElementById("feedbackForm");
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          showFormResult("Feedback", new FormData(form));
+        });
+      }
+
+      // Utilitaires
+      function togglePassword(inputId) {
+        const input = document.getElementById(inputId);
+        const button = input.nextElementSibling;
+
+        if (input.type === "password") {
+          input.type = "text";
+          button.textContent = "🙈";
+          button.setAttribute("aria-label", "Masquer le mot de passe");
+        } else {
+          input.type = "password";
+          button.textContent = "👁️";
+          button.setAttribute("aria-label", "Afficher le mot de passe");
+        }
+      }
+
+      function showFieldError(errorId, message) {
+        const errorDiv = document.getElementById(errorId);
+        errorDiv.textContent = message;
+      }
+
+      function clearFieldError(errorId) {
+        const errorDiv = document.getElementById(errorId);
+        errorDiv.textContent = "";
+      }
+
+      function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      function showFormResult(formName, formData) {
+        const resultsContent = document.getElementById("resultsContent");
+        const data = {};
+
+        for (let [key, value] of formData.entries()) {
+          data[key] = value;
+        }
+
+        resultsContent.innerHTML = `
+                <h4>Données du formulaire : ${formName}</h4>
+                <pre>${JSON.stringify(data, null, 2)}</pre>
+                <p><em>Soumis le ${new Date().toLocaleString()}</em></p>
+            `;
+
+        // Scroll vers les résultats
+        document
+          .getElementById("formResults")
+          .scrollIntoView({ behavior: "smooth" });
+      }
+    </script>
+  </body>
+</html>

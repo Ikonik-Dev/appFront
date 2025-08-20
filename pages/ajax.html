@@ -1,0 +1,1437 @@
+<div class="page" id="page-ajax">
+  <div class="page-header">
+    <h1 class="page-title">🔄 AJAX & API</h1>
+    <p class="page-subtitle">
+      Fetch API, gestion asynchrone, REST et intégration de services web
+      modernes
+    </p>
+  </div>
+
+  <div class="sidebar-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="#ajax-basics">Bases AJAX</a></li>
+          <li><a href="#fetch-api">Fetch API</a></li>
+          <li><a href="#async-await">Async/Await</a></li>
+          <li><a href="#error-handling">Gestion d'erreurs</a></li>
+          <li><a href="#rest-api">API REST</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <section id="ajax-basics" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Introduction à AJAX</h2>
+          <p class="section-description">
+            AJAX (Asynchronous JavaScript and XML) permet de communiquer avec le
+            serveur sans recharger la page
+          </p>
+        </div>
+
+        <div class="content-area">
+          <h3>Pourquoi utiliser AJAX ?</h3>
+
+          <div class="explanation-grid">
+            <div class="explanation-card">
+              <div class="explanation-icon">⚡</div>
+              <h4>Performances</h4>
+              <p>
+                Chargement de données sans recharger la page entière, améliore
+                l'expérience utilisateur
+              </p>
+            </div>
+
+            <div class="explanation-card">
+              <div class="explanation-icon">🔄</div>
+              <h4>Interactivité</h4>
+              <p>
+                Mise à jour dynamique du contenu, interfaces plus fluides et
+                réactives
+              </p>
+            </div>
+
+            <div class="explanation-card">
+              <div class="explanation-icon">📊</div>
+              <h4>Données temps réel</h4>
+              <p>
+                Récupération et affichage de données en temps réel depuis des
+                API externes
+              </p>
+            </div>
+          </div>
+
+          <div class="demo-area">
+            <h3>Démonstration : Chargement de données utilisateur</h3>
+
+            <div class="ajax-demo-container">
+              <div class="demo-controls">
+                <button class="btn btn-primary" onclick="loadUserData()">
+                  <span class="btn-icon">👤</span>
+                  Charger un utilisateur
+                </button>
+                <button class="btn btn-secondary" onclick="loadMultipleUsers()">
+                  <span class="btn-icon">👥</span>
+                  Charger plusieurs utilisateurs
+                </button>
+                <button class="btn btn-warning" onclick="simulateError()">
+                  <span class="btn-icon">⚠️</span>
+                  Simuler une erreur
+                </button>
+                <button class="btn btn-info" onclick="clearResults()">
+                  <span class="btn-icon">🗑️</span>
+                  Effacer
+                </button>
+              </div>
+
+              <div class="demo-status" id="demoStatus">
+                Prêt à charger des données...
+              </div>
+
+              <div class="demo-results" id="demoResults">
+                <!-- Les résultats apparaîtront ici -->
+              </div>
+            </div>
+          </div>
+
+          <div class="code-area">
+            <h3>Code traditionnel avec XMLHttpRequest</h3>
+            <pre><code class="code-highlight">
+<span class="comment">// Méthode traditionnelle (avant Fetch API)</span>
+<span class="keyword">function</span> <span class="function">loadDataXHR</span>() {
+    <span class="keyword">const</span> xhr = <span class="keyword">new</span> XMLHttpRequest();
+    
+    xhr.<span class="function">onreadystatechange</span> = <span class="keyword">function</span>() {
+        <span class="keyword">if</span> (xhr.readyState === <span class="number">4</span>) {
+            <span class="keyword">if</span> (xhr.status === <span class="number">200</span>) {
+                <span class="keyword">const</span> data = JSON.<span class="function">parse</span>(xhr.responseText);
+                <span class="function">displayResults</span>(data);
+            } <span class="keyword">else</span> {
+                <span class="function">console.error</span>(<span class="string">'Erreur:'</span>, xhr.status);
+            }
+        }
+    };
+    
+    xhr.<span class="function">open</span>(<span class="string">'GET'</span>, <span class="string">'https://jsonplaceholder.typicode.com/users/1'</span>);
+    xhr.<span class="function">send</span>();
+}
+                        </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="fetch-api" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Fetch API Moderne</h2>
+          <p class="section-description">
+            L'API Fetch offre une interface moderne et puissante pour effectuer
+            des requêtes HTTP
+          </p>
+        </div>
+
+        <div class="content-area">
+          <h3>Avantages de Fetch API</h3>
+
+          <div class="features-grid">
+            <div class="feature-item">
+              <strong>🎯 Syntaxe claire</strong>
+              <p>Plus lisible et maintenable que XMLHttpRequest</p>
+            </div>
+            <div class="feature-item">
+              <strong>🔗 Promesses natives</strong>
+              <p>Intégration naturelle avec async/await</p>
+            </div>
+            <div class="feature-item">
+              <strong>🛠️ Flexible</strong>
+              <p>Configuration avancée des requêtes</p>
+            </div>
+            <div class="feature-item">
+              <strong>🔒 Sécurisé</strong>
+              <p>Gestion native de CORS et CSP</p>
+            </div>
+          </div>
+
+          <div class="demo-area">
+            <h3>Démonstration interactive Fetch API</h3>
+
+            <div class="fetch-demo-container">
+              <div class="demo-settings">
+                <h4>Paramètres de la requête :</h4>
+
+                <div class="setting-group">
+                  <label>Méthode HTTP :</label>
+                  <select id="httpMethod">
+                    <option value="GET">GET</option>
+                    <option value="POST">POST</option>
+                    <option value="PUT">PUT</option>
+                    <option value="DELETE">DELETE</option>
+                  </select>
+                </div>
+
+                <div class="setting-group">
+                  <label>Endpoint :</label>
+                  <select id="apiEndpoint">
+                    <option value="users">Utilisateurs (/users)</option>
+                    <option value="posts">Articles (/posts)</option>
+                    <option value="comments">Commentaires (/comments)</option>
+                    <option value="albums">Albums (/albums)</option>
+                  </select>
+                </div>
+
+                <div class="setting-group">
+                  <label>ID spécifique (optionnel) :</label>
+                  <input
+                    type="number"
+                    id="resourceId"
+                    placeholder="Ex: 1"
+                    min="1"
+                    max="100"
+                  />
+                </div>
+
+                <div class="setting-group">
+                  <label>
+                    <input type="checkbox" id="includeHeaders" />
+                    Afficher les headers de réponse
+                  </label>
+                </div>
+              </div>
+
+              <div class="demo-actions">
+                <button class="btn btn-primary" onclick="executeFetchDemo()">
+                  <span class="btn-icon">🚀</span>
+                  Exécuter la requête
+                </button>
+                <button class="btn btn-secondary" onclick="showGeneratedCode()">
+                  <span class="btn-icon">📋</span>
+                  Voir le code généré
+                </button>
+              </div>
+
+              <div class="fetch-results" id="fetchResults">
+                <!-- Résultats de la requête -->
+              </div>
+            </div>
+          </div>
+
+          <div class="code-area">
+            <h3>Syntaxe Fetch API de base</h3>
+            <pre><code class="code-highlight">
+<span class="comment">// Requête GET simple</span>
+<span class="function">fetch</span>(<span class="string">'https://jsonplaceholder.typicode.com/users'</span>)
+    .<span class="function">then</span>(response => response.<span class="function">json</span>())
+    .<span class="function">then</span>(data => <span class="function">console.log</span>(data))
+    .<span class="function">catch</span>(error => <span class="function">console.error</span>(<span class="string">'Erreur:'</span>, error));
+
+<span class="comment">// Requête avec options</span>
+<span class="function">fetch</span>(<span class="string">'https://api.example.com/data'</span>, {
+    <span class="string">method:</span> <span class="string">'POST'</span>,
+    <span class="string">headers:</span> {
+        <span class="string">'Content-Type':</span> <span class="string">'application/json'</span>,
+        <span class="string">'Authorization':</span> <span class="string">'Bearer token'</span>
+    },
+    <span class="string">body:</span> JSON.<span class="function">stringify</span>({
+        <span class="string">title:</span> <span class="string">'Nouveau post'</span>,
+        <span class="string">content:</span> <span class="string">'Contenu du post'</span>
+    })
+})
+.<span class="function">then</span>(response => {
+    <span class="keyword">if</span> (!response.ok) {
+        <span class="keyword">throw new</span> Error(<span class="string">`HTTP error! status: ${response.status}`</span>);
+    }
+    <span class="keyword">return</span> response.<span class="function">json</span>();
+})
+.<span class="function">then</span>(data => <span class="function">console.log</span>(data));
+                        </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="async-await" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Async/Await</h2>
+          <p class="section-description">
+            Syntaxe moderne pour gérer les opérations asynchrones de manière
+            plus lisible
+          </p>
+        </div>
+
+        <div class="content-area">
+          <h3>Avantages d'async/await</h3>
+
+          <div class="comparison-container">
+            <div class="comparison-side">
+              <h4>❌ Avec Promesses (.then)</h4>
+              <pre><code class="code-highlight">
+<span class="function">fetchUserData</span>()
+    .<span class="function">then</span>(user => {
+        <span class="keyword">return</span> <span class="function">fetchUserPosts</span>(user.id);
+    })
+    .<span class="function">then</span>(posts => {
+        <span class="keyword">return</span> <span class="function">fetchPostComments</span>(posts[0].id);
+    })
+    .<span class="function">then</span>(comments => {
+        <span class="function">displayResults</span>(comments);
+    })
+    .<span class="function">catch</span>(error => {
+        <span class="function">handleError</span>(error);
+    });
+                            </code></pre>
+            </div>
+
+            <div class="comparison-side">
+              <h4>✅ Avec async/await</h4>
+              <pre><code class="code-highlight">
+<span class="keyword">async function</span> <span class="function">loadUserContent</span>() {
+    <span class="keyword">try</span> {
+        <span class="keyword">const</span> user = <span class="keyword">await</span> <span class="function">fetchUserData</span>();
+        <span class="keyword">const</span> posts = <span class="keyword">await</span> <span class="function">fetchUserPosts</span>(user.id);
+        <span class="keyword">const</span> comments = <span class="keyword">await</span> <span class="function">fetchPostComments</span>(posts[0].id);
+        
+        <span class="function">displayResults</span>(comments);
+    } <span class="keyword">catch</span> (error) {
+        <span class="function">handleError</span>(error);
+    }
+}
+                            </code></pre>
+            </div>
+          </div>
+
+          <div class="demo-area">
+            <h3>Démonstration : Chargement séquentiel avec async/await</h3>
+
+            <div class="async-demo-container">
+              <div class="demo-scenario">
+                <h4>
+                  Scénario : Charger utilisateur → ses posts → commentaires du
+                  premier post
+                </h4>
+
+                <div class="demo-steps" id="asyncSteps">
+                  <div class="step" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                      <strong>Chargement utilisateur</strong>
+                      <div class="step-status">En attente...</div>
+                    </div>
+                  </div>
+
+                  <div class="step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                      <strong>Chargement des posts</strong>
+                      <div class="step-status">En attente...</div>
+                    </div>
+                  </div>
+
+                  <div class="step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                      <strong>Chargement des commentaires</strong>
+                      <div class="step-status">En attente...</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="demo-controls">
+                  <button class="btn btn-primary" onclick="runAsyncDemo()">
+                    <span class="btn-icon">⏱️</span>
+                    Démarrer la séquence
+                  </button>
+                  <button class="btn btn-info" onclick="runParallelDemo()">
+                    <span class="btn-icon">⚡</span>
+                    Version parallèle
+                  </button>
+                  <button class="btn btn-secondary" onclick="resetAsyncDemo()">
+                    <span class="btn-icon">🔄</span>
+                    Reset
+                  </button>
+                </div>
+
+                <div class="demo-timing" id="demoTiming">
+                  <!-- Informations de timing -->
+                </div>
+              </div>
+
+              <div class="async-results" id="asyncResults">
+                <!-- Résultats finaux -->
+              </div>
+            </div>
+          </div>
+
+          <div class="code-area">
+            <h3>Exemple complet avec async/await</h3>
+            <pre><code class="code-highlight">
+<span class="comment">// Fonction async moderne</span>
+<span class="keyword">async function</span> <span class="function">loadUserProfile</span>(userId) {
+    <span class="keyword">try</span> {
+        <span class="comment">// 1. Charger les informations utilisateur</span>
+        <span class="keyword">const</span> userResponse = <span class="keyword">await</span> <span class="function">fetch</span>(<span class="string">`/api/users/${userId}`</span>);
+        
+        <span class="keyword">if</span> (!userResponse.ok) {
+            <span class="keyword">throw new</span> Error(<span class="string">`Utilisateur non trouvé: ${userResponse.status}`</span>);
+        }
+        
+        <span class="keyword">const</span> user = <span class="keyword">await</span> userResponse.<span class="function">json</span>();
+        
+        <span class="comment">// 2. Charger les posts en parallèle</span>
+        <span class="keyword">const</span> [postsResponse, albumsResponse] = <span class="keyword">await</span> Promise.<span class="function">all</span>([
+            <span class="function">fetch</span>(<span class="string">`/api/users/${userId}/posts`</span>),
+            <span class="function">fetch</span>(<span class="string">`/api/users/${userId}/albums`</span>)
+        ]);
+        
+        <span class="keyword">const</span> posts = <span class="keyword">await</span> postsResponse.<span class="function">json</span>();
+        <span class="keyword">const</span> albums = <span class="keyword">await</span> albumsResponse.<span class="function">json</span>();
+        
+        <span class="comment">// 3. Retourner le profil complet</span>
+        <span class="keyword">return</span> {
+            user,
+            posts,
+            albums,
+            <span class="string">profileComplete:</span> <span class="keyword">true</span>
+        };
+        
+    } <span class="keyword">catch</span> (error) {
+        <span class="function">console.error</span>(<span class="string">'Erreur lors du chargement:'</span>, error);
+        <span class="keyword">throw</span> error; <span class="comment">// Re-lancer pour gestion en amont</span>
+    }
+}
+
+<span class="comment">// Utilisation</span>
+<span class="keyword">async function</span> <span class="function">displayProfile</span>() {
+    <span class="keyword">try</span> {
+        <span class="keyword">const</span> profile = <span class="keyword">await</span> <span class="function">loadUserProfile</span>(<span class="number">1</span>);
+        <span class="function">renderProfilePage</span>(profile);
+    } <span class="keyword">catch</span> (error) {
+        <span class="function">showErrorMessage</span>(<span class="string">'Impossible de charger le profil'</span>);
+    }
+}
+                        </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="error-handling" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Gestion d'erreurs</h2>
+          <p class="section-description">
+            Techniques pour gérer robustement les erreurs réseau et serveur
+          </p>
+        </div>
+
+        <div class="content-area">
+          <h3>Types d'erreurs à gérer</h3>
+
+          <div class="error-types-grid">
+            <div class="error-type">
+              <div class="error-icon">🌐</div>
+              <h4>Erreurs réseau</h4>
+              <p>Connexion impossible, timeout, DNS</p>
+              <span class="error-code">Network Error</span>
+            </div>
+
+            <div class="error-type">
+              <div class="error-icon">4️⃣</div>
+              <h4>Erreurs client (4xx)</h4>
+              <p>Ressource non trouvée, non autorisé</p>
+              <span class="error-code">400-499</span>
+            </div>
+
+            <div class="error-type">
+              <div class="error-icon">5️⃣</div>
+              <h4>Erreurs serveur (5xx)</h4>
+              <p>Erreur interne, service indisponible</p>
+              <span class="error-code">500-599</span>
+            </div>
+
+            <div class="error-type">
+              <div class="error-icon">📊</div>
+              <h4>Erreurs de données</h4>
+              <p>JSON malformé, données manquantes</p>
+              <span class="error-code">Parse Error</span>
+            </div>
+          </div>
+
+          <div class="demo-area">
+            <h3>Simulateur d'erreurs</h3>
+
+            <div class="error-demo-container">
+              <div class="error-scenarios">
+                <h4>Testez différents types d'erreurs :</h4>
+
+                <button class="btn btn-danger" onclick="simulateNetworkError()">
+                  <span class="btn-icon">🌐</span>
+                  Erreur réseau
+                </button>
+
+                <button class="btn btn-warning" onclick="simulate404Error()">
+                  <span class="btn-icon">4️⃣</span>
+                  Erreur 404
+                </button>
+
+                <button class="btn btn-error" onclick="simulate500Error()">
+                  <span class="btn-icon">5️⃣</span>
+                  Erreur 500
+                </button>
+
+                <button class="btn btn-info" onclick="simulateTimeoutError()">
+                  <span class="btn-icon">⏱️</span>
+                  Timeout
+                </button>
+
+                <button
+                  class="btn btn-secondary"
+                  onclick="simulateParseError()"
+                >
+                  <span class="btn-icon">📊</span>
+                  JSON invalide
+                </button>
+              </div>
+
+              <div class="error-display" id="errorDisplay">
+                <!-- Affichage des erreurs et gestion -->
+              </div>
+            </div>
+          </div>
+
+          <div class="code-area">
+            <h3>Gestion robuste des erreurs</h3>
+            <pre><code class="code-highlight">
+<span class="keyword">async function</span> <span class="function">robustFetch</span>(url, options = {}) {
+    <span class="keyword">const</span> defaultOptions = {
+        <span class="string">timeout:</span> <span class="number">10000</span>, <span class="comment">// 10 secondes</span>
+        <span class="string">retries:</span> <span class="number">3</span>,
+        <span class="string">retryDelay:</span> <span class="number">1000</span> <span class="comment">// 1 seconde</span>
+    };
+    
+    <span class="keyword">const</span> config = { ...defaultOptions, ...options };
+    
+    <span class="keyword">for</span> (<span class="keyword">let</span> attempt = <span class="number">0</span>; attempt <= config.retries; attempt++) {
+        <span class="keyword">try</span> {
+            <span class="comment">// Créer un AbortController pour le timeout</span>
+            <span class="keyword">const</span> controller = <span class="keyword">new</span> AbortController();
+            <span class="keyword">const</span> timeoutId = <span class="function">setTimeout</span>(() => {
+                controller.<span class="function">abort</span>();
+            }, config.timeout);
+            
+            <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="function">fetch</span>(url, {
+                ...config,
+                <span class="string">signal:</span> controller.signal
+            });
+            
+            <span class="function">clearTimeout</span>(timeoutId);
+            
+            <span class="comment">// Vérifier le statut de la réponse</span>
+            <span class="keyword">if</span> (!response.ok) {
+                <span class="keyword">const</span> errorData = <span class="keyword">await</span> response.<span class="function">text</span>();
+                <span class="keyword">throw new</span> <span class="function">HTTPError</span>(
+                    <span class="string">`HTTP ${response.status}: ${response.statusText}`</span>,
+                    response.status,
+                    errorData
+                );
+            }
+            
+            <span class="keyword">return</span> response;
+            
+        } <span class="keyword">catch</span> (error) {
+            <span class="comment">// Dernière tentative, on relance l'erreur</span>
+            <span class="keyword">if</span> (attempt === config.retries) {
+                <span class="keyword">throw</span> <span class="function">formatError</span>(error);
+            }
+            
+            <span class="comment">// Attendre avant la prochaine tentative</span>
+            <span class="keyword">await</span> <span class="function">delay</span>(config.retryDelay * (attempt + <span class="number">1</span>));
+        }
+    }
+}
+
+<span class="comment">// Classes d'erreur personnalisées</span>
+<span class="keyword">class</span> <span class="function">HTTPError</span> <span class="keyword">extends</span> Error {
+    <span class="function">constructor</span>(message, status, data) {
+        <span class="keyword">super</span>(message);
+        <span class="keyword">this</span>.name = <span class="string">'HTTPError'</span>;
+        <span class="keyword">this</span>.status = status;
+        <span class="keyword">this</span>.data = data;
+    }
+}
+
+<span class="keyword">function</span> <span class="function">formatError</span>(error) {
+    <span class="keyword">if</span> (error.name === <span class="string">'AbortError'</span>) {
+        <span class="keyword">return new</span> Error(<span class="string">'Requête interrompue (timeout)'</span>);
+    }
+    
+    <span class="keyword">if</span> (error <span class="keyword">instanceof</span> TypeError) {
+        <span class="keyword">return new</span> Error(<span class="string">'Erreur réseau - Vérifiez votre connexion'</span>);
+    }
+    
+    <span class="keyword">return</span> error;
+}
+                        </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="rest-api" class="section">
+        <div class="section-header">
+          <h2 class="section-title">API REST</h2>
+          <p class="section-description">
+            Comprendre et utiliser les API REST avec les bonnes pratiques HTTP
+          </p>
+        </div>
+
+        <div class="content-area">
+          <h3>Principes REST</h3>
+
+          <div class="rest-principles">
+            <div class="principle">
+              <strong>🎯 Ressources</strong>
+              <p>Chaque URL représente une ressource unique</p>
+              <code>/api/users/123</code>
+            </div>
+
+            <div class="principle">
+              <strong>🔄 Méthodes HTTP</strong>
+              <p>GET, POST, PUT, DELETE ont des significations spécifiques</p>
+              <code>GET /users</code>
+            </div>
+
+            <div class="principle">
+              <strong>📋 Stateless</strong>
+              <p>Chaque requête est indépendante</p>
+              <code>Authorization: Bearer token</code>
+            </div>
+
+            <div class="principle">
+              <strong>📊 Format standard</strong>
+              <p>JSON pour l'échange de données</p>
+              <code>Content-Type: application/json</code>
+            </div>
+          </div>
+
+          <div class="demo-area">
+            <h3>Testeur d'API REST interactif</h3>
+
+            <div class="rest-tester">
+              <div class="api-builder">
+                <h4>Construire votre requête :</h4>
+
+                <div class="url-builder">
+                  <div class="method-selector">
+                    <select id="restMethod">
+                      <option value="GET">GET</option>
+                      <option value="POST">POST</option>
+                      <option value="PUT">PUT</option>
+                      <option value="PATCH">PATCH</option>
+                      <option value="DELETE">DELETE</option>
+                    </select>
+                  </div>
+
+                  <div class="url-input">
+                    <input
+                      type="text"
+                      id="restUrl"
+                      value="https://jsonplaceholder.typicode.com/users"
+                      placeholder="URL de l'API"
+                    />
+                  </div>
+                </div>
+
+                <div class="headers-section">
+                  <h5>Headers personnalisés :</h5>
+                  <div class="headers-input">
+                    <textarea
+                      id="requestHeaders"
+                      placeholder="Authorization: Bearer token&#10;Content-Type: application/json"
+                    ></textarea>
+                  </div>
+                </div>
+
+                <div
+                  class="body-section"
+                  id="bodySection"
+                  style="display: none"
+                >
+                  <h5>Corps de la requête (JSON) :</h5>
+                  <div class="body-input">
+                    <textarea
+                      id="requestBody"
+                      placeholder='{"name": "John Doe", "email": "john@example.com"}'
+                    ></textarea>
+                  </div>
+                </div>
+
+                <div class="quick-examples">
+                  <h5>Exemples rapides :</h5>
+                  <button class="example-btn" onclick="loadExample('getUsers')">
+                    GET tous les utilisateurs
+                  </button>
+                  <button class="example-btn" onclick="loadExample('getUser')">
+                    GET utilisateur spécifique
+                  </button>
+                  <button
+                    class="example-btn"
+                    onclick="loadExample('createUser')"
+                  >
+                    POST créer utilisateur
+                  </button>
+                  <button
+                    class="example-btn"
+                    onclick="loadExample('updateUser')"
+                  >
+                    PUT modifier utilisateur
+                  </button>
+                  <button
+                    class="example-btn"
+                    onclick="loadExample('deleteUser')"
+                  >
+                    DELETE utilisateur
+                  </button>
+                </div>
+              </div>
+
+              <div class="api-actions">
+                <button class="btn btn-primary" onclick="executeRestRequest()">
+                  <span class="btn-icon">🚀</span>
+                  Envoyer la requête
+                </button>
+                <button class="btn btn-info" onclick="showCurlCommand()">
+                  <span class="btn-icon">💻</span>
+                  Voir en cURL
+                </button>
+                <button class="btn btn-secondary" onclick="validateJSON()">
+                  <span class="btn-icon">✅</span>
+                  Valider JSON
+                </button>
+              </div>
+
+              <div class="api-response" id="apiResponse">
+                <!-- Réponse de l'API -->
+              </div>
+            </div>
+          </div>
+
+          <div class="code-area">
+            <h3>CRUD complet avec une API REST</h3>
+            <pre><code class="code-highlight">
+<span class="comment">// Classe pour gérer une ressource REST</span>
+<span class="keyword">class</span> <span class="function">UserAPI</span> {
+    <span class="function">constructor</span>(baseUrl = <span class="string">'https://api.example.com'</span>) {
+        <span class="keyword">this</span>.baseUrl = baseUrl;
+        <span class="keyword">this</span>.defaultHeaders = {
+            <span class="string">'Content-Type':</span> <span class="string">'application/json'</span>
+        };
+    }
+    
+    <span class="comment">// CREATE - Créer un nouvel utilisateur</span>
+    <span class="keyword">async</span> <span class="function">create</span>(userData) {
+        <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="function">fetch</span>(<span class="string">`${this.baseUrl}/users`</span>, {
+            <span class="string">method:</span> <span class="string">'POST'</span>,
+            <span class="string">headers:</span> <span class="keyword">this</span>.defaultHeaders,
+            <span class="string">body:</span> JSON.<span class="function">stringify</span>(userData)
+        });
+        
+        <span class="keyword">return</span> <span class="keyword">await</span> response.<span class="function">json</span>();
+    }
+    
+    <span class="comment">// READ - Lire tous les utilisateurs</span>
+    <span class="keyword">async</span> <span class="function">getAll</span>(params = {}) {
+        <span class="keyword">const</span> queryString = <span class="keyword">new</span> URLSearchParams(params).<span class="function">toString</span>();
+        <span class="keyword">const</span> url = <span class="string">`${this.baseUrl}/users${queryString ? '?' + queryString : ''}`</span>;
+        
+        <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="function">fetch</span>(url);
+        <span class="keyword">return</span> <span class="keyword">await</span> response.<span class="function">json</span>();
+    }
+    
+    <span class="comment">// READ - Lire un utilisateur spécifique</span>
+    <span class="keyword">async</span> <span class="function">getById</span>(id) {
+        <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="function">fetch</span>(<span class="string">`${this.baseUrl}/users/${id}`</span>);
+        
+        <span class="keyword">if</span> (!response.ok) {
+            <span class="keyword">throw new</span> Error(<span class="string">`Utilisateur ${id} non trouvé`</span>);
+        }
+        
+        <span class="keyword">return</span> <span class="keyword">await</span> response.<span class="function">json</span>();
+    }
+    
+    <span class="comment">// UPDATE - Mettre à jour un utilisateur</span>
+    <span class="keyword">async</span> <span class="function">update</span>(id, userData) {
+        <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="function">fetch</span>(<span class="string">`${this.baseUrl}/users/${id}`</span>, {
+            <span class="string">method:</span> <span class="string">'PUT'</span>,
+            <span class="string">headers:</span> <span class="keyword">this</span>.defaultHeaders,
+            <span class="string">body:</span> JSON.<span class="function">stringify</span>(userData)
+        });
+        
+        <span class="keyword">return</span> <span class="keyword">await</span> response.<span class="function">json</span>();
+    }
+    
+    <span class="comment">// DELETE - Supprimer un utilisateur</span>
+    <span class="keyword">async</span> <span class="function">delete</span>(id) {
+        <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="function">fetch</span>(<span class="string">`${this.baseUrl}/users/${id}`</span>, {
+            <span class="string">method:</span> <span class="string">'DELETE'</span>
+        });
+        
+        <span class="keyword">return</span> response.ok;
+    }
+}
+
+<span class="comment">// Utilisation</span>
+<span class="keyword">const</span> userApi = <span class="keyword">new</span> <span class="function">UserAPI</span>();
+
+<span class="comment">// Créer un utilisateur</span>
+<span class="keyword">const</span> newUser = <span class="keyword">await</span> userApi.<span class="function">create</span>({
+    <span class="string">name:</span> <span class="string">'John Doe'</span>,
+    <span class="string">email:</span> <span class="string">'john@example.com'</span>
+});
+
+<span class="comment">// Récupérer tous les utilisateurs avec pagination</span>
+<span class="keyword">const</span> users = <span class="keyword">await</span> userApi.<span class="function">getAll</span>({ 
+    <span class="string">page:</span> <span class="number">1</span>, 
+    <span class="string">limit:</span> <span class="number">10</span> 
+});
+                        </code></pre>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<!-- Styles spécifiques à la page AJAX -->
+<style>
+  /* Layout de base */
+  .explanation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-lg);
+    margin: var(--space-lg) 0;
+  }
+
+  .explanation-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .explanation-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .explanation-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-md);
+  }
+
+  /* Démonstrations AJAX */
+  .ajax-demo-container {
+    background: var(--glass-bg-dark);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin: var(--space-lg) 0;
+  }
+
+  .demo-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-sm) var(--space-md);
+    border: none;
+    border-radius: var(--radius-sm);
+    background: var(--primary);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+  }
+  .btn-secondary {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+  }
+  .btn-warning {
+    background: linear-gradient(135deg, #feca57, #ff9ff3);
+  }
+  .btn-info {
+    background: linear-gradient(135deg, #96ceb4, #4ecdc4);
+  }
+  .btn-danger {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  }
+  .btn-error {
+    background: linear-gradient(135deg, #fc466b, #3f5efb);
+  }
+
+  .btn-icon {
+    font-size: 1.1em;
+  }
+
+  .demo-status {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm);
+    margin-bottom: var(--space-md);
+    color: rgba(255, 255, 255, 0.8);
+    font-style: italic;
+  }
+
+  .demo-results {
+    min-height: 200px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-sm);
+    padding: var(--space-md);
+    color: white;
+    font-family: var(--font-mono);
+    overflow-x: auto;
+  }
+
+  /* Features grid */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-md);
+    margin: var(--space-lg) 0;
+  }
+
+  .feature-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-sm);
+    padding: var(--space-md);
+  }
+
+  .feature-item strong {
+    display: block;
+    color: #4facfe;
+    margin-bottom: var(--space-xs);
+  }
+
+  /* Fetch demo */
+  .fetch-demo-container {
+    background: var(--glass-bg-dark);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+  }
+
+  .demo-settings {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-sm);
+    padding: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  .setting-group {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    flex-wrap: wrap;
+  }
+
+  .setting-group label {
+    color: white;
+    font-weight: 500;
+    min-width: 120px;
+  }
+
+  .setting-group select,
+  .setting-group input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-xs) var(--space-sm);
+    color: white;
+    min-width: 150px;
+  }
+
+  /* Styles pour les options des select */
+  .setting-group select option {
+    background: #2c3e50;
+    color: #ffffff;
+    padding: 0.5rem;
+    border: none;
+  }
+
+  .setting-group select option:hover,
+  .setting-group select option:focus {
+    background: #4facfe;
+    color: #ffffff;
+  }
+
+  .setting-group select option:checked {
+    background: #4facfe;
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  .setting-group input[type="checkbox"] {
+    min-width: auto;
+    margin-right: var(--space-xs);
+  }
+
+  .demo-actions {
+    display: flex;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+    flex-wrap: wrap;
+  }
+
+  .fetch-results {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius-sm);
+    padding: var(--space-md);
+    min-height: 200px;
+    color: white;
+    font-family: var(--font-mono);
+    white-space: pre-wrap;
+    overflow-x: auto;
+  }
+
+  /* Comparison container */
+  .comparison-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    margin: var(--space-lg) 0;
+  }
+
+  .comparison-side {
+    background: var(--glass-bg-dark);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+  }
+
+  .comparison-side h4 {
+    color: white;
+    margin-bottom: var(--space-sm);
+    text-align: center;
+  }
+
+  /* Async demo */
+  .async-demo-container {
+    background: var(--glass-bg-dark);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+  }
+
+  .demo-steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin: var(--space-lg) 0;
+  }
+
+  .step {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-sm);
+    padding: var(--space-md);
+    transition: all 0.3s ease;
+  }
+
+  .step.loading {
+    background: rgba(74, 144, 226, 0.2);
+    border-left: 4px solid #4a90e2;
+  }
+
+  .step.success {
+    background: rgba(76, 175, 80, 0.2);
+    border-left: 4px solid #4caf50;
+  }
+
+  .step.error {
+    background: rgba(244, 67, 54, 0.2);
+    border-left: 4px solid #f44336;
+  }
+
+  .step-number {
+    width: 30px;
+    height: 30px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .step-content strong {
+    color: white;
+    display: block;
+    margin-bottom: var(--space-xs);
+  }
+
+  .step-status {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9em;
+  }
+
+  .demo-timing {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm);
+    margin: var(--space-md) 0;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+  }
+
+  .async-results {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius-sm);
+    padding: var(--space-md);
+    min-height: 150px;
+    color: white;
+    font-family: var(--font-mono);
+    margin-top: var(--space-lg);
+  }
+
+  /* Error types */
+  .error-types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-md);
+    margin: var(--space-lg) 0;
+  }
+
+  .error-type {
+    background: var(--glass-bg);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    text-align: center;
+    border: 1px solid var(--glass-border);
+  }
+
+  .error-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-sm);
+  }
+
+  .error-code {
+    background: rgba(244, 67, 54, 0.2);
+    color: #ff6b6b;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: 0.8em;
+    display: inline-block;
+    margin-top: var(--space-xs);
+  }
+
+  .error-demo-container {
+    background: var(--glass-bg-dark);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+  }
+
+  .error-scenarios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+  }
+
+  .error-display {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius-sm);
+    padding: var(--space-md);
+    min-height: 150px;
+    color: white;
+    font-family: var(--font-mono);
+  }
+
+  /* REST principles */
+  .rest-principles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-md);
+    margin: var(--space-lg) 0;
+  }
+
+  .principle {
+    background: var(--glass-bg);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    border: 1px solid var(--glass-border);
+  }
+
+  .principle strong {
+    color: #4facfe;
+    display: block;
+    margin-bottom: var(--space-xs);
+  }
+
+  .principle code {
+    background: rgba(0, 0, 0, 0.3);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    color: #f1fa8c;
+    display: block;
+    margin-top: var(--space-xs);
+  }
+
+  /* REST tester */
+  .rest-tester {
+    background: var(--glass-bg-dark);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+  }
+
+  .api-builder {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-sm);
+    padding: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  .url-builder {
+    display: flex;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  .method-selector select {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-weight: bold;
+  }
+
+  /* Styles pour les options du sélecteur de méthode */
+  .method-selector select option {
+    background: #2c3e50;
+    color: #ffffff;
+    padding: 0.5rem;
+    border: none;
+  }
+
+  .method-selector select option:hover,
+  .method-selector select option:focus {
+    background: #4facfe;
+    color: #ffffff;
+  }
+
+  .method-selector select option:checked {
+    background: #4facfe;
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  .url-input {
+    flex: 1;
+  }
+
+  .url-input input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm);
+    color: white;
+  }
+
+  .headers-input textarea,
+  .body-input textarea {
+    width: 100%;
+    min-height: 80px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm);
+    color: white;
+    font-family: var(--font-mono);
+    resize: vertical;
+  }
+
+  .quick-examples {
+    margin-top: var(--space-md);
+  }
+
+  .quick-examples h5 {
+    color: white;
+    margin-bottom: var(--space-sm);
+  }
+
+  .example-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-xs) var(--space-sm);
+    color: white;
+    cursor: pointer;
+    margin-right: var(--space-xs);
+    margin-bottom: var(--space-xs);
+    transition: all 0.3s ease;
+    font-size: 0.9em;
+  }
+
+  .example-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+  }
+
+  .api-response {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius-sm);
+    padding: var(--space-md);
+    min-height: 200px;
+    color: white;
+    font-family: var(--font-mono);
+    white-space: pre-wrap;
+    overflow-x: auto;
+    margin-top: var(--space-lg);
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .comparison-container {
+      grid-template-columns: 1fr;
+    }
+
+    .explanation-grid,
+    .features-grid,
+    .error-types-grid,
+    .rest-principles {
+      grid-template-columns: 1fr;
+    }
+
+    .demo-controls,
+    .demo-actions,
+    .error-scenarios {
+      flex-direction: column;
+    }
+
+    .url-builder {
+      flex-direction: column;
+    }
+
+    .setting-group {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .setting-group label {
+      min-width: auto;
+    }
+  }
+</style>
+
+<script>
+  // Scripts pour la page AJAX
+  (function () {
+    // Utiliser le module AjaxDemo si disponible
+    if (typeof AjaxDemo !== "undefined") {
+      AjaxDemo.initializeAll();
+    } else {
+      // Fallback avec retry si AjaxDemo n'est pas encore chargé
+      let attempts = 0;
+      const maxAttempts = 20;
+
+      const waitForAjaxDemo = () => {
+        if (typeof AjaxDemo !== "undefined") {
+          AjaxDemo.initializeAll();
+        } else if (attempts < maxAttempts) {
+          attempts++;
+          console.log(`Waiting for AjaxDemo... attempt ${attempts}`);
+          setTimeout(waitForAjaxDemo, 200);
+        } else {
+          console.warn("AjaxDemo not available after maximum attempts");
+          // Fallback pour les fonctions essentielles
+          initializeFallbackFunctions();
+        }
+      };
+
+      waitForAjaxDemo();
+    }
+
+    // Fonctions de fallback en cas d'échec du module principal
+    function initializeFallbackFunctions() {
+      // Exposer les fonctions de base pour les onclick
+      window.loadUserData = function () {
+        console.log("Fallback loadUserData");
+        document.getElementById("demoResults").textContent =
+          "Fonction non disponible (fallback)";
+      };
+
+      window.loadMultipleUsers = function () {
+        console.log("Fallback loadMultipleUsers");
+      };
+
+      window.simulateError = function () {
+        console.log("Fallback simulateError");
+      };
+
+      window.clearResults = function () {
+        const results = document.getElementById("demoResults");
+        if (results) results.textContent = "";
+      };
+
+      // Autres fonctions...
+      window.executeFetchDemo = function () {
+        console.log("Fallback executeFetchDemo");
+      };
+      window.showGeneratedCode = function () {
+        console.log("Fallback showGeneratedCode");
+      };
+      window.runAsyncDemo = function () {
+        console.log("Fallback runAsyncDemo");
+      };
+      window.runParallelDemo = function () {
+        console.log("Fallback runParallelDemo");
+      };
+      window.resetAsyncDemo = function () {
+        console.log("Fallback resetAsyncDemo");
+      };
+      window.simulateNetworkError = function () {
+        console.log("Fallback simulateNetworkError");
+      };
+      window.simulate404Error = function () {
+        console.log("Fallback simulate404Error");
+      };
+      window.simulate500Error = function () {
+        console.log("Fallback simulate500Error");
+      };
+      window.simulateTimeoutError = function () {
+        console.log("Fallback simulateTimeoutError");
+      };
+      window.simulateParseError = function () {
+        console.log("Fallback simulateParseError");
+      };
+      window.executeRestRequest = function () {
+        console.log("Fallback executeRestRequest");
+      };
+      window.showCurlCommand = function () {
+        console.log("Fallback showCurlCommand");
+      };
+      window.validateJSON = function () {
+        console.log("Fallback validateJSON");
+      };
+      window.loadExample = function (type) {
+        console.log("Fallback loadExample:", type);
+      };
+    }
+  })();
+</script>

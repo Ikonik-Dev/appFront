@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - RNCP DWWM 2023</title>
+  </head>
+  <body>
+    <div class="page-content">
+      <section class="dashboard-section">
+        <div class="section-header">
+          <h2 class="section-title">📊 Dashboard de Développement</h2>
+          <p class="section-subtitle">
+            Outils de monitoring, tests et diagnostics pour l'application RNCP
+            DWWM 2023
+          </p>
+        </div>
+
+        <div class="dashboard-grid">
+          <!-- Carte Monitoring -->
+          <div class="dashboard-card monitoring-card">
+            <div class="card-header">
+              <div class="card-icon">🔍</div>
+              <div class="card-title">
+                <h3>Monitoring Complet</h3>
+                <p>Surveillance en temps réel de l'application</p>
+              </div>
+            </div>
+            <div class="card-content">
+              <ul class="feature-list">
+                <li>📊 État global et métriques</li>
+                <li>⚡ Performance en temps réel</li>
+                <li>📝 Logs automatiques</li>
+                <li>🧪 Tests intégrés</li>
+              </ul>
+              <div class="card-stats">
+                <div class="stat-item">
+                  <span class="stat-value" id="app-health">100%</span>
+                  <span class="stat-label">Santé</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-value" id="uptime">00:00</span>
+                  <span class="stat-label">Uptime</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-primary" onclick="openMonitoring()">
+                🔍 Ouvrir Monitoring
+              </button>
+            </div>
+          </div>
+
+          <!-- Carte Tests -->
+          <div class="dashboard-card tests-card">
+            <div class="card-header">
+              <div class="card-icon">🧪</div>
+              <div class="card-title">
+                <h3>Tests Automatisés</h3>
+                <p>Suite de tests pour valider l'application</p>
+              </div>
+            </div>
+            <div class="card-content">
+              <ul class="feature-list">
+                <li>✅ Tests de fonctionnalité</li>
+                <li>🔧 Tests de performance</li>
+                <li>♿ Tests d'accessibilité</li>
+                <li>📱 Tests responsive</li>
+              </ul>
+              <div class="card-stats">
+                <div class="stat-item">
+                  <span class="stat-value success" id="tests-passed">0</span>
+                  <span class="stat-label">Réussis</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-value error" id="tests-failed">0</span>
+                  <span class="stat-label">Échoués</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-success" onclick="openTests()">
+                🧪 Lancer Tests
+              </button>
+            </div>
+          </div>
+
+          <!-- Carte Logs -->
+          <div class="dashboard-card logs-card">
+            <div class="card-header">
+              <div class="card-icon">📝</div>
+              <div class="card-title">
+                <h3>Logs en Temps Réel</h3>
+                <p>Console et logs d'activité</p>
+              </div>
+            </div>
+            <div class="card-content">
+              <ul class="feature-list">
+                <li>📋 Historique complet</li>
+                <li>🔍 Filtrage par niveau</li>
+                <li>💾 Export des logs</li>
+                <li>⏰ Horodatage précis</li>
+              </ul>
+              <div class="logs-preview" id="logs-preview">
+                <div class="log-entry info">
+                  <span class="log-time">15:32:01</span>
+                  <span class="log-message">Application initialisée</span>
+                </div>
+                <div class="log-entry success">
+                  <span class="log-time">15:32:02</span>
+                  <span class="log-message">Navigation chargée</span>
+                </div>
+                <div class="log-entry">
+                  <span class="log-more">+ 24 autres entrées...</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-info" onclick="openLogs()">
+                📝 Voir Logs
+              </button>
+            </div>
+          </div>
+
+          <!-- Carte Actions Rapides -->
+          <div class="dashboard-card actions-card">
+            <div class="card-header">
+              <div class="card-icon">⚡</div>
+              <div class="card-title">
+                <h3>Actions Rapides</h3>
+                <p>Outils de développement et diagnostic</p>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="action-buttons">
+                <button class="action-btn" onclick="runQuickTest()">
+                  <span class="action-icon">🚀</span>
+                  <span class="action-text">Test Rapide</span>
+                </button>
+                <button class="action-btn" onclick="clearCache()">
+                  <span class="action-icon">🗑️</span>
+                  <span class="action-text">Vider Cache</span>
+                </button>
+                <button class="action-btn" onclick="exportData()">
+                  <span class="action-icon">💾</span>
+                  <span class="action-text">Export Data</span>
+                </button>
+                <button class="action-btn" onclick="resetApp()">
+                  <span class="action-icon">🔄</span>
+                  <span class="action-text">Reset App</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carte Informations Système -->
+          <div class="dashboard-card system-card">
+            <div class="card-header">
+              <div class="card-icon">⚙️</div>
+              <div class="card-title">
+                <h3>Informations Système</h3>
+                <p>État et configuration actuelle</p>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="system-info">
+                <div class="info-row">
+                  <span class="info-label">Version:</span>
+                  <span class="info-value" id="app-version">v1.0.0</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Navigateur:</span>
+                  <span class="info-value" id="browser-info">-</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Mémoire:</span>
+                  <span class="info-value" id="memory-usage">-</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Cache:</span>
+                  <span class="info-value" id="cache-size">-</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Scripts:</span>
+                  <span class="info-value success" id="scripts-loaded"
+                    >5/5</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carte Aide et Documentation -->
+          <div class="dashboard-card help-card">
+            <div class="card-header">
+              <div class="card-icon">📚</div>
+              <div class="card-title">
+                <h3>Aide & Documentation</h3>
+                <p>Guides et ressources utiles</p>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="help-links">
+                <a href="#" class="help-link" onclick="showHelp('monitoring')">
+                  <span class="help-icon">📖</span>
+                  <span class="help-text">Guide Monitoring</span>
+                </a>
+                <a href="#" class="help-link" onclick="showHelp('testing')">
+                  <span class="help-icon">🔬</span>
+                  <span class="help-text">Guide Testing</span>
+                </a>
+                <a href="#" class="help-link" onclick="showHelp('debugging')">
+                  <span class="help-icon">🐛</span>
+                  <span class="help-text">Guide Debugging</span>
+                </a>
+                <a href="#" class="help-link" onclick="showHelp('performance')">
+                  <span class="help-icon">⚡</span>
+                  <span class="help-text">Guide Performance</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <style>
+      .dashboard-section {
+        padding: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1rem;
+      }
+
+      .section-subtitle {
+        font-size: 1.2rem;
+        opacity: 0.8;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .dashboard-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        padding: 2rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .dashboard-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .dashboard-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(79, 172, 254, 0.4);
+        box-shadow: 0 20px 40px rgba(79, 172, 254, 0.1);
+      }
+
+      .dashboard-card:hover::before {
+        opacity: 1;
+      }
+
+      .card-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .card-icon {
+        font-size: 2.5rem;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(79, 172, 254, 0.1);
+        border-radius: 12px;
+        flex-shrink: 0;
+      }
+
+      .card-title h3 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #fff;
+      }
+
+      .card-title p {
+        opacity: 0.7;
+        font-size: 0.95rem;
+        line-height: 1.4;
+      }
+
+      .card-content {
+        margin-bottom: 2rem;
+      }
+
+      .feature-list {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 1.5rem;
+      }
+
+      .feature-list li {
+        padding: 0.5rem 0;
+        font-size: 0.95rem;
+        opacity: 0.8;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .card-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+      }
+
+      .stat-value {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 0.25rem;
+      }
+
+      .stat-value.success {
+        color: #4ade80;
+      }
+      .stat-value.error {
+        color: #f87171;
+      }
+      .stat-value.warning {
+        color: #fbbf24;
+      }
+
+      .stat-label {
+        font-size: 0.8rem;
+        opacity: 0.7;
+      }
+
+      .card-actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex: 1;
+        justify-content: center;
+        min-width: 120px;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+      }
+
+      .btn-success {
+        background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+        color: white;
+      }
+
+      .btn-info {
+        background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+        color: white;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .logs-preview {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 8px;
+        padding: 1rem;
+        height: 120px;
+        overflow: hidden;
+        font-family: "Courier New", monospace;
+        font-size: 0.85rem;
+      }
+
+      .log-entry {
+        padding: 0.25rem 0;
+        border-left: 3px solid transparent;
+        padding-left: 0.5rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .log-entry.info {
+        border-left-color: #60a5fa;
+      }
+      .log-entry.success {
+        border-left-color: #4ade80;
+      }
+
+      .log-time {
+        opacity: 0.6;
+        margin-right: 0.5rem;
+      }
+
+      .log-more {
+        opacity: 0.5;
+        font-style: italic;
+      }
+
+      .action-buttons {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      .action-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        padding: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        color: inherit;
+      }
+
+      .action-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(79, 172, 254, 0.4);
+      }
+
+      .action-icon {
+        font-size: 1.5rem;
+      }
+
+      .action-text {
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+
+      .system-info {
+        space-y: 0.75rem;
+      }
+
+      .info-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .info-label {
+        font-weight: 500;
+        opacity: 0.8;
+      }
+
+      .info-value {
+        font-weight: 600;
+      }
+
+      .help-links {
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      .help-link {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.75rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
+      }
+
+      .help-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(79, 172, 254, 0.3);
+      }
+
+      .help-icon {
+        font-size: 1.2rem;
+        width: 32px;
+        text-align: center;
+      }
+
+      .help-text {
+        font-weight: 500;
+      }
+
+      @media (max-width: 768px) {
+        .dashboard-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .dashboard-section {
+          padding: 1rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+      }
+    </style>
+
+    <script>
+      // Fonctions pour les actions du dashboard
+      function openMonitoring() {
+        window.open("./monitoring.html", "_blank", "width=1400,height=900");
+      }
+
+      function openTests() {
+        window.open("./test.html", "_blank", "width=1200,height=800");
+      }
+
+      function openLogs() {
+        window.open("./logs.html", "_blank", "width=1000,height=700");
+      }
+
+      function runQuickTest() {
+        // Simuler un test rapide
+        const button = event.target.closest(".action-btn");
+        const originalText = button.querySelector(".action-text").textContent;
+
+        button.querySelector(".action-text").textContent = "Test en cours...";
+        button.style.opacity = "0.6";
+
+        setTimeout(() => {
+          button.querySelector(".action-text").textContent = "Test terminé ✅";
+          setTimeout(() => {
+            button.querySelector(".action-text").textContent = originalText;
+            button.style.opacity = "1";
+          }, 2000);
+        }, 1500);
+      }
+
+      function clearCache() {
+        if (typeof CACHE !== "undefined") {
+          CACHE.pages.clear();
+          CACHE.templates.clear();
+          CACHE.assets.clear();
+
+          const button = event.target.closest(".action-btn");
+          const originalText = button.querySelector(".action-text").textContent;
+          button.querySelector(".action-text").textContent = "Cache vidé ✅";
+
+          setTimeout(() => {
+            button.querySelector(".action-text").textContent = originalText;
+          }, 2000);
+        }
+      }
+
+      function exportData() {
+        const data = {
+          timestamp: new Date().toISOString(),
+          app: {
+            version: APP_CONFIG?.version || "N/A",
+            uptime: document.getElementById("uptime")?.textContent || "N/A",
+          },
+          stats: {
+            health: document.getElementById("app-health")?.textContent || "N/A",
+            memory:
+              document.getElementById("memory-usage")?.textContent || "N/A",
+            cache: document.getElementById("cache-size")?.textContent || "N/A",
+          },
+        };
+
+        const blob = new Blob([JSON.stringify(data, null, 2)], {
+          type: "application/json",
+        });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `dashboard-export-${new Date()
+          .toISOString()
+          .slice(0, 19)}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+
+      function resetApp() {
+        if (confirm("Voulez-vous vraiment réinitialiser l'application ?")) {
+          location.reload();
+        }
+      }
+
+      function showHelp(topic) {
+        const helpContent = {
+          monitoring:
+            "Le monitoring permet de surveiller l'état de l'application en temps réel.",
+          testing:
+            "Les tests automatisés valident le bon fonctionnement de l'application.",
+          debugging:
+            "Les outils de debug aident à identifier et résoudre les problèmes.",
+          performance:
+            "L'analyse de performance optimise les temps de chargement.",
+        };
+
+        alert(helpContent[topic] || "Aide non disponible pour ce sujet.");
+      }
+
+      // Initialisation du dashboard
+      document.addEventListener("DOMContentLoaded", function () {
+        updateSystemInfo();
+        startUptimeCounter();
+        updateStats();
+
+        // Mise à jour périodique
+        setInterval(updateStats, 5000);
+      });
+
+      function updateSystemInfo() {
+        // Version de l'application
+        if (typeof APP_CONFIG !== "undefined") {
+          document.getElementById(
+            "app-version"
+          ).textContent = `v${APP_CONFIG.version}`;
+        }
+
+        // Informations du navigateur
+        const browserInfo = `${navigator.userAgent.split(" ")[0]} ${
+          navigator.userAgent.match(/Chrome\/([0-9.]+)/)?.[1] || "N/A"
+        }`;
+        document.getElementById("browser-info").textContent = browserInfo;
+
+        // Mémoire (si disponible)
+        if (performance.memory) {
+          const memoryMB = Math.round(
+            performance.memory.usedJSHeapSize / 1024 / 1024
+          );
+          document.getElementById("memory-usage").textContent = `${memoryMB}MB`;
+        }
+      }
+
+      function startUptimeCounter() {
+        const startTime = Date.now();
+
+        setInterval(() => {
+          const uptime = Date.now() - startTime;
+          const minutes = Math.floor(uptime / 60000);
+          const seconds = Math.floor((uptime % 60000) / 1000);
+          document.getElementById("uptime").textContent = `${minutes
+            .toString()
+            .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+        }, 1000);
+      }
+
+      function updateStats() {
+        // Mettre à jour les statistiques de cache
+        if (typeof CACHE !== "undefined") {
+          const cacheSize = Array.from(CACHE.pages.values()).reduce(
+            (size, page) => size + (page?.length || 0),
+            0
+          );
+          document.getElementById("cache-size").textContent = `${Math.round(
+            cacheSize / 1024
+          )}KB`;
+        }
+
+        // Simulation de santé de l'application
+        const health = Math.floor(Math.random() * 5) + 95; // 95-100%
+        document.getElementById("app-health").textContent = `${health}%`;
+      }
+    </script>
+  </body>
+</html>

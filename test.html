@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test de l'application - RNCP DWWM 2023</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 2rem;
+        background: #1a1a1a;
+        color: white;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .test-result {
+        margin: 1rem 0;
+        padding: 1rem;
+        border-radius: 5px;
+        border-left: 4px solid;
+      }
+      .success {
+        background: #155724;
+        border-color: #28a745;
+        color: #d4edda;
+      }
+      .error {
+        background: #721c24;
+        border-color: #dc3545;
+        color: #f8d7da;
+      }
+      .warning {
+        background: #856404;
+        border-color: #ffc107;
+        color: #fff3cd;
+      }
+      .info {
+        background: #0c5460;
+        border-color: #17a2b8;
+        color: #d1ecf1;
+      }
+      .test-section {
+        margin: 2rem 0;
+        padding: 1rem;
+        border: 1px solid #333;
+        border-radius: 8px;
+      }
+      .test-section h2 {
+        margin-top: 0;
+        color: #4facfe;
+      }
+      .performance-info {
+        background: #2d3748;
+        padding: 1rem;
+        border-radius: 5px;
+        margin: 1rem 0;
+        font-family: "Courier New", monospace;
+        font-size: 0.9em;
+      }
+      .controls {
+        margin: 2rem 0;
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .btn {
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .btn-primary {
+        background: #007bff;
+        color: white;
+      }
+      .btn-success {
+        background: #28a745;
+        color: white;
+      }
+      .btn-warning {
+        background: #ffc107;
+        color: black;
+      }
+      .btn-danger {
+        background: #dc3545;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🧪 Test Complet - Application RNCP DWWM 2023</h1>
+
+    <div class="controls">
+      <button class="btn btn-primary" onclick="runAllTests()">
+        🔄 Relancer tous les tests
+      </button>
+      <button class="btn btn-success" onclick="testNavigation()">
+        🧭 Tester Navigation
+      </button>
+      <button class="btn btn-warning" onclick="testAccessibility()">
+        ♿ Tester Accessibilité
+      </button>
+      <button class="btn btn-danger" onclick="testPerformance()">
+        ⚡ Tester Performance
+      </button>
+    </div>
+
+    <div class="test-section">
+      <h2>📦 Tests de Chargement</h2>
+      <div id="loading-tests"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>🧭 Tests de Navigation</h2>
+      <div id="navigation-tests"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>♿ Tests d'Accessibilité</h2>
+      <div id="accessibility-tests"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>⚡ Tests de Performance</h2>
+      <div id="performance-tests"></div>
+      <div id="performance-info" class="performance-info"></div>
+    </div>
+
+    <script>
+      function addResult(containerId, type, message) {
+        const container = document.getElementById(containerId);
+        const div = document.createElement("div");
+        div.className = `test-result ${type}`;
+        div.innerHTML = message;
+        container.appendChild(div);
+      }
+
+      function clearResults(containerId) {
+        document.getElementById(containerId).innerHTML = "";
+      }
+
+      function runLoadingTests() {
+        clearResults("loading-tests");
+
+        // Test 1: Vérifier que les scripts sont chargés
+        const requiredGlobals = [
+          "APP_CONFIG",
+          "APP_STATE",
+          "DEBUG",
+          "DOMUtils",
+          "RouterManager",
+          "Navigation",
+          "AnimationUtils",
+        ];
+        const loaded = requiredGlobals.filter(
+          (global) => typeof window[global] !== "undefined"
+        );
+        const missing = requiredGlobals.filter(
+          (global) => typeof window[global] === "undefined"
+        );
+
+        if (missing.length === 0) {
+          addResult(
+            "loading-tests",
+            "success",
+            "✅ Tous les scripts sont chargés correctement"
+          );
+        } else {
+          addResult(
+            "loading-tests",
+            "error",
+            `❌ Scripts manquants: ${missing.join(", ")}`
+          );
+        }
+
+        // Test 2: Vérifier la configuration
+        if (typeof APP_CONFIG !== "undefined" && APP_CONFIG.version) {
+          addResult(
+            "loading-tests",
+            "success",
+            `✅ Configuration OK - Version: ${APP_CONFIG.version}`
+          );
+        } else {
+          addResult(
+            "loading-tests",
+            "error",
+            "❌ Configuration manquante ou invalide"
+          );
+        }
+
+        // Test 3: Vérifier les utilitaires DOM
+        if (
+          typeof DOMUtils !== "undefined" &&
+          typeof DOMUtils.$ === "function"
+        ) {
+          addResult(
+            "loading-tests",
+            "success",
+            "✅ Utilitaires DOM disponibles"
+          );
+        } else {
+          addResult(
+            "loading-tests",
+            "error",
+            "❌ Utilitaires DOM non disponibles"
+          );
+        }
+
+        // Test 4: Vérifier les améliorations d'accessibilité
+        if (
+          typeof AnimationUtils !== "undefined" &&
+          AnimationUtils.cancelAllAnimations
+        ) {
+          addResult(
+            "loading-tests",
+            "success",
+            "✅ Utilitaires d'animation améliorés chargés"
+          );
+        } else {
+          addResult(
+            "loading-tests",
+            "warning",
+            "⚠️ Améliorations d'animation non détectées"
+          );
+        }
+
+        return missing.length === 0;
+      }
+
+      async function testNavigation() {
+        clearResults("navigation-tests");
+
+        try {
+          if (
+            typeof window.app !== "undefined" &&
+            window.app.components.router
+          ) {
+            const router = window.app.components.router;
+
+            // Test navigation vers différentes pages
+            const testPages = ["home", "about", "html", "css"];
+
+            for (const pageId of testPages) {
+              try {
+                await router.navigateTo(pageId, false);
+                addResult(
+                  "navigation-tests",
+                  "success",
+                  `✅ Navigation vers "${pageId}" réussie`
+                );
+
+                // Vérifier que le cache fonctionne
+                if (router.getCacheStats) {
+                  const stats = router.getCacheStats();
+                  if (stats.pages > 0) {
+                    addResult(
+                      "navigation-tests",
+                      "info",
+                      `📊 Cache: ${stats.pages} pages en mémoire`
+                    );
+                  }
+                }
+              } catch (error) {
+                addResult(
+                  "navigation-tests",
+                  "error",
+                  `❌ Erreur navigation "${pageId}": ${error.message}`
+                );
+              }
+            }
+          } else {
+            addResult("navigation-tests", "error", "❌ Router non disponible");
+          }
+        } catch (error) {
+          addResult(
+            "navigation-tests",
+            "error",
+            `❌ Erreur test navigation: ${error.message}`
+          );
+        }
+      }
+
+      function testAccessibility() {
+        clearResults("accessibility-tests");
+
+        // Test 1: Vérifier la présence des attributs ARIA
+        const elementsWithAria = document.querySelectorAll(
+          "[aria-label], [aria-labelledby], [aria-describedby], [role]"
+        );
+        if (elementsWithAria.length > 0) {
+          addResult(
+            "accessibility-tests",
+            "success",
+            `✅ ${elementsWithAria.length} éléments avec attributs ARIA trouvés`
+          );
+        } else {
+          addResult(
+            "accessibility-tests",
+            "warning",
+            "⚠️ Aucun attribut ARIA détecté"
+          );
+        }
+
+        // Test 2: Vérifier la classe sr-only
+        const srOnlyElements = document.querySelectorAll(".sr-only");
+        if (srOnlyElements.length > 0) {
+          addResult(
+            "accessibility-tests",
+            "success",
+            `✅ ${srOnlyElements.length} éléments screen-reader-only trouvés`
+          );
+        } else {
+          addResult(
+            "accessibility-tests",
+            "info",
+            "ℹ️ Aucun élément screen-reader-only (normal en mode test)"
+          );
+        }
+
+        // Test 3: Vérifier les landmarks
+        const landmarks = document.querySelectorAll(
+          "main, nav, header, footer, aside, section[aria-label]"
+        );
+        if (landmarks.length > 0) {
+          addResult(
+            "accessibility-tests",
+            "success",
+            `✅ ${landmarks.length} landmarks sémantiques détectés`
+          );
+        } else {
+          addResult(
+            "accessibility-tests",
+            "warning",
+            "⚠️ Peu de landmarks sémantiques trouvés"
+          );
+        }
+
+        // Test 4: Vérifier le contraste (simulation)
+        const computedStyle = window.getComputedStyle(document.body);
+        const bgColor = computedStyle.backgroundColor;
+        const textColor = computedStyle.color;
+
+        if (bgColor && textColor) {
+          addResult(
+            "accessibility-tests",
+            "success",
+            "✅ Couleurs de base définies"
+          );
+        } else {
+          addResult(
+            "accessibility-tests",
+            "warning",
+            "⚠️ Couleurs non définies clairement"
+          );
+        }
+      }
+
+      function testPerformance() {
+        clearResults("performance-tests");
+
+        try {
+          // Test 1: Performance des animations
+          if (
+            typeof AnimationUtils !== "undefined" &&
+            AnimationUtils.getAnimationStats
+          ) {
+            const animStats = AnimationUtils.getAnimationStats();
+            addResult(
+              "performance-tests",
+              "success",
+              `✅ Système d'animation optimisé: ${animStats.activeCount} animations actives`
+            );
+          }
+
+          // Test 2: Utilisation mémoire du cache
+          if (
+            typeof window.app !== "undefined" &&
+            window.app.components.router &&
+            window.app.components.router.getCacheStats
+          ) {
+            const cacheStats = window.app.components.router.getCacheStats();
+            const sizeKB = Math.round(cacheStats.totalSize / 1024);
+
+            if (sizeKB < 1024) {
+              // Moins de 1MB
+              addResult(
+                "performance-tests",
+                "success",
+                `✅ Cache optimisé: ${sizeKB}KB utilisés`
+              );
+            } else {
+              addResult(
+                "performance-tests",
+                "warning",
+                `⚠️ Cache volumineux: ${sizeKB}KB - Nettoyage recommandé`
+              );
+            }
+          }
+
+          // Test 3: Informations générales de performance
+          if (
+            typeof window.app !== "undefined" &&
+            window.app.getPerformanceInfo
+          ) {
+            const perfInfo = window.app.getPerformanceInfo();
+            document.getElementById("performance-info").innerHTML = `
+                        <strong>📊 Informations de Performance:</strong><br>
+                        ${JSON.stringify(perfInfo, null, 2)}
+                    `;
+            addResult(
+              "performance-tests",
+              "info",
+              "📊 Informations de performance collectées"
+            );
+          }
+
+          // Test 4: Temps de réponse
+          const startTime = performance.now();
+          setTimeout(() => {
+            const responseTime = performance.now() - startTime;
+            if (responseTime < 100) {
+              addResult(
+                "performance-tests",
+                "success",
+                `✅ Temps de réponse excellent: ${responseTime.toFixed(2)}ms`
+              );
+            } else {
+              addResult(
+                "performance-tests",
+                "warning",
+                `⚠️ Temps de réponse: ${responseTime.toFixed(2)}ms`
+              );
+            }
+          }, 50);
+        } catch (error) {
+          addResult(
+            "performance-tests",
+            "error",
+            `❌ Erreur test performance: ${error.message}`
+          );
+        }
+      }
+
+      function runAllTests() {
+        const scriptsLoaded = runLoadingTests();
+
+        if (scriptsLoaded) {
+          setTimeout(() => {
+            // Démarrer l'application si pas déjà fait
+            if (
+              typeof ApplicationBootstrap !== "undefined" &&
+              typeof window.app === "undefined"
+            ) {
+              ApplicationBootstrap.start()
+                .then(() => {
+                  addResult(
+                    "loading-tests",
+                    "success",
+                    "✅ Application démarrée avec succès!"
+                  );
+
+                  // Lancer les autres tests après le démarrage
+                  setTimeout(() => {
+                    testNavigation();
+                    testAccessibility();
+                    testPerformance();
+                  }, 1000);
+                })
+                .catch((error) => {
+                  addResult(
+                    "loading-tests",
+                    "error",
+                    `❌ Erreur de démarrage: ${error.message}`
+                  );
+                });
+            } else if (typeof window.app !== "undefined") {
+              // App déjà démarrée
+              testNavigation();
+              testAccessibility();
+              testPerformance();
+            }
+          }, 500);
+        }
+      }
+
+      // Démarrage automatique des tests
+      window.addEventListener("load", () => {
+        setTimeout(runAllTests, 500);
+      });
+    </script>
+
+    <!-- Scripts dans le bon ordre -->
+    <script src="./assets/scripts/config.js"></script>
+    <script src="./assets/scripts/utils.js"></script>
+    <script src="./assets/scripts/components.js"></script>
+    <script src="./assets/scripts/router.js"></script>
+    <script src="./assets/scripts/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Application de démonstration des concepts front-end RNCP DWWM 2023 avec style glassmorphism moderne"
+    />
+    <meta
+      name="keywords"
+      content="HTML, CSS, JavaScript, Responsive Design, RNCP, DWWM, Front-end, Glassmorphism"
+    />
+    <meta name="author" content="Votre Nom" />
+
+    <!-- Preconnect pour optimiser le chargement des polices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Favicon et icônes -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>"
+    />
+
+    <!-- Meta tags pour les réseaux sociaux (Open Graph) -->
+    <meta property="og:title" content="RNCP DWWM 2023 - Front-End Demo" />
+    <meta
+      property="og:description"
+      content="Application de démonstration des concepts front-end avec style glassmorphism moderne"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+
+    <!-- CSS Principal -->
+    <link rel="stylesheet" href="./assets/styles/style.css" />
+
+    <!-- CSS pour corriger les selects -->
+    <link rel="stylesheet" href="./assets/styles/select-fix.css" />
+
+    <title>RNCP DWWM 2023 - Front-End Demo</title>
+  </head>
+  <body>
+    <!-- Container principal de l'application -->
+    <div id="app">
+      <!-- Navigation fixe avec effet glass -->
+      <div id="navigation"></div>
+
+      <!-- Contenu principal -->
+      <main id="main-content" class="container">
+        <!-- Le contenu sera injecté dynamiquement par le router -->
+        <div class="loading-initial">
+          <div class="glass-card text-center">
+            <div class="spinner animate-pulse"></div>
+            <h2>Chargement de l'application...</h2>
+            <p>Initialisation des composants et du contenu</p>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Templates cachés pour les pages -->
+    <template id="home-template">
+      <div class="page" id="page-home">
+        <div class="hero">
+          <h1 class="hero-title animate-fade-in">RNCP DWWM 2023</h1>
+          <p class="hero-subtitle animate-fade-in animate-delay-1">
+            Démonstration complète des concepts front-end avec un design
+            glassmorphism moderne
+          </p>
+          <div class="hero-actions animate-fade-in animate-delay-2">
+            <a href="#html" class="btn btn-primary">Commencer l'exploration</a>
+            <a href="#about" class="btn btn-secondary">À propos du projet</a>
+          </div>
+        </div>
+
+        <section class="section">
+          <div class="section-header">
+            <h2 class="section-title">Concepts couverts</h2>
+            <p class="section-description">
+              Explorez chaque notion du référentiel RNCP DWWM 2023 à travers des
+              démonstrations interactives
+            </p>
+          </div>
+
+          <div class="home-grid">
+            <div
+              class="concept-card hover-lift animate-fade-in animate-delay-1"
+              data-page="html"
+            >
+              <div class="concept-icon">📝</div>
+              <h3 class="concept-title">Structure HTML</h3>
+              <p class="concept-description">
+                Sémantique, accessibilité, balises modernes HTML5 et bonnes
+                pratiques de structuration
+              </p>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 100%"></div>
+              </div>
+              <a href="#html" class="btn btn-primary">Explorer HTML</a>
+            </div>
+
+            <div
+              class="concept-card hover-lift animate-fade-in animate-delay-2"
+              data-page="css"
+            >
+              <div class="concept-icon">🎨</div>
+              <h3 class="concept-title">Styles CSS</h3>
+              <p class="concept-description">
+                Flexbox, Grid, animations, transitions et techniques de design
+                moderne avec CSS3
+              </p>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 95%"></div>
+              </div>
+              <a href="#css" class="btn btn-primary">Explorer CSS</a>
+            </div>
+
+            <div
+              class="concept-card hover-lift animate-fade-in animate-delay-3"
+              data-page="javascript"
+            >
+              <div class="concept-icon">⚡</div>
+              <h3 class="concept-title">JavaScript ES6+</h3>
+              <p class="concept-description">
+                Programmation moderne, DOM, événements, API natives et gestion
+                asynchrone
+              </p>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 90%"></div>
+              </div>
+              <a href="#javascript" class="btn btn-primary"
+                >Explorer JavaScript</a
+              >
+            </div>
+
+            <div
+              class="concept-card hover-lift animate-fade-in animate-delay-4"
+              data-page="responsive"
+            >
+              <div class="concept-icon">📱</div>
+              <h3 class="concept-title">Design Responsive</h3>
+              <p class="concept-description">
+                Media queries, mobile-first, grilles flexibles et adaptation
+                multi-écrans
+              </p>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 85%"></div>
+              </div>
+              <a href="#responsive" class="btn btn-primary"
+                >Explorer Responsive</a
+              >
+            </div>
+
+            <div
+              class="concept-card hover-lift animate-fade-in animate-delay-5"
+              data-page="forms"
+            >
+              <div class="concept-icon">📋</div>
+              <h3 class="concept-title">Formulaires</h3>
+              <p class="concept-description">
+                Validation côté client, UX, accessibilité et sécurisation des
+                saisies
+              </p>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 80%"></div>
+              </div>
+              <a href="#forms" class="btn btn-primary">Explorer Formulaires</a>
+            </div>
+
+            <div
+              class="concept-card hover-lift animate-fade-in animate-delay-6"
+              data-page="ajax"
+            >
+              <div class="concept-icon">🔄</div>
+              <h3 class="concept-title">AJAX & API</h3>
+              <p class="concept-description">
+                Fetch API, gestion asynchrone, REST, JSON et intégration de
+                services web
+              </p>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 75%"></div>
+              </div>
+              <a href="#ajax" class="btn btn-primary">Explorer AJAX</a>
+            </div>
+
+            <div
+              class="concept-card hover-lift animate-fade-in animate-delay-7"
+              data-page="accessibility"
+            >
+              <div class="concept-icon">♿</div>
+              <h3 class="concept-title">Accessibilité</h3>
+              <p class="concept-description">
+                ARIA, navigation clavier, contraste, lecteurs d'écran et
+                inclusion numérique
+              </p>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 70%"></div>
+              </div>
+              <a href="#accessibility" class="btn btn-primary"
+                >Explorer Accessibilité</a
+              >
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <h2 class="section-title">Technologies utilisées</h2>
+          </div>
+
+          <div class="grid grid-3">
+            <div class="glass-card">
+              <h3>🏗️ Architecture</h3>
+              <ul>
+                <li>SPA (Single Page Application)</li>
+                <li>Router JavaScript natif</li>
+                <li>Composants modulaires</li>
+                <li>Gestion d'état centralisée</li>
+              </ul>
+            </div>
+
+            <div class="glass-card">
+              <h3>🎨 Design</h3>
+              <ul>
+                <li>Glassmorphism moderne 2024</li>
+                <li>CSS Grid & Flexbox</li>
+                <li>Animations fluides</li>
+                <li>Design responsive</li>
+              </ul>
+            </div>
+
+            <div class="glass-card">
+              <h3>⚡ Performance</h3>
+              <ul>
+                <li>Chargement optimisé</li>
+                <li>Cache intelligent</li>
+                <li>Animations performantes</li>
+                <li>Code modulaire</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+    </template>
+
+    <!-- Script d'initialisation personnalisé -->
+    <script>
+      // Configuration additionnelle si nécessaire
+      document.addEventListener("DOMContentLoaded", function () {
+        // Masquer le loader initial une fois l'app chargée
+        document.addEventListener("app:initialized", function () {
+          const initialLoader = document.querySelector(".loading-initial");
+          if (initialLoader) {
+            setTimeout(() => {
+              initialLoader.style.display = "none";
+            }, 500);
+          }
+        });
+
+        // Gestion des erreurs d'images
+        document.addEventListener(
+          "error",
+          function (e) {
+            if (e.target.tagName === "IMG") {
+              e.target.src =
+                'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🖼️</text></svg>';
+            }
+          },
+          true
+        );
+
+        // Analytics ou tracking (si nécessaire)
+        console.log("📊 Application tracking initialized");
+      });
+
+      // PWA Service Worker (optionnel)
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          // navigator.registerServiceWorker('./sw.js');
+        });
+      }
+    </script>
+
+    <!-- Styles critiques en ligne pour éviter le FOUC -->
+    <style>
+      /* Styles critiques pour le chargement initial */
+      .loading-initial {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+
+      .loading-initial .glass-card {
+        max-width: 400px;
+        width: 90%;
+      }
+
+      /* Fallback si JavaScript est désactivé */
+      .no-js {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #2c3e50;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        z-index: 10000;
+      }
+    </style>
+
+    <!-- Scripts JavaScript - Ordre important pour les dépendances -->
+    <script src="./assets/scripts/config.js"></script>
+    <script src="./assets/scripts/utils.js"></script>
+    <script src="./assets/scripts/components.js"></script>
+    <script src="./assets/scripts/router.js"></script>
+    <script src="./assets/scripts/app.js"></script>
+
+    <!-- Fallback pour JavaScript désactivé -->
+    <noscript>
+      <div class="no-js">
+        <h1>JavaScript requis</h1>
+        <p>Cette application nécessite JavaScript pour fonctionner.</p>
+        <p>Veuillez activer JavaScript dans votre navigateur.</p>
+      </div>
+    </noscript>
+  </body>
+</html>
