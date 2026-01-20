@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
@@ -6,7 +6,7 @@
     <title>Cours JavaScript - Concepts de base</title>
   </head>
   <body>
-    <div class="course-content glass-container">
+    <div class="course-content glass-container no-auto-highlight">
       <header class="course-header">
         <h1>⚡ Cours JavaScript - Les fondamentaux</h1>
         <p class="course-subtitle">Apprenez à donner vie à vos pages web</p>
@@ -28,7 +28,7 @@
 
             <h4>2. JavaScript interne :</h4>
             <pre><code>&lt;script&gt;
-    console.log('Hello World!');
+console.log('Hello World!');
 &lt;/script&gt;</code></pre>
 
             <h4>3. JavaScript externe :</h4>
@@ -294,10 +294,17 @@ const message = `Bonjour ${nom}, vous avez ${age} ans.`;
 
 // Multiligne
 const html = `
+<<<<<<< HEAD
     &lt;div class="card"&gt;
         &lt;h2&gt;${nom}&lt;/h2&gt;
         &lt;p&gt;Âge: ${age} ans&lt;/p&gt;
     &lt;/div&gt;
+=======
+<div class="card">
+<h2>${nom}</h2>
+<p>Âge: ${age} ans</p>
+</div>
+>>>>>>> clean-code-blocks
 `;
 
 // Expressions dans les templates
@@ -308,7 +315,11 @@ const total = `Total TTC: ${(prix * (1 + tva)).toFixed(2)}€`;
 // Tagged templates (avancé)
 function highlight(strings, ...values) {
     return strings.reduce((result, string, i) => {
+<<<<<<< HEAD
         const value = values[i] ? `&lt;mark&gt;${values[i]}&lt;/mark&gt;` : '';
+=======
+        const value = values[i] ? `<mark>${values[i]}</mark>` : '';
+>>>>>>> clean-code-blocks
         return result + string + value;
     }, '');
 }
@@ -828,10 +839,14 @@ async function chargerUtilisateurs() {
       </main>
 
       <footer class="course-footer">
+<<<<<<< HEAD
         <button
           class="download-pdf-btn glass-button"
           onclick="downloadPDF('cours-javascript')"
         >
+=======
+        <button class="download-pdf-btn glass-button">
+>>>>>>> clean-code-blocks
           📄 Télécharger le cours en PDF
         </button>
       </footer>
