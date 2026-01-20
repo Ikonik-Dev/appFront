@@ -1,0 +1,1467 @@
+<div class="page" id="page-javascript">
+  <div class="page-header">
+    <h1 class="page-title">⚡ JavaScript ES6+</h1>
+    <p class="page-subtitle">
+      Programmation moderne, DOM, événements et API natives
+    </p>
+  </div>
+
+  <div class="sidebar-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="#js-basics">Bases ES6+</a></li>
+          <li><a href="#js-dom">Manipulation DOM</a></li>
+          <li><a href="#js-events">Événements</a></li>
+          <li><a href="#js-async">Asynchrone</a></li>
+          <li><a href="#js-modules">Modules</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <section id="js-basics" class="section">
+        <div class="section-header">
+          <h2 class="section-title">JavaScript ES6+ Modernes</h2>
+          <p class="section-description">
+            Nouvelles syntaxes et fonctionnalités pour un code plus lisible
+          </p>
+        </div>
+
+        <div class="content-area">
+          <h3>Déclaration de variables et fonctions</h3>
+
+          <div class="demo-area">
+            <div class="js-demo-container">
+              <div class="demo-section">
+                <h4>const, let vs var</h4>
+                <button
+                  class="btn btn-primary"
+                  onclick="demonstrateVariables()"
+                >
+                  Tester les déclarations
+                </button>
+                <div id="variableResults" class="results-area"></div>
+              </div>
+
+              <div class="demo-section">
+                <h4>Fonctions fléchées</h4>
+                <button
+                  class="btn btn-primary"
+                  onclick="demonstrateArrowFunctions()"
+                >
+                  Comparer les syntaxes
+                </button>
+                <div id="arrowResults" class="results-area"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="code-area">
+            <pre><code class="code-highlight">
+<span class="comment">// Déclarations modernes</span>
+<span class="keyword">const</span> <span class="function">userName</span> = <span class="string">'John'</span>; <span class="comment">// Constante, ne peut pas être réassignée</span>
+<span class="keyword">let</span> <span class="function">userAge</span> = <span class="number">25</span>; <span class="comment">// Variable avec portée de bloc</span>
+
+<span class="comment">// Fonctions fléchées</span>
+<span class="keyword">const</span> <span class="function">add</span> = <span class="keyword">(a, b)</span> => a + b;
+<span class="keyword">const</span> <span class="function">greet</span> = <span class="keyword">name</span> => <span class="string">`Bonjour ${name}!`</span>;
+
+<span class="comment">// Destructuration</span>
+<span class="keyword">const</span> { name, age } = user;
+<span class="keyword">const</span> [first, second] = array;
+
+<span class="comment">// Template literals</span>
+<span class="keyword">const</span> <span class="function">message</span> = <span class="string">`L'utilisateur ${name} a ${age} ans`</span>;
+                        </code></pre>
+          </div>
+        </div>
+
+        <div class="content-area">
+          <h3>Destructuration et spread operator</h3>
+
+          <div class="demo-area">
+            <div class="js-demo-container">
+              <h4>Exemple interactif</h4>
+              <button
+                class="btn btn-primary"
+                onclick="demonstrateDestructuring()"
+              >
+                Démontrer la destructuration
+              </button>
+              <div id="destructuringResults" class="results-area"></div>
+            </div>
+          </div>
+
+          <div class="code-area">
+            <pre><code class="code-highlight">
+<span class="comment">// Destructuration d'objet</span>
+<span class="keyword">const</span> <span class="function">user</span> = { name: <span class="string">'Alice'</span>, age: <span class="number">30</span>, city: <span class="string">'Paris'</span> };
+<span class="keyword">const</span> { name, age, city = <span class="string">'Inconnue'</span> } = user;
+
+<span class="comment">// Destructuration de tableau</span>
+<span class="keyword">const</span> <span class="function">colors</span> = [<span class="string">'rouge'</span>, <span class="string">'vert'</span>, <span class="string">'bleu'</span>];
+<span class="keyword">const</span> [primary, secondary, ...others] = colors;
+
+<span class="comment">// Spread operator</span>
+<span class="keyword">const</span> <span class="function">newUser</span> = { ...user, email: <span class="string">'alice@example.com'</span> };
+<span class="keyword">const</span> <span class="function">allColors</span> = [...colors, <span class="string">'jaune'</span>, <span class="string">'orange'</span>];
+                        </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="js-dom" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Manipulation du DOM</h2>
+          <p class="section-description">
+            Sélection, modification et création d'éléments HTML
+          </p>
+        </div>
+
+        <div class="content-area">
+          <h3>Sélecteurs modernes</h3>
+
+          <div class="demo-area">
+            <div class="dom-demo-container">
+              <div class="demo-target" id="targetElement">
+                <h4>Élément cible</h4>
+                <p class="demo-text">Texte à modifier</p>
+                <div class="demo-list">
+                  <span class="demo-item">Item 1</span>
+                  <span class="demo-item">Item 2</span>
+                  <span class="demo-item">Item 3</span>
+                </div>
+              </div>
+
+              <div class="demo-controls">
+                <button class="btn btn-secondary" onclick="selectElements()">
+                  Sélectionner les éléments
+                </button>
+                <button class="btn btn-secondary" onclick="modifyElements()">
+                  Modifier le contenu
+                </button>
+                <button class="btn btn-secondary" onclick="addElements()">
+                  Ajouter des éléments
+                </button>
+                <button class="btn btn-warning" onclick="resetDemo()">
+                  Reset
+                </button>
+              </div>
+
+              <div id="domResults" class="results-area"></div>
+            </div>
+          </div>
+
+          <div class="code-area">
+            <pre><code class="code-highlight">
+<span class="comment">// Sélecteurs modernes</span>
+<span class="keyword">const</span> <span class="function">element</span> = document.<span class="function">querySelector</span>(<span class="string">'.demo-target'</span>);
+<span class="keyword">const</span> <span class="function">elements</span> = document.<span class="function">querySelectorAll</span>(<span class="string">'.demo-item'</span>);
+
+<span class="comment">// Modification du contenu</span>
+element.<span class="function">textContent</span> = <span class="string">'Nouveau texte'</span>;
+element.<span class="function">innerHTML</span> = <span class="string">'&lt;strong&gt;Texte en gras&lt;/strong&gt;'</span>;
+
+<span class="comment">// Manipulation des classes</span>
+element.<span class="function">classList</span>.<span class="function">add</span>(<span class="string">'nouvelle-classe'</span>);
+element.<span class="function">classList</span>.<span class="function">toggle</span>(<span class="string">'active'</span>);
+element.<span class="function">classList</span>.<span class="function">remove</span>(<span class="string">'ancienne-classe'</span>);
+
+<span class="comment">// Création d'éléments</span>
+<span class="keyword">const</span> <span class="function">newElement</span> = document.<span class="function">createElement</span>(<span class="string">'div'</span>);
+newElement.<span class="function">textContent</span> = <span class="string">'Nouvel élément'</span>;
+element.<span class="function">appendChild</span>(newElement);
+                        </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="js-events" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Gestion d'événements</h2>
+          <p class="section-description">
+            Événements modernes et bonnes pratiques
+          </p>
+        </div>
+
+        <div class="content-area">
+          <h3>Types d'événements</h3>
+
+          <div class="demo-area">
+            <div class="events-demo-container">
+              <div class="event-target" id="eventTarget">
+                <h4>Zone d'événements</h4>
+                <p>Interagissez avec cette zone</p>
+              </div>
+
+              <div class="event-controls">
+                <button
+                  class="btn btn-primary"
+                  onclick="attachEventListeners()"
+                >
+                  Activer les événements
+                </button>
+                <button
+                  class="btn btn-warning"
+                  onclick="removeEventListeners()"
+                >
+                  Désactiver les événements
+                </button>
+              </div>
+
+              <div id="eventLog" class="event-log"></div>
+            </div>
+          </div>
+
+          <div class="code-area">
+            <pre><code class="code-highlight">
+<span class="comment">// Gestionnaires d'événements modernes</span>
+<span class="keyword">const</span> <span class="function">button</span> = document.<span class="function">querySelector</span>(<span class="string">'.btn'</span>);
+
+<span class="comment">// Fonction de gestion</span>
+<span class="keyword">const</span> <span class="function">handleClick</span> = <span class="keyword">(event)</span> => {
+    event.<span class="function">preventDefault</span>(); <span class="comment">// Empêcher le comportement par défaut</span>
+    event.<span class="function">stopPropagation</span>(); <span class="comment">// Arrêter la propagation</span>
+    
+    console.<span class="function">log</span>(<span class="string">'Bouton cliqué!'</span>, event.<span class="function">target</span>);
+};
+
+<span class="comment">// Ajout d'écouteurs</span>
+button.<span class="function">addEventListener</span>(<span class="string">'click'</span>, handleClick);
+button.<span class="function">addEventListener</span>(<span class="string">'mouseover'</span>, <span class="keyword">(e)</span> => {
+    e.<span class="function">target</span>.<span class="function">style</span>.<span class="function">backgroundColor</span> = <span class="string">'#ff6b6b'</span>;
+});
+
+<span class="comment">// Suppression d'écouteurs</span>
+button.<span class="function">removeEventListener</span>(<span class="string">'click'</span>, handleClick);
+                        </code></pre>
+          </div>
+        </div>
+
+        <div class="content-area">
+          <h3>Délégation d'événements</h3>
+
+          <div class="demo-area">
+            <div class="delegation-demo">
+              <h4>Liste dynamique</h4>
+              <ul id="dynamicList" class="dynamic-list">
+                <li data-id="1">
+                  Item 1 <button class="delete-btn">×</button>
+                </li>
+                <li data-id="2">
+                  Item 2 <button class="delete-btn">×</button>
+                </li>
+                <li data-id="3">
+                  Item 3 <button class="delete-btn">×</button>
+                </li>
+              </ul>
+              <button class="btn btn-primary" onclick="addListItem()">
+                Ajouter un item
+              </button>
+            </div>
+          </div>
+
+          <div class="code-area">
+            <pre><code class="code-highlight">
+<span class="comment">// Délégation d'événements</span>
+<span class="keyword">const</span> <span class="function">list</span> = document.<span class="function">querySelector</span>(<span class="string">'#dynamicList'</span>);
+
+list.<span class="function">addEventListener</span>(<span class="string">'click'</span>, <span class="keyword">(event)</span> => {
+    <span class="comment">// Vérifier si l'élément cliqué est un bouton de suppression</span>
+    <span class="keyword">if</span> (event.<span class="function">target</span>.<span class="function">classList</span>.<span class="function">contains</span>(<span class="string">'delete-btn'</span>)) {
+        <span class="keyword">const</span> <span class="function">listItem</span> = event.<span class="function">target</span>.<span class="function">closest</span>(<span class="string">'li'</span>);
+        <span class="keyword">const</span> <span class="function">itemId</span> = listItem.<span class="function">dataset</span>.<span class="function">id</span>;
+        
+        <span class="comment">// Animation de suppression</span>
+        listItem.<span class="function">style</span>.<span class="function">animation</span> = <span class="string">'slideOut 0.3s ease'</span>;
+        <span class="function">setTimeout</span>(<span class="keyword">()</span> => listItem.<span class="function">remove</span>(), <span class="number">300</span>);
+    }
+});
+                        </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="js-async" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Programmation asynchrone</h2>
+          <p class="section-description">
+            Promises, async/await et gestion des API
+          </p>
+        </div>
+
+        <div class="content-area">
+          <h3>Fetch API et async/await</h3>
+
+          <div class="demo-area">
+            <div class="async-demo-container">
+              <h4>Simulation d'appel API</h4>
+              <div class="api-controls">
+                <button class="btn btn-primary" onclick="fetchUserData()">
+                  Charger des données utilisateur
+                </button>
+                <button class="btn btn-secondary" onclick="fetchWithError()">
+                  Simuler une erreur
+                </button>
+                <button class="btn btn-success" onclick="fetchMultipleData()">
+                  Requêtes parallèles
+                </button>
+              </div>
+              <div id="apiResults" class="api-results"></div>
+            </div>
+          </div>
+
+          <div class="code-area">
+            <pre><code class="code-highlight">
+<span class="comment">// Fonction async moderne</span>
+<span class="keyword">const</span> <span class="function">fetchUserData</span> = <span class="keyword">async</span> <span class="keyword">(userId)</span> => {
+    <span class="keyword">try</span> {
+        <span class="comment">// Afficher un loader</span>
+        <span class="function">showLoader</span>();
+        
+        <span class="comment">// Appel API avec fetch</span>
+        <span class="keyword">const</span> <span class="function">response</span> = <span class="keyword">await</span> <span class="function">fetch</span>(<span class="string">`/api/users/${userId}`</span>);
+        
+        <span class="comment">// Vérifier la réponse</span>
+        <span class="keyword">if</span> (!response.<span class="function">ok</span>) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="function">Error</span>(<span class="string">`Erreur HTTP: ${response.status}`</span>);
+        }
+        
+        <span class="comment">// Parser les données JSON</span>
+        <span class="keyword">const</span> <span class="function">userData</span> = <span class="keyword">await</span> response.<span class="function">json</span>();
+        
+        <span class="comment">// Traiter les données</span>
+        <span class="function">displayUserData</span>(userData);
+        
+    } <span class="keyword">catch</span> (error) {
+        <span class="comment">// Gestion d'erreur</span>
+        console.<span class="function">error</span>(<span class="string">'Erreur lors du fetch:'</span>, error);
+        <span class="function">showError</span>(error.<span class="function">message</span>);
+    } <span class="keyword">finally</span> {
+        <span class="comment">// Masquer le loader</span>
+        <span class="function">hideLoader</span>();
+    }
+};
+
+<span class="comment">// Requêtes parallèles</span>
+<span class="keyword">const</span> <span class="function">fetchMultipleData</span> = <span class="keyword">async</span> <span class="keyword">()</span> => {
+    <span class="keyword">try</span> {
+        <span class="keyword">const</span> [users, posts, comments] = <span class="keyword">await</span> <span class="function">Promise</span>.<span class="function">all</span>([
+            <span class="function">fetch</span>(<span class="string">'/api/users'</span>).<span class="function">then</span>(<span class="keyword">r</span> => r.<span class="function">json</span>()),
+            <span class="function">fetch</span>(<span class="string">'/api/posts'</span>).<span class="function">then</span>(<span class="keyword">r</span> => r.<span class="function">json</span>()),
+            <span class="function">fetch</span>(<span class="string">'/api/comments'</span>).<span class="function">then</span>(<span class="keyword">r</span> => r.<span class="function">json</span>())
+        ]);
+        
+        <span class="function">console</span>.<span class="function">log</span>({ users, posts, comments });
+    } <span class="keyword">catch</span> (error) {
+        console.<span class="function">error</span>(<span class="string">'Erreur lors des requêtes parallèles:'</span>, error);
+    }
+};
+                        </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="js-modules" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Modules ES6+</h2>
+          <p class="section-description">
+            Organisation du code avec import/export
+          </p>
+        </div>
+
+        <div class="content-area">
+          <h3>Import et Export</h3>
+
+          <div class="demo-area">
+            <div class="modules-demo-container">
+              <h4>Simulation de modules</h4>
+              <div class="modules-controls">
+                <button class="btn btn-primary" onclick="demonstrateModules()">
+                  Charger un module
+                </button>
+                <button
+                  class="btn btn-secondary"
+                  onclick="demonstrateNamedExports()"
+                >
+                  Exports nommés
+                </button>
+                <button
+                  class="btn btn-success"
+                  onclick="demonstrateDynamicImport()"
+                >
+                  Import dynamique
+                </button>
+              </div>
+              <div id="modulesResults" class="modules-results"></div>
+            </div>
+          </div>
+
+          <div class="code-area">
+            <pre><code class="code-highlight">
+<span class="comment">// math.js - Module utilitaire</span>
+<span class="keyword">export</span> <span class="keyword">const</span> <span class="function">PI</span> = <span class="number">3.14159</span>;
+
+<span class="keyword">export</span> <span class="keyword">function</span> <span class="function">add</span><span class="keyword">(a, b)</span> {
+    <span class="keyword">return</span> a + b;
+}
+
+<span class="keyword">export</span> <span class="keyword">function</span> <span class="function">multiply</span><span class="keyword">(a, b)</span> {
+    <span class="keyword">return</span> a * b;
+}
+
+<span class="comment">// Export par défaut</span>
+<span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="function">calculator</span><span class="keyword">(operation, a, b)</span> {
+    <span class="keyword">switch</span> (operation) {
+        <span class="keyword">case</span> <span class="string">'add'</span>: <span class="keyword">return</span> <span class="function">add</span>(a, b);
+        <span class="keyword">case</span> <span class="string">'multiply'</span>: <span class="keyword">return</span> <span class="function">multiply</span>(a, b);
+        <span class="keyword">default</span>: <span class="keyword">return</span> <span class="number">0</span>;
+    }
+}
+
+<span class="comment">// app.js - Utilisation des modules</span>
+<span class="keyword">import</span> calculator, { PI, add, multiply } <span class="keyword">from</span> <span class="string">'./math.js'</span>;
+
+<span class="comment">// Import avec alias</span>
+<span class="keyword">import</span> { add <span class="keyword">as</span> addition } <span class="keyword">from</span> <span class="string">'./math.js'</span>;
+
+<span class="comment">// Import de tout</span>
+<span class="keyword">import</span> * <span class="keyword">as</span> MathUtils <span class="keyword">from</span> <span class="string">'./math.js'</span>;
+
+console.<span class="function">log</span>(<span class="function">calculator</span>(<span class="string">'add'</span>, <span class="number">5</span>, <span class="number">3</span>)); <span class="comment">// 8</span>
+console.<span class="function">log</span>(PI); <span class="comment">// 3.14159</span>
+console.<span class="function">log</span>(MathUtils.<span class="function">multiply</span>(<span class="number">4</span>, <span class="number">2</span>)); <span class="comment">// 8</span>
+                        </code></pre>
+          </div>
+        </div>
+
+        <div class="content-area">
+          <h3>Import dynamique</h3>
+
+          <div class="demo-area">
+            <div class="dynamic-import-demo">
+              <h4>Chargement conditionnel</h4>
+              <div class="import-controls">
+                <button class="btn btn-primary" onclick="loadFeatureModule()">
+                  Charger une fonctionnalité
+                </button>
+                <button
+                  class="btn btn-secondary"
+                  onclick="loadLanguageModule()"
+                >
+                  Charger une langue
+                </button>
+              </div>
+              <div id="dynamicImportResults" class="import-results"></div>
+            </div>
+          </div>
+
+          <div class="code-area">
+            <pre><code class="code-highlight">
+<span class="comment">// Import dynamique avec async/await</span>
+<span class="keyword">const</span> <span class="function">loadModule</span> = <span class="keyword">async</span> <span class="keyword">(moduleName)</span> => {
+    <span class="keyword">try</span> {
+        <span class="comment">// Import conditionnel</span>
+        <span class="keyword">const</span> <span class="function">module</span> = <span class="keyword">await</span> <span class="keyword">import</span>(<span class="string">`./modules/${moduleName}.js`</span>);
+        
+        <span class="comment">// Utilisation du module chargé</span>
+        <span class="keyword">return</span> module.<span class="keyword">default</span>;
+    } <span class="keyword">catch</span> (error) {
+        console.<span class="function">error</span>(<span class="string">'Erreur de chargement:'</span>, error);
+    }
+};
+
+<span class="comment">// Chargement conditionnel basé sur l'utilisateur</span>
+<span class="keyword">const</span> <span class="function">initializeApp</span> = <span class="keyword">async</span> <span class="keyword">()</span> => {
+    <span class="keyword">const</span> <span class="function">userPrefs</span> = <span class="function">getUserPreferences</span>();
+    
+    <span class="keyword">if</span> (userPrefs.<span class="function">language</span> === <span class="string">'fr'</span>) {
+        <span class="keyword">const</span> <span class="function">frModule</span> = <span class="keyword">await</span> <span class="keyword">import</span>(<span class="string">'./i18n/fr.js'</span>);
+        <span class="function">setLanguage</span>(frModule.<span class="function">translations</span>);
+    }
+    
+    <span class="keyword">if</span> (userPrefs.<span class="function">theme</span> === <span class="string">'dark'</span>) {
+        <span class="keyword">const</span> <span class="function">darkTheme</span> = <span class="keyword">await</span> <span class="keyword">import</span>(<span class="string">'./themes/dark.js'</span>);
+        <span class="function">applyTheme</span>(darkTheme.<span class="keyword">default</span>);
+    }
+};
+
+<span class="comment">// Import avec destructuration</span>
+<span class="keyword">const</span> { <span class="function">createUser</span>, <span class="function">deleteUser</span> } = <span class="keyword">await</span> <span class="keyword">import</span>(<span class="string">'./api/users.js'</span>);
+                        </code></pre>
+          </div>
+        </div>
+
+        <div class="content-area">
+          <h3>Organisation modulaire</h3>
+
+          <div class="code-area">
+            <pre><code class="code-highlight">
+<span class="comment">// Structure de projet modulaire</span>
+src/
+├── components/
+│   ├── Button.js
+│   ├── Modal.js
+│   └── index.js  <span class="comment">// Re-exports</span>
+├── utils/
+│   ├── validation.js
+│   ├── formatting.js
+│   └── api.js
+├── services/
+│   ├── UserService.js
+│   └── DataService.js
+└── app.js
+
+<span class="comment">// components/index.js - Point d'entrée du package</span>
+<span class="keyword">export</span> { <span class="keyword">default</span> <span class="keyword">as</span> Button } <span class="keyword">from</span> <span class="string">'./Button.js'</span>;
+<span class="keyword">export</span> { <span class="keyword">default</span> <span class="keyword">as</span> Modal } <span class="keyword">from</span> <span class="string">'./Modal.js'</span>;
+
+<span class="comment">// app.js - Import simplifié</span>
+<span class="keyword">import</span> { Button, Modal } <span class="keyword">from</span> <span class="string">'./components/index.js'</span>;
+
+<span class="comment">// Ou import groupé</span>
+<span class="keyword">import</span> * <span class="keyword">as</span> Components <span class="keyword">from</span> <span class="string">'./components/index.js'</span>;
+
+<span class="keyword">const</span> <span class="function">myButton</span> = <span class="keyword">new</span> Components.<span class="function">Button</span>();
+                        </code></pre>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<style>
+  /* Styles spécifiques à la page JavaScript */
+  .js-demo-container,
+  .dom-demo-container,
+  .events-demo-container,
+  .async-demo-container {
+    background: var(--glass-bg-dark);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-md);
+  }
+
+  .demo-section {
+    margin-bottom: var(--space-lg);
+    padding: var(--space-md);
+    background: var(--glass-bg);
+    border-radius: var(--radius-md);
+  }
+
+  .demo-section h4 {
+    color: white;
+    margin-bottom: var(--space-sm);
+  }
+
+  .results-area,
+  .event-log,
+  .api-results {
+    margin-top: var(--space-md);
+    padding: var(--space-md);
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius-md);
+    color: #f8f8f2;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid var(--glass-border);
+  }
+
+  .demo-target {
+    background: var(--glass-bg-light);
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-md);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .demo-target.highlighted {
+    border-color: var(--accent);
+    background: var(--glass-bg);
+  }
+
+  .demo-text {
+    color: rgba(255, 255, 255, 0.9);
+    margin: var(--space-sm) 0;
+  }
+
+  .demo-list {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-top: var(--space-sm);
+  }
+
+  .demo-item {
+    padding: var(--space-xs) var(--space-sm);
+    background: var(--gradient-accent);
+    border-radius: var(--radius-sm);
+    color: white;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+
+  .demo-item.modified {
+    background: var(--gradient-secondary);
+    transform: scale(1.1);
+  }
+
+  .demo-controls,
+  .event-controls,
+  .api-controls {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-md);
+  }
+
+  .event-target {
+    background: var(--glass-bg-light);
+    padding: var(--space-xl);
+    border-radius: var(--radius-md);
+    text-align: center;
+    color: white;
+    border: 2px dashed var(--glass-border);
+    margin-bottom: var(--space-md);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+  }
+
+  .event-target:hover {
+    border-color: var(--accent);
+    background: var(--glass-bg);
+  }
+
+  .event-target.active {
+    background: var(--gradient-accent);
+    border-style: solid;
+    transform: scale(1.02);
+  }
+
+  .delegation-demo {
+    background: var(--glass-bg);
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+  }
+
+  .dynamic-list {
+    list-style: none;
+    margin: var(--space-md) 0;
+    padding: 0;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+  }
+
+  .dynamic-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-sm) var(--space-md);
+    margin-bottom: var(--space-xs);
+    background: var(--glass-bg-light);
+    border-radius: var(--radius-sm);
+    color: white;
+    transition: all 0.3s ease;
+  }
+
+  .dynamic-list li:hover {
+    background: var(--glass-bg);
+    transform: translateX(5px);
+  }
+
+  .delete-btn {
+    background: var(--error);
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .delete-btn:hover {
+    background: #ff7675;
+    transform: scale(1.1);
+  }
+
+  .api-results {
+    min-height: 100px;
+  }
+
+  .modules-demo-container,
+  .dynamic-import-demo {
+    background: var(--glass-bg-dark);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-md);
+  }
+
+  .modules-controls,
+  .import-controls {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-md);
+  }
+
+  .modules-results,
+  .import-results {
+    margin-top: var(--space-md);
+    padding: var(--space-md);
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius-md);
+    color: #f8f8f2;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    max-height: 250px;
+    overflow-y: auto;
+    border: 1px solid var(--glass-border);
+  }
+
+  .module-info {
+    background: var(--glass-bg-light);
+    padding: var(--space-md);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-sm);
+    border-left: 3px solid var(--accent);
+  }
+
+  .module-info h5 {
+    color: var(--accent);
+    margin-bottom: var(--space-xs);
+    font-size: 0.95rem;
+  }
+
+  .module-export {
+    background: rgba(79, 172, 254, 0.1);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-xs);
+    margin-right: var(--space-xs);
+    margin-bottom: var(--space-xs);
+    display: inline-block;
+    color: #4facfe;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+  }
+
+  .loading {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--accent);
+  }
+
+  .loading::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--glass-border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  .error {
+    color: var(--error);
+    background: rgba(255, 159, 243, 0.1);
+    padding: var(--space-sm);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--error);
+  }
+
+  .success {
+    color: var(--success);
+    background: rgba(150, 206, 180, 0.1);
+    padding: var(--space-sm);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--success);
+  }
+
+  @keyframes slideOut {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .demo-controls,
+    .event-controls,
+    .api-controls {
+      flex-direction: column;
+    }
+
+    .demo-list {
+      flex-direction: column;
+    }
+
+    .dynamic-list li {
+      flex-direction: column;
+      text-align: center;
+      gap: var(--space-sm);
+    }
+  }
+</style>
+
+<script>
+  // Scripts pour les démonstrations JavaScript
+  document.addEventListener("DOMContentLoaded", function () {
+    setupEventDelegation();
+  });
+
+  // Démonstration des variables (accessible globalement)
+  window.demonstrateVariables = function () {
+    const results = document.getElementById("variableResults");
+    if (!results) return;
+
+    const output = [];
+
+    try {
+      // Test avec const
+      const constantValue = "Je ne peux pas changer";
+      output.push(`✅ const: ${constantValue}`);
+
+      // Test avec let
+      let mutableValue = "Je peux changer";
+      mutableValue = "J'ai changé!";
+      output.push(`✅ let: ${mutableValue}`);
+
+      // Démonstration de la portée
+      function testScope() {
+        let blockScoped = "Visible seulement dans cette fonction";
+        if (true) {
+          let innerScoped = "Visible seulement dans ce bloc";
+          return { blockScoped, innerScoped };
+        }
+      }
+
+      const scopeResult = testScope();
+      output.push(`✅ Portée: ${JSON.stringify(scopeResult)}`);
+    } catch (error) {
+      output.push(`❌ Erreur: ${error.message}`);
+    }
+
+    results.innerHTML = output.join("<br>");
+  };
+
+  // Démonstration des fonctions fléchées (accessible globalement)
+  window.demonstrateArrowFunctions = function () {
+    const results = document.getElementById("arrowResults");
+    if (!results) return;
+
+    const output = [];
+
+    // Fonction traditionnelle
+    function traditionalFunction(name) {
+      return `Bonjour ${name} (fonction traditionnelle)`;
+    }
+
+    // Fonction fléchée
+    const arrowFunction = (name) => `Bonjour ${name} (fonction fléchée)`;
+
+    // Fonction fléchée courte
+    const shortArrow = (name) => `Salut ${name}!`;
+
+    output.push(`📝 Traditionnelle: ${traditionalFunction("Alice")}`);
+    output.push(`➡️ Fléchée: ${arrowFunction("Bob")}`);
+    output.push(`⚡ Courte: ${shortArrow("Charlie")}`);
+
+    // Démonstration avec tableau
+    const numbers = [1, 2, 3, 4, 5];
+    const doubled = numbers.map((n) => n * 2);
+    output.push(`🔢 Map: [${numbers}] → [${doubled}]`);
+
+    results.innerHTML = output.join("<br>");
+  };
+
+  // Démonstration de la destructuration
+  function demonstrateDestructuring() {
+    const results = document.getElementById("destructuringResults");
+    if (!results) return;
+
+    const output = [];
+
+    // Objet d'exemple
+    const user = {
+      name: "Marie",
+      age: 28,
+      city: "Lyon",
+      hobbies: ["lecture", "natation", "cuisine"],
+    };
+
+    // Destructuration d'objet
+    const { name, age, city, country = "France" } = user;
+    output.push(`👤 Utilisateur: ${name}, ${age} ans, ${city} (${country})`);
+
+    // Destructuration de tableau
+    const [hobby1, hobby2, ...otherHobbies] = user.hobbies;
+    output.push(`🎯 Hobbies: ${hobby1}, ${hobby2}, autres: [${otherHobbies}]`);
+
+    // Spread operator
+    const newUser = { ...user, email: "marie@example.com", age: 29 };
+    output.push(`📧 Nouvel utilisateur: ${JSON.stringify(newUser)}`);
+
+    results.innerHTML = output.join("<br>");
+  }
+
+  // Fonctions pour la manipulation DOM
+  function selectElements() {
+    const results = document.getElementById("domResults");
+    if (!results) return;
+
+    const target = document.getElementById("targetElement");
+    const items = document.querySelectorAll(".demo-item");
+
+    // Highlighting
+    target.classList.add("highlighted");
+    items.forEach((item) => item.classList.add("modified"));
+
+    const output = [
+      `🎯 Élément cible trouvé: ${target.tagName}`,
+      `📋 Items trouvés: ${items.length}`,
+      `🏷️ Classes de l'élément: ${Array.from(target.classList).join(", ")}`,
+    ];
+
+    results.innerHTML = output.join("<br>");
+
+    // Reset après 2 secondes
+    setTimeout(() => {
+      target.classList.remove("highlighted");
+      items.forEach((item) => item.classList.remove("modified"));
+    }, 2000);
+  }
+
+  function modifyElements() {
+    const results = document.getElementById("domResults");
+    const text = document.querySelector(".demo-text");
+
+    if (!results || !text) return;
+
+    const originalText = text.textContent;
+    text.textContent = "Texte modifié par JavaScript!";
+    text.style.color = "#4facfe";
+    text.style.fontWeight = "bold";
+
+    results.innerHTML = `✏️ Texte modifié: "${originalText}" → "${text.textContent}"`;
+
+    // Reset après 3 secondes
+    setTimeout(() => {
+      text.textContent = originalText;
+      text.style.color = "";
+      text.style.fontWeight = "";
+    }, 3000);
+  }
+
+  function addElements() {
+    const results = document.getElementById("domResults");
+    const list = document.querySelector(".demo-list");
+
+    if (!results || !list) return;
+
+    const newItem = document.createElement("span");
+    newItem.className = "demo-item";
+    newItem.textContent = `Nouvel item ${Date.now().toString().slice(-3)}`;
+    newItem.style.animation = "fadeIn 0.5s ease";
+
+    list.appendChild(newItem);
+
+    results.innerHTML = `➕ Élément ajouté: "${newItem.textContent}"`;
+  }
+
+  function resetDemo() {
+    const results = document.getElementById("domResults");
+    const target = document.getElementById("targetElement");
+    const text = document.querySelector(".demo-text");
+    const list = document.querySelector(".demo-list");
+
+    if (results) results.innerHTML = "";
+    if (target) target.classList.remove("highlighted");
+    if (text) {
+      text.textContent = "Texte à modifier";
+      text.style.color = "";
+      text.style.fontWeight = "";
+    }
+
+    // Reset liste aux 3 items originaux
+    if (list) {
+      list.innerHTML = `
+            <span class="demo-item">Item 1</span>
+            <span class="demo-item">Item 2</span>
+            <span class="demo-item">Item 3</span>
+        `;
+    }
+  }
+
+  // Gestion des événements
+  window.eventListenersActive = window.eventListenersActive || false;
+  window.eventHandlers = window.eventHandlers || {};
+
+  function attachEventListeners() {
+    const target = document.getElementById("eventTarget");
+    const log = document.getElementById("eventLog");
+
+    if (!target || !log || window.eventListenersActive) return;
+
+    const logEvent = (type, detail = "") => {
+      const timestamp = new Date().toLocaleTimeString();
+      const message = `[${timestamp}] ${type}${detail ? ": " + detail : ""}`;
+      log.innerHTML = message + "<br>" + log.innerHTML;
+
+      // Limiter à 10 entrées
+      const lines = log.innerHTML.split("<br>");
+      if (lines.length > 10) {
+        log.innerHTML = lines.slice(0, 10).join("<br>");
+      }
+    };
+
+    // Définir les gestionnaires
+    window.eventHandlers.click = () => {
+      target.classList.toggle("active");
+      logEvent("CLICK", "Zone cliquée");
+    };
+
+    window.eventHandlers.mouseover = () => {
+      logEvent("MOUSEOVER", "Souris entrée");
+    };
+
+    window.eventHandlers.mouseout = () => {
+      target.classList.remove("active");
+      logEvent("MOUSEOUT", "Souris sortie");
+    };
+
+    window.eventHandlers.keydown = (e) => {
+      logEvent("KEYDOWN", `Touche: ${e.key}`);
+    };
+
+    // Attacher les événements
+    target.addEventListener("click", window.eventHandlers.click);
+    target.addEventListener("mouseover", window.eventHandlers.mouseover);
+    target.addEventListener("mouseout", window.eventHandlers.mouseout);
+    document.addEventListener("keydown", window.eventHandlers.keydown);
+
+    window.eventListenersActive = true;
+    logEvent("SYSTEM", "Événements activés");
+  }
+
+  function removeEventListeners() {
+    const target = document.getElementById("eventTarget");
+    const log = document.getElementById("eventLog");
+
+    if (!target || !window.eventListenersActive) return;
+
+    // Retirer les événements
+    target.removeEventListener("click", window.eventHandlers.click);
+    target.removeEventListener("mouseover", window.eventHandlers.mouseover);
+    target.removeEventListener("mouseout", window.eventHandlers.mouseout);
+    document.removeEventListener("keydown", window.eventHandlers.keydown);
+
+    target.classList.remove("active");
+    window.eventListenersActive = false;
+
+    if (log) {
+      log.innerHTML = "[SYSTEM] Événements désactivés<br>" + log.innerHTML;
+    }
+  }
+
+  // Délégation d'événements pour la liste dynamique
+  function setupEventDelegation() {
+    const list = document.getElementById("dynamicList");
+    if (!list) return;
+
+    list.addEventListener("click", (event) => {
+      if (event.target.classList.contains("delete-btn")) {
+        const listItem = event.target.closest("li");
+        listItem.style.animation = "slideOut 0.3s ease";
+        setTimeout(() => listItem.remove(), 300);
+      }
+    });
+  }
+
+  window.itemCounter = window.itemCounter || 4;
+
+  function addListItem() {
+    const list = document.getElementById("dynamicList");
+    if (!list) return;
+
+    const newItem = document.createElement("li");
+    newItem.dataset.id = window.itemCounter++;
+    newItem.innerHTML = `
+    Item ${window.itemCounter - 1} 
+    <button class="delete-btn">×</button>
+  `;
+    newItem.style.animation = "fadeIn 0.3s ease";
+
+    list.appendChild(newItem);
+  }
+
+  // Fonctions asynchrones
+  async function fetchUserData() {
+    const results = document.getElementById("apiResults");
+    if (!results) return;
+
+    try {
+      showLoading(results);
+
+      // Simulation d'un appel API
+      await delay(1500);
+
+      const userData = {
+        id: 1,
+        name: "Jean Dupont",
+        email: "jean.dupont@example.com",
+        avatar: "👤",
+        posts: 42,
+        followers: 1337,
+      };
+
+      displaySuccess(
+        results,
+        `
+            <div class="user-data">
+                <h4>${userData.avatar} ${userData.name}</h4>
+                <p>📧 ${userData.email}</p>
+                <p>📝 ${userData.posts} posts | 👥 ${userData.followers} followers</p>
+            </div>
+        `
+      );
+    } catch (error) {
+      displayError(results, error.message);
+    }
+  }
+
+  async function fetchWithError() {
+    const results = document.getElementById("apiResults");
+    if (!results) return;
+
+    try {
+      showLoading(results);
+      await delay(1000);
+
+      throw new Error("Erreur 404: Utilisateur non trouvé");
+    } catch (error) {
+      displayError(results, error.message);
+    }
+  }
+
+  async function fetchMultipleData() {
+    const results = document.getElementById("apiResults");
+    if (!results) return;
+
+    try {
+      showLoading(results, "Chargement de données multiples...");
+
+      // Simulation de requêtes parallèles
+      const [users, posts, stats] = await Promise.all([
+        simulateApiCall("users", 800),
+        simulateApiCall("posts", 1200),
+        simulateApiCall("stats", 600),
+      ]);
+
+      displaySuccess(
+        results,
+        `
+            <div class="multiple-data">
+                <h4>🎯 Données chargées en parallèle:</h4>
+                <p>👥 ${users.length} utilisateurs</p>
+                <p>📝 ${posts.length} articles</p>
+                <p>📊 ${stats.views} vues totales</p>
+            </div>
+        `
+      );
+    } catch (error) {
+      displayError(results, error.message);
+    }
+  }
+
+  // Fonctions utilitaires
+  function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  function simulateApiCall(type, delayMs) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const mockData = {
+          users: Array.from({ length: 5 }, (_, i) => ({
+            id: i + 1,
+            name: `User ${i + 1}`,
+          })),
+          posts: Array.from({ length: 12 }, (_, i) => ({
+            id: i + 1,
+            title: `Post ${i + 1}`,
+          })),
+          stats: { views: 15420, likes: 892 },
+        };
+        resolve(mockData[type]);
+      }, delayMs);
+    });
+  }
+
+  function showLoading(element, message = "Chargement...") {
+    element.innerHTML = `<div class="loading">${message}</div>`;
+  }
+
+  function displaySuccess(element, content) {
+    element.innerHTML = `<div class="success">${content}</div>`;
+  }
+
+  function displayError(element, message) {
+    element.innerHTML = `<div class="error">❌ ${message}</div>`;
+  }
+
+  // Fonctions pour les modules
+  function demonstrateModules() {
+    const results = document.getElementById("modulesResults");
+    if (!results) return;
+
+    // Simulation d'un module math.js
+    const mathModule = {
+      PI: 3.14159,
+      add: (a, b) => a + b,
+      multiply: (a, b) => a * b,
+      default: function calculator(operation, a, b) {
+        switch (operation) {
+          case "add":
+            return this.add(a, b);
+          case "multiply":
+            return this.multiply(a, b);
+          default:
+            return 0;
+        }
+      },
+    };
+
+    const output = [];
+    output.push(`<div class="module-info">`);
+    output.push(`<h5>📦 Module math.js chargé</h5>`);
+    output.push(`<span class="module-export">PI: ${mathModule.PI}</span>`);
+    output.push(
+      `<span class="module-export">add(5, 3): ${mathModule.add(5, 3)}</span>`
+    );
+    output.push(
+      `<span class="module-export">multiply(4, 2): ${mathModule.multiply(
+        4,
+        2
+      )}</span>`
+    );
+    output.push(
+      `<span class="module-export">calculator('add', 10, 5): ${mathModule.default(
+        "add",
+        10,
+        5
+      )}</span>`
+    );
+    output.push(`</div>`);
+
+    results.innerHTML = output.join("");
+  }
+
+  function demonstrateNamedExports() {
+    const results = document.getElementById("modulesResults");
+    if (!results) return;
+
+    // Simulation de différents types d'exports
+    const userModule = {
+      createUser: (name, email) => ({
+        id: Date.now(),
+        name,
+        email,
+        created: new Date(),
+      }),
+      validateEmail: (email) => email.includes("@"),
+      userRoles: ["admin", "user", "guest"],
+      DEFAULT_SETTINGS: { theme: "dark", language: "fr" },
+    };
+
+    const output = [];
+    output.push(`<div class="module-info">`);
+    output.push(`<h5>👥 Module users.js - Exports nommés</h5>`);
+
+    const newUser = userModule.createUser("Alice", "alice@example.com");
+    output.push(
+      `<span class="module-export">createUser: ${JSON.stringify(
+        newUser
+      )}</span><br>`
+    );
+    output.push(
+      `<span class="module-export">validateEmail: ${userModule.validateEmail(
+        "test@email.com"
+      )}</span><br>`
+    );
+    output.push(
+      `<span class="module-export">userRoles: [${userModule.userRoles.join(
+        ", "
+      )}]</span><br>`
+    );
+    output.push(
+      `<span class="module-export">DEFAULT_SETTINGS: ${JSON.stringify(
+        userModule.DEFAULT_SETTINGS
+      )}</span>`
+    );
+    output.push(`</div>`);
+
+    results.innerHTML = output.join("");
+  }
+
+  async function demonstrateDynamicImport() {
+    const results = document.getElementById("dynamicImportResults");
+    if (!results) return;
+
+    try {
+      showLoading(results, "Chargement dynamique du module...");
+
+      // Simulation d'un import dynamique
+      await delay(1200);
+
+      const featureModule = {
+        name: "AdvancedFeatures",
+        version: "2.1.0",
+        features: ["dataVisualization", "advancedFilters", "exportTools"],
+        init: () => "Module initialisé avec succès!",
+        getInfo: function () {
+          return `${this.name} v${this.version} - ${this.features.length} fonctionnalités`;
+        },
+      };
+
+      const output = [];
+      output.push(`<div class="module-info">`);
+      output.push(`<h5>⚡ Import dynamique réussi</h5>`);
+      output.push(
+        `<span class="module-export">Module: ${featureModule.getInfo()}</span><br>`
+      );
+      output.push(
+        `<span class="module-export">Init: ${featureModule.init()}</span><br>`
+      );
+      output.push(
+        `<span class="module-export">Fonctionnalités: ${featureModule.features.join(
+          ", "
+        )}</span>`
+      );
+      output.push(`</div>`);
+
+      displaySuccess(results, output.join(""));
+    } catch (error) {
+      displayError(results, `Erreur de chargement: ${error.message}`);
+    }
+  }
+
+  async function loadFeatureModule() {
+    const results = document.getElementById("dynamicImportResults");
+    if (!results) return;
+
+    try {
+      showLoading(results, "Chargement conditionnel...");
+      await delay(800);
+
+      const module = {
+        name: "ConditionalFeature",
+        loaded: new Date().toLocaleTimeString(),
+        data: {
+          charts: ["bar", "line", "pie"],
+          filters: ["date", "category", "status"],
+          exports: ["pdf", "excel", "csv"],
+        },
+      };
+
+      const output = [];
+      output.push(`<div class="module-info">`);
+      output.push(`<h5>🎯 Module conditionnel chargé</h5>`);
+      output.push(`<p><strong>Nom:</strong> ${module.name}</p>`);
+      output.push(`<p><strong>Chargé à:</strong> ${module.loaded}</p>`);
+      Object.entries(module.data).forEach(([key, value]) => {
+        output.push(
+          `<span class="module-export">${key}: [${value.join(", ")}]</span><br>`
+        );
+      });
+      output.push(`</div>`);
+
+      displaySuccess(results, output.join(""));
+    } catch (error) {
+      displayError(results, error.message);
+    }
+  }
+
+  async function loadLanguageModule() {
+    const results = document.getElementById("dynamicImportResults");
+    if (!results) return;
+
+    try {
+      showLoading(results, "Chargement du pack de langue...");
+      await delay(600);
+
+      const langModule = {
+        code: "fr-FR",
+        name: "Français",
+        translations: {
+          welcome: "Bienvenue",
+          goodbye: "Au revoir",
+          loading: "Chargement en cours...",
+          error: "Une erreur est survenue",
+          success: "Opération réussie",
+        },
+        dateFormat: "DD/MM/YYYY",
+        currency: "EUR",
+      };
+
+      const output = [];
+      output.push(`<div class="module-info">`);
+      output.push(
+        `<h5>🌍 Pack de langue: ${langModule.name} (${langModule.code})</h5>`
+      );
+      output.push(
+        `<p><strong>Format de date:</strong> ${langModule.dateFormat}</p>`
+      );
+      output.push(`<p><strong>Devise:</strong> ${langModule.currency}</p>`);
+      output.push(`<p><strong>Traductions:</strong></p>`);
+      Object.entries(langModule.translations).forEach(([key, value]) => {
+        output.push(
+          `<span class="module-export">${key}: "${value}"</span><br>`
+        );
+      });
+      output.push(`</div>`);
+
+      displaySuccess(results, output.join(""));
+    } catch (error) {
+      displayError(results, error.message);
+    }
+  }
+
+  // Exposer toutes les fonctions nécessaires au contexte global pour les onclick
+  window.demonstrateDestructuring = demonstrateDestructuring;
+  window.selectElements = selectElements;
+  window.modifyElements = modifyElements;
+  window.addElements = addElements;
+  window.resetDemo = resetDemo;
+  window.attachEventListeners = attachEventListeners;
+  window.removeEventListeners = removeEventListeners;
+  window.addListItem = addListItem;
+  window.fetchUserData = fetchUserData;
+  window.fetchWithError = fetchWithError;
+  window.fetchMultipleData = fetchMultipleData;
+
+  // Fonctions des modules
+  window.demonstrateModules = demonstrateModules;
+  window.demonstrateNamedExports = demonstrateNamedExports;
+  window.demonstrateDynamicImport = demonstrateDynamicImport;
+  window.loadFeatureModule = loadFeatureModule;
+  window.loadLanguageModule = loadLanguageModule;
+</script>

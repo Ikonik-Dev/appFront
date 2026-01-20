@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cours CSS - Concepts de base</title>
+  </head>
+  <body>
+    <div class="course-content glass-container">
+      <header class="course-header">
+        <h1>🎨 Cours CSS - Les fondamentaux</h1>
+        <p class="course-subtitle">
+          Maîtrisez les bases du style et de la mise en page
+        </p>
+      </header>
+
+      <main class="course-main">
+        <section class="course-section">
+          <h2>🚀 Introduction au CSS</h2>
+          <p>
+            CSS (Cascading Style Sheets) est le langage utilisé pour décrire la
+            présentation d'un document HTML. Il contrôle les couleurs, les
+            polices, la mise en page et l'apparence générale.
+          </p>
+
+          <h3>Comment ajouter du CSS ?</h3>
+          <p>Il existe trois façons d'ajouter du CSS à votre HTML :</p>
+
+          <div class="code-example">
+            <h4>1. CSS inline (dans la balise) :</h4>
+            <pre><code>&lt;p style="color: blue; font-size: 16px;"&gt;Texte bleu&lt;/p&gt;</code></pre>
+
+            <h4>2. CSS interne (dans le head) :</h4>
+            <pre><code>&lt;style&gt;
+p {
+    color: blue;
+    font-size: 16px;
+}
+&lt;/style&gt;</code></pre>
+
+            <h4>3. CSS externe (fichier séparé) :</h4>
+            <pre><code>&lt;link rel="stylesheet" href="styles.css"&gt;</code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>🎯 Sélecteurs CSS</h2>
+
+          <h3>Sélecteurs de base</h3>
+          <div class="code-example">
+            <pre><code>/* Sélecteur d'élément */
+h1 {
+    color: red;
+}
+
+/* Sélecteur de classe */
+.ma-classe {
+    background-color: yellow;
+}
+
+/* Sélecteur d'ID */
+#mon-id {
+    font-weight: bold;
+}
+
+/* Sélecteur universel */
+* {
+    margin: 0;
+    padding: 0;
+}</code></pre>
+          </div>
+
+          <h3>Sélecteurs combinés</h3>
+          <div class="code-example">
+            <pre><code>/* Descendant */
+div p {
+    color: blue;
+}
+
+/* Enfant direct */
+div > p {
+    margin-left: 20px;
+}
+
+/* Plusieurs classes */
+.classe1.classe2 {
+    border: 1px solid black;
+}</code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>🎨 Propriétés de style essentielles</h2>
+
+          <h3>Couleurs et arrière-plans</h3>
+          <div class="code-example">
+            <pre><code>.exemple {
+    color: #ff0000;                    /* Couleur du texte */
+    background-color: rgb(255, 255, 0); /* Couleur de fond */
+    background-image: url('image.jpg'); /* Image de fond */
+    background-size: cover;             /* Taille de l'image */
+    background-position: center;        /* Position de l'image */
+}</code></pre>
+          </div>
+
+          <h3>Police et texte</h3>
+          <div class="code-example">
+            <pre><code>.texte {
+    font-family: Arial, sans-serif;  /* Police */
+    font-size: 16px;                 /* Taille */
+    font-weight: bold;               /* Épaisseur */
+    text-align: center;              /* Alignement */
+    text-decoration: underline;      /* Décoration */
+    line-height: 1.5;               /* Interligne */
+}</code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>📦 Modèle de boîte (Box Model)</h2>
+          <p>Chaque élément HTML est une boîte composée de :</p>
+
+          <div class="code-example">
+            <pre><code>.boite {
+    width: 300px;           /* Largeur du contenu */
+    height: 200px;          /* Hauteur du contenu */
+    padding: 20px;          /* Espacement interne */
+    border: 2px solid red;  /* Bordure */
+    margin: 10px;           /* Espacement externe */
+}</code></pre>
+          </div>
+
+          <h3>Propriétés de bordure</h3>
+          <div class="code-example">
+            <pre><code>.bordures {
+    border-width: 2px;
+    border-style: solid;  /* solid, dashed, dotted */
+    border-color: blue;
+    
+    /* Raccourci */
+    border: 2px solid blue;
+    
+    /* Bordures individuelles */
+    border-top: 1px solid red;
+    border-radius: 10px;  /* Coins arrondis */
+}</code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>📐 Mise en page avec Flexbox</h2>
+          <p>Flexbox est un système de mise en page moderne et flexible :</p>
+
+          <div class="code-example">
+            <h4>Container flex :</h4>
+            <pre><code>.container {
+    display: flex;
+    justify-content: center;    /* Alignement horizontal */
+    align-items: center;        /* Alignement vertical */
+    flex-direction: row;        /* Direction des éléments */
+    flex-wrap: wrap;           /* Retour à la ligne */
+}</code></pre>
+
+            <h4>Éléments flex :</h4>
+            <pre><code>.element {
+    flex: 1;          /* Prend l'espace disponible */
+    flex-grow: 1;     /* Facteur de croissance */
+    flex-shrink: 1;   /* Facteur de rétrécissement */
+    flex-basis: auto; /* Taille de base */
+}</code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>📱 Responsive Design</h2>
+          <p>
+            Utilisez les media queries pour adapter votre design aux différentes
+            tailles d'écran :
+          </p>
+
+          <div class="code-example">
+            <pre><code>/* Desktop first */
+.element {
+    width: 50%;
+}
+
+/* Tablette */
+@media (max-width: 768px) {
+    .element {
+        width: 70%;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .element {
+        width: 100%;
+    }
+}</code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>🎯 Points clés à retenir</h2>
+          <ul>
+            <li>CSS sépare le contenu de la présentation</li>
+            <li>Les sélecteurs définissent quels éléments styliser</li>
+            <li>Le modèle de boîte détermine l'espace occupé</li>
+            <li>Flexbox simplifie la mise en page</li>
+            <li>Les media queries permettent le responsive design</li>
+            <li>Toujours tester sur différents navigateurs</li>
+          </ul>
+        </section>
+
+        <section class="course-section">
+          <h2>🚀 CSS Grid - Mise en page avancée</h2>
+          <p>
+            CSS Grid est un système de mise en page bidimensionnel plus puissant
+            que Flexbox pour les layouts complexes.
+          </p>
+
+          <h3>Grid de base</h3>
+          <div class="code-example">
+            <pre><code>.container-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;  /* 3 colonnes */
+    grid-template-rows: auto 1fr auto;   /* 3 lignes */
+    grid-gap: 20px;                      /* Espacement */
+    height: 100vh;
+}
+
+.header {
+    grid-column: 1 / -1;  /* De la première à la dernière colonne */
+    background: #f0f0f0;
+}
+
+.sidebar {
+    grid-column: 1;
+    grid-row: 2;
+    background: #e0e0e0;
+}
+
+.main-content {
+    grid-column: 2;
+    grid-row: 2;
+    background: #fff;
+}
+
+.aside {
+    grid-column: 3;
+    grid-row: 2;
+    background: #e0e0e0;
+}
+
+.footer {
+    grid-column: 1 / -1;
+    background: #d0d0d0;
+}</code></pre>
+          </div>
+
+          <h3>Grid avec zones nommées</h3>
+          <div class="code-example">
+            <pre><code>.layout-grid {
+    display: grid;
+    grid-template-areas: 
+        "header header header"
+        "nav main aside"
+        "footer footer footer";
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-rows: auto 1fr auto;
+    gap: 10px;
+    min-height: 100vh;
+}
+
+.header { grid-area: header; }
+.nav    { grid-area: nav; }
+.main   { grid-area: main; }
+.aside  { grid-area: aside; }
+.footer { grid-area: footer; }
+
+/* Responsive avec Grid */
+@media (max-width: 768px) {
+    .layout-grid {
+        grid-template-areas: 
+            "header"
+            "nav"
+            "main"
+            "aside"
+            "footer";
+        grid-template-columns: 1fr;
+    }
+}</code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>🎨 Animations et transitions avancées</h2>
+
+          <h3>Transitions fluides</h3>
+          <div class="code-example">
+            <pre><code>.bouton-anime {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    
+    /* Transition sur plusieurs propriétés */
+    transition: transform 0.3s ease, 
+                box-shadow 0.3s ease,
+                filter 0.3s ease;
+}
+
+.bouton-anime:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    filter: brightness(1.1);
+}
+
+.bouton-anime:active {
+    transform: translateY(0) scale(0.98);
+    transition-duration: 0.1s;
+}</code></pre>
+          </div>
+
+          <h3>Animations avec @keyframes</h3>
+          <div class="code-example">
+            <pre><code>/* Animation de pulsation */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.notification {
+    animation: pulse 2s infinite;
+}
+
+/* Animation de chargement */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.loader {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Animation de slide-in */
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease-out;
+}</code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>🎭 Pseudo-éléments et pseudo-classes avancés</h2>
+
+          <h3>Pseudo-éléments créatifs</h3>
+          <div class="code-example">
+            <pre><code>/* Création d'effets visuels avec ::before et ::after */
+.tooltip {
+    position: relative;
+    cursor: help;
+}
+
+.tooltip::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    bottom: 115%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #333;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover::before,
+.tooltip:hover::after {
+    opacity: 1;
+}
+
+/* Numérotation automatique */
+.liste-numerotee {
+    counter-reset: numero;
+}
+
+.liste-numerotee li {
+    counter-increment: numero;
+    position: relative;
+    padding-left: 40px;
+}
+
+.liste-numerotee li::before {
+    content: counter(numero);
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #3498db;
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}</code></pre>
+          </div>
+
+          <h3>Pseudo-classes structurelles</h3>
+          <div class="code-example">
+            <pre><code>/* Sélection avancée */
+.liste li:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.liste li:nth-child(3n) {
+    color: #e74c3c;  /* Chaque 3ème élément */
+}
+
+.article p:first-of-type {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.formulaire input:not(:placeholder-shown):valid {
+    border-color: green;
+}
+
+.formulaire input:not(:placeholder-shown):invalid {
+    border-color: red;
+}
+
+/* États interactifs */
+.bouton:focus-visible {
+    outline: 2px solid #007acc;
+    outline-offset: 2px;
+}
+
+.lien:hover,
+.lien:focus {
+    text-decoration: underline;
+    color: #007acc;
+}</code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>🔧 Variables CSS et fonctions</h2>
+
+          <h3>Custom Properties (Variables CSS)</h3>
+          <div class="code-example">
+            <pre><code>:root {
+    /* Définition des variables globales */
+    --couleur-primaire: #3498db;
+    --couleur-secondaire: #2ecc71;
+    --couleur-danger: #e74c3c;
+    
+    --espacement-sm: 8px;
+    --espacement-md: 16px;
+    --espacement-lg: 24px;
+    
+    --police-principale: 'Inter', sans-serif;
+    --police-code: 'Fira Code', monospace;
+    
+    --ombre-legere: 0 2px 4px rgba(0,0,0,0.1);
+    --ombre-forte: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.theme-sombre {
+    --couleur-fond: #2c3e50;
+    --couleur-texte: #ecf0f1;
+    --couleur-primaire: #3498db;
+}
+
+/* Utilisation des variables */
+.bouton {
+    background-color: var(--couleur-primaire);
+    padding: var(--espacement-md);
+    font-family: var(--police-principale);
+    box-shadow: var(--ombre-legere);
+    
+    /* Fallback pour navigateurs anciens */
+    color: var(--couleur-texte, #333);
+}
+
+/* Variables calculées */
+.container {
+    --largeur-base: 300px;
+    --ratio: 1.5;
+    width: calc(var(--largeur-base) * var(--ratio));
+    margin: calc(var(--espacement-lg) * 2) auto;
+}</code></pre>
+          </div>
+
+          <h3>Fonctions CSS modernes</h3>
+          <div class="code-example">
+            <pre><code>/* Fonction clamp() pour du responsive fluide */
+.titre {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    /* Minimum 1.5rem, idéal 4vw, maximum 3rem */
+}
+
+/* Fonction min() et max() */
+.sidebar {
+    width: min(300px, 25vw);  /* Plus petit des deux */
+    max-width: max(250px, 20vw);  /* Plus grand des deux */
+}
+
+/* Fonctions de couleur */
+.element {
+    background: hsl(200, 50%, 50%);
+    border: 1px solid hsl(200, 50%, 30%);  /* Version plus sombre */
+}
+
+/* Nouveau : Fonction color-mix() */
+.bouton-moderne {
+    background: color-mix(in srgb, var(--couleur-primaire) 80%, white);
+    border: 1px solid color-mix(in srgb, var(--couleur-primaire) 60%, black);
+}
+
+/* Dégradés avec calc() */
+.barre-progression {
+    background: linear-gradient(
+        to right,
+        var(--couleur-primaire) calc(var(--progression) * 1%),
+        #f0f0f0 calc(var(--progression) * 1%)
+    );
+}</code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>📐 Layouts modernes et Container Queries</h2>
+
+          <h3>Intrinsic Web Design</h3>
+          <div class="code-example">
+            <pre><code>/* Layout auto-adaptatif sans media queries */
+.grille-auto {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+/* Aspect ratio moderne */
+.video-container {
+    aspect-ratio: 16 / 9;
+    background: #000;
+}
+
+.carte-profil {
+    aspect-ratio: 1;  /* Carré parfait */
+}
+
+/* Sticky positioning avancé */
+.navigation-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+/* Subgrid (support récent) */
+.grille-principale {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.sous-grille {
+    display: grid;
+    grid-column: span 2;
+    grid-template-columns: subgrid;  /* Hérite de la grille parent */
+}</code></pre>
+          </div>
+
+          <h3>Container Queries (Futur du responsive)</h3>
+          <div class="code-example">
+            <pre><code>/* Container queries - responsive basé sur le conteneur */
+.composant {
+    container-type: inline-size;
+    container-name: widget;
+}
+
+@container widget (min-width: 300px) {
+    .composant .titre {
+        font-size: 1.5rem;
+    }
+    
+    .composant .contenu {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@container widget (min-width: 500px) {
+    .composant .contenu {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}</code></pre>
+          </div>
+        </section>
+      </main>
+
+      <footer class="course-footer">
+        <button
+          class="download-pdf-btn glass-button"
+          onclick="downloadPDF('cours-css')"
+        >
+          📄 Télécharger le cours en PDF
+        </button>
+      </footer>
+    </div>
+  </body>
+</html>

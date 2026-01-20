@@ -1,0 +1,825 @@
+<div class="page" id="page-css">
+  <div class="page-header">
+    <h1 class="page-title">🎨 Styles CSS</h1>
+    <p class="page-subtitle">
+      Flexbox, Grid, animations et techniques modernes CSS3
+    </p>
+  </div>
+
+  <div class="sidebar-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="#css-flexbox">Flexbox</a></li>
+          <li><a href="#css-grid">CSS Grid</a></li>
+          <li><a href="#css-animations">Animations</a></li>
+          <li><a href="#css-variables">Variables CSS</a></li>
+          <li><a href="#css-responsive">Responsive</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <section id="css-flexbox" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Flexbox Layout</h2>
+          <p class="section-description">
+            Système de mise en page flexible pour aligner et distribuer l'espace
+          </p>
+        </div>
+
+        <div class="content-area">
+          <h3>Alignement et justification</h3>
+
+          <div class="demo-area">
+            <div class="flex-demo-container">
+              <div class="flex-controls">
+                <label>
+                  justify-content:
+                  <select id="justify-content">
+                    <option value="flex-start">flex-start</option>
+                    <option value="center" selected>center</option>
+                    <option value="flex-end">flex-end</option>
+                    <option value="space-between">space-between</option>
+                    <option value="space-around">space-around</option>
+                    <option value="space-evenly">space-evenly</option>
+                  </select>
+                </label>
+
+                <label>
+                  align-items:
+                  <select id="align-items">
+                    <option value="stretch">stretch</option>
+                    <option value="flex-start">flex-start</option>
+                    <option value="center" selected>center</option>
+                    <option value="flex-end">flex-end</option>
+                    <option value="baseline">baseline</option>
+                  </select>
+                </label>
+
+                <label>
+                  flex-direction:
+                  <select id="flex-direction">
+                    <option value="row" selected>row</option>
+                    <option value="row-reverse">row-reverse</option>
+                    <option value="column">column</option>
+                    <option value="column-reverse">column-reverse</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="flex-container" id="flexContainer">
+                <div class="flex-item">1</div>
+                <div class="flex-item">2</div>
+                <div class="flex-item">3</div>
+                <div class="flex-item">4</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="code-area">
+            <pre><code class="code-highlight">
+<span class="keyword">.flex-container</span> {
+    <span class="string">display: flex;</span>
+    <span class="string">justify-content: center;</span>
+    <span class="string">align-items: center;</span>
+    <span class="string">flex-direction: row;</span>
+    <span class="string">gap: 1rem;</span>
+    <span class="string">padding: 2rem;</span>
+    <span class="string">min-height: 200px;</span>
+    <span class="string">background: rgba(255, 255, 255, 0.1);</span>
+    <span class="string">border-radius: 12px;</span>
+}
+
+<span class="keyword">.flex-item</span> {
+    <span class="string">flex: 0 0 auto;</span> <span class="comment">/* flex-grow, flex-shrink, flex-basis */</span>
+    <span class="string">padding: 1rem;</span>
+    <span class="string">background: linear-gradient(135deg, #4facfe, #00f2fe);</span>
+    <span class="string">border-radius: 8px;</span>
+    <span class="string">color: white;</span>
+    <span class="string">font-weight: bold;</span>
+}
+                        </code></pre>
+          </div>
+        </div>
+
+        <div class="content-area">
+          <h3>Flex grow, shrink et basis</h3>
+
+          <div class="demo-area">
+            <div class="flex-properties-demo">
+              <div class="flex-item-demo" style="flex: 1">flex: 1</div>
+              <div class="flex-item-demo" style="flex: 2">flex: 2</div>
+              <div class="flex-item-demo" style="flex: 1">flex: 1</div>
+            </div>
+          </div>
+
+          <div class="code-area">
+            <pre><code class="code-highlight">
+<span class="keyword">.item-1</span> { <span class="string">flex: 1;</span> } <span class="comment">/* Prend 1 part de l'espace disponible */</span>
+<span class="keyword">.item-2</span> { <span class="string">flex: 2;</span> } <span class="comment">/* Prend 2 parts de l'espace disponible */</span>
+<span class="keyword">.item-3</span> { <span class="string">flex: 1;</span> } <span class="comment">/* Prend 1 part de l'espace disponible */</span>
+                        </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="css-grid" class="section">
+        <div class="section-header">
+          <h2 class="section-title">CSS Grid Layout</h2>
+          <p class="section-description">
+            Système de grille bidimensionnel pour des mises en page complexes
+          </p>
+        </div>
+
+        <div class="content-area">
+          <h3>Grille basique</h3>
+
+          <div class="demo-area">
+            <div class="grid-demo-container">
+              <div class="grid-controls">
+                <label>
+                  Colonnes:
+                  <select id="grid-columns">
+                    <option value="repeat(3, 1fr)" selected>
+                      3 colonnes égales
+                    </option>
+                    <option value="1fr 2fr 1fr">1fr 2fr 1fr</option>
+                    <option value="200px 1fr 200px">200px 1fr 200px</option>
+                    <option value="repeat(auto-fit, minmax(150px, 1fr))">
+                      Auto-responsive
+                    </option>
+                  </select>
+                </label>
+
+                <label>
+                  Gap:
+                  <input
+                    type="range"
+                    id="grid-gap"
+                    min="0"
+                    max="30"
+                    value="15"
+                  />
+                  <span id="gap-value">15px</span>
+                </label>
+              </div>
+
+              <div class="grid-container" id="gridContainer">
+                <div class="grid-item">1</div>
+                <div class="grid-item">2</div>
+                <div class="grid-item">3</div>
+                <div class="grid-item">4</div>
+                <div class="grid-item">5</div>
+                <div class="grid-item">6</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="code-area">
+            <pre><code class="code-highlight">
+<span class="keyword">.grid-container</span> {
+    <span class="string">display: grid;</span>
+    <span class="string">grid-template-columns: repeat(3, 1fr);</span>
+    <span class="string">gap: 15px;</span>
+    <span class="string">padding: 2rem;</span>
+    <span class="string">background: rgba(255, 255, 255, 0.1);</span>
+    <span class="string">border-radius: 12px;</span>
+}
+
+<span class="keyword">.grid-item</span> {
+    <span class="string">padding: 2rem;</span>
+    <span class="string">background: linear-gradient(135deg, #ff6b6b, #4ecdc4);</span>
+    <span class="string">border-radius: 8px;</span>
+    <span class="string">color: white;</span>
+    <span class="string">text-align: center;</span>
+    <span class="string">font-weight: bold;</span>
+}
+                        </code></pre>
+          </div>
+        </div>
+
+        <div class="content-area">
+          <h3>Placement explicite sur la grille</h3>
+
+          <div class="demo-area">
+            <div class="grid-layout-demo">
+              <div class="grid-header">Header</div>
+              <div class="grid-sidebar">Sidebar</div>
+              <div class="grid-main">Main Content</div>
+              <div class="grid-footer">Footer</div>
+            </div>
+          </div>
+
+          <div class="code-area">
+            <pre><code class="code-highlight">
+<span class="keyword">.grid-layout</span> {
+    <span class="string">display: grid;</span>
+    <span class="string">grid-template-columns: 200px 1fr;</span>
+    <span class="string">grid-template-rows: auto 1fr auto;</span>
+    <span class="string">grid-template-areas:</span>
+        <span class="string">"header header"</span>
+        <span class="string">"sidebar main"</span>
+        <span class="string">"footer footer";</span>
+    <span class="string">gap: 1rem;</span>
+    <span class="string">min-height: 300px;</span>
+}
+
+<span class="keyword">.grid-header</span> { <span class="string">grid-area: header;</span> }
+<span class="keyword">.grid-sidebar</span> { <span class="string">grid-area: sidebar;</span> }
+<span class="keyword">.grid-main</span> { <span class="string">grid-area: main;</span> }
+<span class="keyword">.grid-footer</span> { <span class="string">grid-area: footer;</span> }
+                        </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="css-animations" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Animations CSS</h2>
+          <p class="section-description">
+            Transitions fluides et animations keyframe pour une UX immersive
+          </p>
+        </div>
+
+        <div class="content-area">
+          <h3>Transitions</h3>
+
+          <div class="demo-area">
+            <div class="animation-demos">
+              <div class="transition-demo hover-transform">
+                Survole-moi (Transform)
+              </div>
+
+              <div class="transition-demo hover-color">Survole-moi (Color)</div>
+
+              <div class="transition-demo hover-shadow">
+                Survole-moi (Shadow)
+              </div>
+            </div>
+          </div>
+
+          <div class="code-area">
+            <pre><code class="code-highlight">
+<span class="keyword">.transition-demo</span> {
+    <span class="string">transition: all 0.3s ease;</span>
+    <span class="string">padding: 1rem 2rem;</span>
+    <span class="string">background: linear-gradient(135deg, #667eea, #764ba2);</span>
+    <span class="string">border-radius: 8px;</span>
+    <span class="string">cursor: pointer;</span>
+}
+
+<span class="keyword">.hover-transform:hover</span> {
+    <span class="string">transform: translateY(-5px) scale(1.05);</span>
+}
+
+<span class="keyword">.hover-color:hover</span> {
+    <span class="string">background: linear-gradient(135deg, #ff6b6b, #4ecdc4);</span>
+}
+
+<span class="keyword">.hover-shadow:hover</span> {
+    <span class="string">box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);</span>
+}
+                        </code></pre>
+          </div>
+        </div>
+
+        <div class="content-area">
+          <h3>Animations @keyframes</h3>
+
+          <div class="demo-area">
+            <div class="keyframe-demos">
+              <div class="animation-demo pulse-demo">Pulse</div>
+              <div class="animation-demo bounce-demo">Bounce</div>
+              <div class="animation-demo rotate-demo">Rotate</div>
+              <div class="animation-demo slide-demo">Slide</div>
+            </div>
+
+            <button class="btn btn-primary" onclick="restartAnimations()">
+              Relancer les animations
+            </button>
+          </div>
+
+          <div class="code-area">
+            <pre><code class="code-highlight">
+<span class="keyword">@keyframes</span> <span class="function">pulse</span> {
+    <span class="number">0%</span>, <span class="number">100%</span> { <span class="string">transform: scale(1);</span> }
+    <span class="number">50%</span> { <span class="string">transform: scale(1.1);</span> }
+}
+
+<span class="keyword">@keyframes</span> <span class="function">bounce</span> {
+    <span class="number">0%</span>, <span class="number">100%</span> { <span class="string">transform: translateY(0);</span> }
+    <span class="number">50%</span> { <span class="string">transform: translateY(-20px);</span> }
+}
+
+<span class="keyword">.pulse-demo</span> {
+    <span class="string">animation: pulse 2s ease-in-out infinite;</span>
+}
+
+<span class="keyword">.bounce-demo</span> {
+    <span class="string">animation: bounce 1s ease-in-out infinite;</span>
+}
+                        </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="css-variables" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Variables CSS (Custom Properties)</h2>
+          <p class="section-description">
+            Propriétés personnalisées pour un CSS maintenable et dynamique
+          </p>
+        </div>
+
+        <div class="content-area">
+          <h3>Définition et utilisation</h3>
+
+          <div class="demo-area">
+            <div class="variables-demo">
+              <div class="theme-controls">
+                <h4>Changer le thème :</h4>
+                <button class="theme-btn" onclick="setTheme('blue')">
+                  Bleu
+                </button>
+                <button class="theme-btn" onclick="setTheme('green')">
+                  Vert
+                </button>
+                <button class="theme-btn" onclick="setTheme('purple')">
+                  Violet
+                </button>
+                <button class="theme-btn" onclick="setTheme('orange')">
+                  Orange
+                </button>
+              </div>
+
+              <div class="themed-content" id="themedContent">
+                <div class="themed-card">
+                  <h4>Carte avec thème dynamique</h4>
+                  <p>Les couleurs changent grâce aux variables CSS</p>
+                  <button class="themed-button">Action</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="code-area">
+            <pre><code class="code-highlight">
+<span class="comment">/* Définition des variables dans :root */</span>
+<span class="keyword">:root</span> {
+    <span class="string">--primary-color: #4facfe;</span>
+    <span class="string">--secondary-color: #00f2fe;</span>
+    <span class="string">--border-radius: 12px;</span>
+    <span class="string">--spacing: 1rem;</span>
+}
+
+<span class="comment">/* Utilisation des variables */</span>
+<span class="keyword">.themed-card</span> {
+    <span class="string">background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));</span>
+    <span class="string">border-radius: var(--border-radius);</span>
+    <span class="string">padding: var(--spacing);</span>
+}
+
+<span class="comment">/* Changement dynamique avec JavaScript */</span>
+<span class="keyword">document.documentElement.style.setProperty</span>(<span class="string">'--primary-color'</span>, <span class="string">'#ff6b6b'</span>);
+                        </code></pre>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<style>
+  /* Styles spécifiques à la page CSS */
+  .flex-demo-container,
+  .grid-demo-container {
+    background: var(--glass-bg-dark);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-md);
+  }
+
+  .flex-controls,
+  .grid-controls {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-lg);
+    padding: var(--space-md);
+    background: var(--glass-bg);
+    border-radius: var(--radius-md);
+  }
+
+  .flex-controls label,
+  .grid-controls label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    color: white;
+    font-weight: 500;
+  }
+
+  .flex-controls select,
+  .grid-controls select,
+  .grid-controls input {
+    padding: var(--space-xs);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    background: var(--glass-bg);
+    color: white;
+  }
+
+  /* Styles pour les options des select */
+  .flex-controls select option,
+  .grid-controls select option {
+    background: #2c3e50;
+    color: #ffffff;
+    padding: 0.5rem;
+    border: none;
+  }
+
+  .flex-controls select option:hover,
+  .grid-controls select option:hover,
+  .flex-controls select option:focus,
+  .grid-controls select option:focus {
+    background: #4facfe;
+    color: #ffffff;
+  }
+
+  .flex-controls select option:checked,
+  .grid-controls select option:checked {
+    background: #4facfe;
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  .flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: var(--space-md);
+    padding: var(--space-xl);
+    min-height: 200px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+  }
+
+  .flex-item {
+    flex: 0 0 auto;
+    padding: var(--space-md);
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    border-radius: var(--radius-sm);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    min-width: 60px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .flex-properties-demo {
+    display: flex;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+  }
+
+  .flex-item-demo {
+    padding: var(--space-md);
+    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+    border-radius: var(--radius-sm);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: var(--space-xl);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+  }
+
+  .grid-item {
+    padding: var(--space-lg);
+    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+    border-radius: var(--radius-sm);
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .grid-layout-demo {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "header header"
+      "sidebar main"
+      "footer footer";
+    gap: var(--space-md);
+    min-height: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+  }
+
+  .grid-header {
+    grid-area: header;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    padding: var(--space-md);
+    border-radius: var(--radius-sm);
+    color: white;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .grid-sidebar {
+    grid-area: sidebar;
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+    padding: var(--space-md);
+    border-radius: var(--radius-sm);
+    color: white;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .grid-main {
+    grid-area: main;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    padding: var(--space-md);
+    border-radius: var(--radius-sm);
+    color: white;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .grid-footer {
+    grid-area: footer;
+    background: linear-gradient(135deg, #96ceb4, #85d1b2);
+    padding: var(--space-md);
+    border-radius: var(--radius-sm);
+    color: white;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .animation-demos,
+  .keyframe-demos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+  }
+
+  .transition-demo,
+  .animation-demo {
+    padding: var(--space-lg);
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: var(--radius-md);
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .transition-demo {
+    transition: all 0.3s ease;
+  }
+
+  .hover-transform:hover {
+    transform: translateY(-5px) scale(1.05);
+  }
+
+  .hover-color:hover {
+    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+  }
+
+  .hover-shadow:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes slide {
+    0% {
+      transform: translateX(-20px);
+      opacity: 0;
+    }
+    50% {
+      transform: translateX(20px);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .pulse-demo {
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .bounce-demo {
+    animation: bounce 1s ease-in-out infinite;
+  }
+
+  .rotate-demo {
+    animation: rotate 3s linear infinite;
+  }
+
+  .slide-demo {
+    animation: slide 2s ease-in-out infinite;
+  }
+
+  .variables-demo {
+    background: var(--glass-bg-dark);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+  }
+
+  .theme-controls {
+    margin-bottom: var(--space-lg);
+  }
+
+  .theme-controls h4 {
+    color: white;
+    margin-bottom: var(--space-sm);
+  }
+
+  .theme-btn {
+    margin-right: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    padding: var(--space-xs) var(--space-md);
+    border: none;
+    border-radius: var(--radius-sm);
+    background: var(--glass-bg);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .theme-btn:hover {
+    background: var(--glass-bg-light);
+    transform: translateY(-2px);
+  }
+
+  .themed-content {
+    --theme-primary: #4facfe;
+    --theme-secondary: #00f2fe;
+  }
+
+  .themed-card {
+    background: linear-gradient(
+      135deg,
+      var(--theme-primary),
+      var(--theme-secondary)
+    );
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    color: white;
+    transition: all 0.3s ease;
+  }
+
+  .themed-button {
+    margin-top: var(--space-md);
+    padding: var(--space-sm) var(--space-lg);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .themed-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .flex-controls,
+    .grid-controls {
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .grid-layout-demo {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "header"
+        "sidebar"
+        "main"
+        "footer";
+    }
+
+    .animation-demos,
+    .keyframe-demos {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  // Scripts interactifs pour la page CSS
+  (function () {
+    // Fonction pour relancer les animations
+    window.restartAnimations = function () {
+      console.log("Restarting animations...");
+      const animatedElements = document.querySelectorAll(".animation-demo");
+      animatedElements.forEach((element) => {
+        // Supprimer les classes d'animation
+        element.classList.remove(
+          "pulse-demo",
+          "bounce-demo",
+          "rotate-demo",
+          "slide-demo"
+        );
+
+        // Forcer un reflow
+        element.offsetHeight;
+
+        // Réajouter les classes d'animation
+        if (element.textContent.includes("Pulse")) {
+          element.classList.add("pulse-demo");
+        } else if (element.textContent.includes("Bounce")) {
+          element.classList.add("bounce-demo");
+        } else if (element.textContent.includes("Rotate")) {
+          element.classList.add("rotate-demo");
+        } else if (element.textContent.includes("Slide")) {
+          element.classList.add("slide-demo");
+        }
+      });
+    };
+
+    // Utiliser la fonction globale CSSDemo si elle est disponible
+    if (typeof CSSDemo !== "undefined") {
+      CSSDemo.initializeAll();
+    } else {
+      // Fallback avec retry si CSSDemo n'est pas encore chargé
+      let attempts = 0;
+      const maxAttempts = 20;
+
+      const waitForCSSDemo = () => {
+        if (typeof CSSDemo !== "undefined") {
+          CSSDemo.initializeAll();
+        } else if (attempts < maxAttempts) {
+          attempts++;
+          console.log(`Waiting for CSSDemo... attempt ${attempts}`);
+          setTimeout(waitForCSSDemo, 200);
+        } else {
+          console.warn("CSSDemo not available after maximum attempts");
+        }
+      };
+
+      waitForCSSDemo();
+    }
+  })();
+</script>

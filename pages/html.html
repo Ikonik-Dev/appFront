@@ -1,0 +1,406 @@
+<div class="page" id="page-html">
+  <div class="page-header">
+    <h1 class="page-title">📝 Structure HTML</h1>
+    <p class="page-subtitle">
+      Sémantique, accessibilité et bonnes pratiques HTML5
+    </p>
+  </div>
+
+  <div class="sidebar-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="#html-semantique">Sémantique</a></li>
+          <li><a href="#html-forms">Formulaires</a></li>
+          <li><a href="#html-multimedia">Multimédia</a></li>
+          <li><a href="#html-accessibility">Accessibilité</a></li>
+          <li><a href="#html-meta">Métadonnées</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <section id="html-semantique" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Éléments sémantiques HTML5</h2>
+          <p class="section-description">
+            Utilisation des balises sémantiques pour structurer le contenu de
+            manière significative
+          </p>
+        </div>
+
+        <div class="content-area">
+          <h3>Balises de structure principale</h3>
+          <p>
+            HTML5 introduit des éléments sémantiques qui donnent du sens à la
+            structure :
+          </p>
+
+          <div class="demo-area">
+            <header class="demo-header">
+              <h1>En-tête de la page</h1>
+              <nav>
+                <ul>
+                  <li><a href="#accueil">Accueil</a></li>
+                  <li><a href="#services">Services</a></li>
+                  <li><a href="#contact">Contact</a></li>
+                </ul>
+              </nav>
+            </header>
+
+            <main class="demo-main">
+              <article class="demo-article">
+                <header>
+                  <h2>Titre de l'article</h2>
+                  <time datetime="2024-08-18">18 août 2024</time>
+                </header>
+                <p>Contenu de l'article principal...</p>
+                <footer>
+                  <p>Auteur : <cite>Guy De Bustier</cite></p>
+                </footer>
+              </article>
+
+              <aside class="demo-aside">
+                <h3>Informations complémentaires</h3>
+                <p>Contenu secondaire lié à l'article</p>
+              </aside>
+            </main>
+
+            <footer class="demo-footer">
+              <p>&copy; 2025 - Tous droits réservés</p>
+            </footer>
+          </div>
+
+          <div class="code-area">
+            <pre><code class="code-highlight">
+<span class="keyword">&lt;header&gt;</span>
+    <span class="keyword">&lt;h1&gt;</span>En-tête de la page<span class="keyword">&lt;/h1&gt;</span>
+    <span class="keyword">&lt;nav&gt;</span>
+        <span class="keyword">&lt;ul&gt;</span>
+            <span class="keyword">&lt;li&gt;&lt;a</span> <span class="string">href="#accueil"</span><span class="keyword">&gt;</span>Accueil<span class="keyword">&lt;/a&gt;&lt;/li&gt;</span>
+            <span class="keyword">&lt;li&gt;&lt;a</span> <span class="string">href="#services"</span><span class="keyword">&gt;</span>Services<span class="keyword">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="keyword">&lt;/ul&gt;</span>
+    <span class="keyword">&lt;/nav&gt;</span>
+<span class="keyword">&lt;/header&gt;</span>
+
+<span class="keyword">&lt;main&gt;</span>
+    <span class="keyword">&lt;article&gt;</span>
+        <span class="keyword">&lt;header&gt;</span>
+            <span class="keyword">&lt;h2&gt;</span>Titre de l'article<span class="keyword">&lt;/h2&gt;</span>
+            <span class="keyword">&lt;time</span> <span class="string">datetime="2024-08-18"</span><span class="keyword">&gt;</span>18 août 2024<span class="keyword">&lt;/time&gt;</span>
+        <span class="keyword">&lt;/header&gt;</span>
+        <span class="keyword">&lt;p&gt;</span>Contenu de l'article...<span class="keyword">&lt;/p&gt;</span>
+    <span class="keyword">&lt;/article&gt;</span>
+<span class="keyword">&lt;/main&gt;</span>
+                        </code></pre>
+          </div>
+        </div>
+
+        <div class="content-area">
+          <h3>Microdonnées et Schema.org</h3>
+          <p>Enrichissement sémantique avec les microdonnées :</p>
+
+          <div class="demo-area">
+            <div itemscope itemtype="https://schema.org/Person">
+              <h3 itemprop="name">Guy De Bustier</h3>
+              <p>
+                Profession : <span itemprop="jobTitle">Développeur Web</span>
+              </p>
+              <p>
+                Email :
+                <a href="mailto:jean@example.com" itemprop="email"
+                  >guy@exemple.com</a
+                >
+              </p>
+              <p>
+                Téléphone : <span itemprop="telephone">+33 1 23 45 67 89</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="code-area">
+            <pre><code class="code-highlight">
+<span class="keyword">&lt;div</span> <span class="string">itemscope itemtype="https://schema.org/Person"</span><span class="keyword">&gt;</span>
+    <span class="keyword">&lt;h3</span> <span class="string">itemprop="name"</span><span class="keyword">&gt;</span>Guy De Bustier<span class="keyword">&lt;/h3&gt;</span>
+    <span class="keyword">&lt;p&gt;</span>Profession : <span class="keyword">&lt;span</span> <span class="string">itemprop="jobTitle"</span><span class="keyword">&gt;</span>Développeur Web<span class="keyword">&lt;/span&gt;&lt;/p&gt;</span>
+    <span class="keyword">&lt;p&gt;</span>Email : <span class="keyword">&lt;a</span> <span class="string">href="mailto:guy@exemple.com" itemprop="email"</span><span class="keyword">&gt;</span>guy@example.com<span class="keyword">&lt;/a&gt;&lt;/p&gt;</span>
+<span class="keyword">&lt;/div&gt;</span>
+                        </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="html-forms" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Formulaires HTML5</h2>
+          <p class="section-description">
+            Nouveaux types d'inputs et attributs de validation natifs
+          </p>
+        </div>
+
+        <div class="content-area">
+          <h3>Types d'inputs modernes</h3>
+
+          <div class="demo-area">
+            <form class="demo-form">
+              <div class="form-group">
+                <label for="email" class="form-label">Email :</label>
+                <input
+                  type="email"
+                  id="email"
+                  class="form-input"
+                  placeholder="votre@email.com"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="tel" class="form-label">Téléphone :</label>
+                <input
+                  type="tel"
+                  id="tel"
+                  class="form-input"
+                  placeholder="+33 1 23 45 67 89"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="date" class="form-label">Date de naissance :</label>
+                <input type="date" id="date" class="form-input" />
+              </div>
+
+              <div class="form-group">
+                <label for="range" class="form-label"
+                  >Âge : <span id="ageValue">25</span></label
+                >
+                <input
+                  type="range"
+                  id="range"
+                  class="form-input"
+                  min="18"
+                  max="100"
+                  value="25"
+                  oninput="document.getElementById('ageValue').textContent = this.value"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="color" class="form-label">Couleur préférée :</label>
+                <input
+                  type="color"
+                  id="color"
+                  class="form-input"
+                  value="#4facfe"
+                />
+              </div>
+
+              <button type="submit" class="btn btn-primary">Valider</button>
+            </form>
+          </div>
+
+          <div class="code-area">
+            <pre><code class="code-highlight">
+<span class="keyword">&lt;input</span> <span class="string">type="email"</span> <span class="string">placeholder="votre@email.com"</span> <span class="string">required</span><span class="keyword">&gt;</span>
+<span class="keyword">&lt;input</span> <span class="string">type="tel"</span> <span class="string">placeholder="+33 1 23 45 67 89"</span><span class="keyword">&gt;</span>
+<span class="keyword">&lt;input</span> <span class="string">type="date"</span><span class="keyword">&gt;</span>
+<span class="keyword">&lt;input</span> <span class="string">type="range"</span> <span class="string">min="18"</span> <span class="string">max="100"</span> <span class="string">value="25"</span><span class="keyword">&gt;</span>
+<span class="keyword">&lt;input</span> <span class="string">type="color"</span> <span class="string">value="#4facfe"</span><span class="keyword">&gt;</span>
+                        </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="html-multimedia" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Éléments multimédias</h2>
+          <p class="section-description">
+            Intégration native de contenus audio et vidéo
+          </p>
+        </div>
+
+        <div class="content-area">
+          <h3>Vidéo responsive</h3>
+
+          <div class="demo-area">
+            <video
+              controls
+              class="responsive-video"
+              poster="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'><rect width='800' height='600' fill='%23667eea'/><text x='50%' y='50%' fill='white' text-anchor='middle' font-size='48'>🎥 Vidéo</text></svg>"
+            >
+              <source src="#" type="video/mp4" />
+              <source src="#" type="video/webm" />
+              <p>Votre navigateur ne supporte pas la vidéo HTML5.</p>
+            </video>
+          </div>
+
+          <h3>Audio avec contrôles personnalisés</h3>
+
+          <div class="demo-area">
+            <audio controls class="responsive-audio">
+              <source src="#" type="audio/mp3" />
+              <source src="#" type="audio/ogg" />
+              <p>Votre navigateur ne supporte pas l'audio HTML5.</p>
+            </audio>
+          </div>
+
+          <div class="code-area">
+            <pre><code class="code-highlight">
+<span class="keyword">&lt;video</span> <span class="string">controls poster="image-preview.jpg"</span><span class="keyword">&gt;</span>
+    <span class="keyword">&lt;source</span> <span class="string">src="video.mp4"</span> <span class="string">type="video/mp4"</span><span class="keyword">&gt;</span>
+    <span class="keyword">&lt;source</span> <span class="string">src="video.webm"</span> <span class="string">type="video/webm"</span><span class="keyword">&gt;</span>
+    <span class="keyword">&lt;p&gt;</span>Votre navigateur ne supporte pas la vidéo HTML5.<span class="keyword">&lt;/p&gt;</span>
+<span class="keyword">&lt;/video&gt;</span>
+                        </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="html-accessibility" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Accessibilité HTML</h2>
+          <p class="section-description">
+            Techniques pour rendre le contenu accessible à tous
+          </p>
+        </div>
+
+        <div class="content-area">
+          <h3>Attributs ARIA et navigation</h3>
+
+          <div class="demo-area">
+            <nav aria-label="Navigation principale">
+              <ul role="menubar">
+                <li role="none">
+                  <a href="#" role="menuitem" aria-current="page">Accueil</a>
+                </li>
+                <li role="none">
+                  <a href="#" role="menuitem">Services</a>
+                </li>
+                <li role="none">
+                  <a
+                    href="#"
+                    role="menuitem"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                  >
+                    Plus
+                    <span aria-hidden="true">▼</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+
+            <div class="sr-only">
+              <p>Texte visible uniquement par les lecteurs d'écran</p>
+            </div>
+          </div>
+
+          <div class="code-area">
+            <pre><code class="code-highlight">
+<span class="keyword">&lt;nav</span> <span class="string">aria-label="Navigation principale"</span><span class="keyword">&gt;</span>
+    <span class="keyword">&lt;a</span> <span class="string">href="#"</span> <span class="string">aria-current="page"</span><span class="keyword">&gt;</span>Accueil<span class="keyword">&lt;/a&gt;</span>
+    <span class="keyword">&lt;a</span> <span class="string">href="#"</span> <span class="string">aria-expanded="false"</span> <span class="string">aria-haspopup="true"</span><span class="keyword">&gt;</span>
+        Plus <span class="keyword">&lt;span</span> <span class="string">aria-hidden="true"</span><span class="keyword">&gt;</span>▼<span class="keyword">&lt;/span&gt;</span>
+    <span class="keyword">&lt;/a&gt;</span>
+<span class="keyword">&lt;/nav&gt;</span>
+
+<span class="comment">&lt;!-- Texte pour lecteurs d'écran uniquement --&gt;</span>
+<span class="keyword">&lt;div</span> <span class="string">class="sr-only"</span><span class="keyword">&gt;</span>Contenu pour lecteurs d'écran<span class="keyword">&lt;/div&gt;</span>
+                        </code></pre>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<style>
+  /* Styles spécifiques à la page HTML */
+  .demo-header {
+    background: var(--glass-bg-light);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-sm);
+  }
+
+  .demo-header nav ul {
+    list-style: none;
+    display: flex;
+    gap: var(--space-md);
+    margin: var(--space-sm) 0 0 0;
+    padding: 0;
+  }
+
+  .demo-header nav a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    transition: background 0.3s ease;
+  }
+
+  .demo-header nav a:hover {
+    background: var(--glass-bg);
+  }
+
+  .demo-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-md);
+    margin: var(--space-sm) 0;
+  }
+
+  .demo-article {
+    background: var(--glass-bg);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+  }
+
+  .demo-article header {
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: var(--space-sm);
+    margin-bottom: var(--space-sm);
+  }
+
+  .demo-aside {
+    background: var(--glass-bg-dark);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+  }
+
+  .demo-footer {
+    background: var(--glass-bg-light);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    text-align: center;
+    margin-top: var(--space-sm);
+  }
+
+  .responsive-video,
+  .responsive-audio {
+    width: 100%;
+    max-width: 100%;
+    border-radius: var(--radius-md);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (max-width: 768px) {
+    .demo-main {
+      grid-template-columns: 1fr;
+    }
+
+    .demo-header nav ul {
+      flex-direction: column;
+    }
+  }
+</style>

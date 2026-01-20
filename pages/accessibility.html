@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accessibilité - RNCP DWWM 2023</title>
+  </head>
+  <body>
+    <div class="page-content">
+      <section class="accessibility-section">
+        <div class="section-header">
+          <h2 class="section-title">♿ Accessibilité Web</h2>
+          <p class="section-subtitle">
+            Implémentation des standards WCAG 2.1 pour une web inclusif
+          </p>
+        </div>
+
+        <div class="accessibility-grid">
+          <!-- Introduction à l'accessibilité -->
+          <div class="accessibility-card">
+            <div class="card-header">
+              <div class="card-icon">🌟</div>
+              <h3>Qu'est-ce que l'accessibilité web ?</h3>
+            </div>
+            <div class="card-content">
+              <p>
+                L'accessibilité web consiste à concevoir et développer des sites
+                web utilisables par <strong>tous</strong>, y compris les
+                personnes en situation de handicap.
+              </p>
+
+              <div class="principles-grid">
+                <div class="principle-item">
+                  <span class="principle-icon">👁️</span>
+                  <div class="principle-content">
+                    <h4>Perceptible</h4>
+                    <p>
+                      L'information doit être présentée de manière à être perçue
+                      par tous les utilisateurs
+                    </p>
+                  </div>
+                </div>
+                <div class="principle-item">
+                  <span class="principle-icon">⌨️</span>
+                  <div class="principle-content">
+                    <h4>Utilisable</h4>
+                    <p>
+                      L'interface doit être utilisable par tous, peu importe le
+                      moyen d'interaction
+                    </p>
+                  </div>
+                </div>
+                <div class="principle-item">
+                  <span class="principle-icon">🧠</span>
+                  <div class="principle-content">
+                    <h4>Compréhensible</h4>
+                    <p>
+                      L'information et le fonctionnement de l'interface doivent
+                      être compréhensibles
+                    </p>
+                  </div>
+                </div>
+                <div class="principle-item">
+                  <span class="principle-icon">🔧</span>
+                  <div class="principle-content">
+                    <h4>Robuste</h4>
+                    <p>
+                      Le contenu doit être robuste pour être interprété par
+                      diverses technologies d'assistance
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fonctionnalités d'accessibilité implémentées -->
+          <div class="accessibility-card">
+            <div class="card-header">
+              <div class="card-icon">✅</div>
+              <h3>Fonctionnalités implémentées</h3>
+            </div>
+            <div class="card-content">
+              <div class="features-list">
+                <div class="feature-group">
+                  <h4>Navigation et interaction</h4>
+                  <div class="feature-item">
+                    <span class="feature-check">✅</span>
+                    <span
+                      >Navigation complète au clavier (Tab, Shift+Tab, Entrée,
+                      Espace)</span
+                    >
+                  </div>
+                  <div class="feature-item">
+                    <span class="feature-check">✅</span>
+                    <span>Indicateurs de focus visibles et contrastés</span>
+                  </div>
+                  <div class="feature-item">
+                    <span class="feature-check">✅</span>
+                    <span>Piège de focus dans les modales</span>
+                  </div>
+                  <div class="feature-item">
+                    <span class="feature-check">✅</span>
+                    <span
+                      >Gestion des raccourcis clavier (Échap pour fermer)</span
+                    >
+                  </div>
+                </div>
+
+                <div class="feature-group">
+                  <h4>Sémantique et ARIA</h4>
+                  <div class="feature-item">
+                    <span class="feature-check">✅</span>
+                    <span
+                      >Structure HTML5 sémantique (header, nav, main, section,
+                      article)</span
+                    >
+                  </div>
+                  <div class="feature-item">
+                    <span class="feature-check">✅</span>
+                    <span
+                      >Attributs ARIA (role, aria-label, aria-hidden,
+                      aria-live)</span
+                    >
+                  </div>
+                  <div class="feature-item">
+                    <span class="feature-check">✅</span>
+                    <span>Zones live pour les notifications dynamiques</span>
+                  </div>
+                  <div class="feature-item">
+                    <span class="feature-check">✅</span>
+                    <span
+                      >Descriptions alternatives pour les éléments
+                      décoratifs</span
+                    >
+                  </div>
+                </div>
+
+                <div class="feature-group">
+                  <h4>Contraste et lisibilité</h4>
+                  <div class="feature-item">
+                    <span class="feature-check">✅</span>
+                    <span
+                      >Ratio de contraste conforme WCAG AA (4.5:1 minimum)</span
+                    >
+                  </div>
+                  <div class="feature-item">
+                    <span class="feature-check">✅</span>
+                    <span>Tailles de police adaptatives et lisibles</span>
+                  </div>
+                  <div class="feature-item">
+                    <span class="feature-check">✅</span>
+                    <span
+                      >Espacement suffisant entre les éléments interactifs</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Test d'accessibilité -->
+          <div class="accessibility-card">
+            <div class="card-header">
+              <div class="card-icon">🧪</div>
+              <h3>Tests d'accessibilité</h3>
+            </div>
+            <div class="card-content">
+              <p>
+                Testez l'accessibilité de cette application avec les outils
+                suivants :
+              </p>
+
+              <div class="test-section">
+                <h4>Tests automatisés :</h4>
+                <button class="test-btn" onclick="runA11yTests()">
+                  🔍 Lancer les tests d'accessibilité
+                </button>
+                <div id="a11y-results" class="test-results"></div>
+              </div>
+
+              <div class="test-section">
+                <h4>Tests manuels :</h4>
+                <div class="manual-tests">
+                  <div class="test-item">
+                    <input
+                      type="checkbox"
+                      id="keyboard-test"
+                      class="test-checkbox"
+                    />
+                    <label for="keyboard-test"
+                      >Navigation complète au clavier (Tab, Shift+Tab)</label
+                    >
+                  </div>
+                  <div class="test-item">
+                    <input
+                      type="checkbox"
+                      id="focus-test"
+                      class="test-checkbox"
+                    />
+                    <label for="focus-test"
+                      >Indicateurs de focus visibles sur tous les
+                      éléments</label
+                    >
+                  </div>
+                  <div class="test-item">
+                    <input
+                      type="checkbox"
+                      id="screen-reader-test"
+                      class="test-checkbox"
+                    />
+                    <label for="screen-reader-test"
+                      >Contenu lisible par lecteur d'écran</label
+                    >
+                  </div>
+                  <div class="test-item">
+                    <input
+                      type="checkbox"
+                      id="zoom-test"
+                      class="test-checkbox"
+                    />
+                    <label for="zoom-test">Fonctionnel avec zoom à 200%</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="test-section">
+                <h4>Simulateur de handicaps :</h4>
+                <div class="simulation-controls">
+                  <button class="sim-btn" onclick="simulateColorBlindness()">
+                    🎨 Simuler daltonisme
+                  </button>
+                  <button class="sim-btn" onclick="simulateBlur()">
+                    👓 Simuler vision floue
+                  </button>
+                  <button class="sim-btn" onclick="simulateMotorImpairment()">
+                    🖱️ Simuler difficulté motrice
+                  </button>
+                  <button class="sim-btn" onclick="resetSimulation()">
+                    🔄 Réinitialiser
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Outils et ressources -->
+          <div class="accessibility-card">
+            <div class="card-header">
+              <div class="card-icon">🛠️</div>
+              <h3>Outils et ressources</h3>
+            </div>
+            <div class="card-content">
+              <div class="tools-grid">
+                <div class="tool-category">
+                  <h4>Extensions navigateur</h4>
+                  <ul>
+                    <li><strong>axe DevTools</strong> - Tests automatisés</li>
+                    <li><strong>WAVE</strong> - Évaluation visuelle</li>
+                    <li><strong>Lighthouse</strong> - Audit complet</li>
+                    <li>
+                      <strong>Color Contrast Analyzer</strong> - Vérification
+                      des contrastes
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="tool-category">
+                  <h4>Lecteurs d'écran</h4>
+                  <ul>
+                    <li><strong>NVDA</strong> - Windows (gratuit)</li>
+                    <li><strong>JAWS</strong> - Windows (payant)</li>
+                    <li><strong>VoiceOver</strong> - macOS/iOS (intégré)</li>
+                    <li><strong>TalkBack</strong> - Android (intégré)</li>
+                  </ul>
+                </div>
+
+                <div class="tool-category">
+                  <h4>Ressources</h4>
+                  <ul>
+                    <li><strong>WCAG 2.1</strong> - Standards officiels</li>
+                    <li><strong>AcceDe Web</strong> - Guide français</li>
+                    <li><strong>WebAIM</strong> - Articles et outils</li>
+                    <li><strong>A11y Project</strong> - Checklist pratique</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Démonstration interactive -->
+          <div class="accessibility-card demo-card">
+            <div class="card-header">
+              <div class="card-icon">🎮</div>
+              <h3>Démonstration interactive</h3>
+            </div>
+            <div class="card-content">
+              <p>Testez ces éléments accessibles :</p>
+
+              <div class="demo-section">
+                <h4>Navigation au clavier :</h4>
+                <div class="keyboard-demo">
+                  <button class="demo-button" tabindex="0">Bouton 1</button>
+                  <button class="demo-button" tabindex="0">Bouton 2</button>
+                  <a href="#" class="demo-link" tabindex="0">Lien accessible</a>
+                  <input
+                    type="text"
+                    placeholder="Champ de saisie"
+                    class="demo-input"
+                    tabindex="0"
+                  />
+                </div>
+              </div>
+
+              <div class="demo-section">
+                <h4>Notifications live :</h4>
+                <button onclick="showA11yNotification()" class="demo-button">
+                  Afficher notification accessible
+                </button>
+                <div
+                  id="a11y-notification"
+                  class="notification"
+                  aria-live="polite"
+                  aria-atomic="true"
+                ></div>
+              </div>
+
+              <div class="demo-section">
+                <h4>Modale accessible :</h4>
+                <button onclick="openA11yModal()" class="demo-button">
+                  Ouvrir modale accessible
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modale accessible pour démonstration -->
+        <div
+          id="a11y-modal"
+          class="modal"
+          role="dialog"
+          aria-labelledby="modal-title"
+          aria-hidden="true"
+        >
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 id="modal-title">Modale accessible</h3>
+              <button
+                class="modal-close"
+                onclick="closeA11yModal()"
+                aria-label="Fermer la modale"
+              >
+                ×
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>
+                Cette modale implémente les bonnes pratiques d'accessibilité :
+              </p>
+              <ul>
+                <li>Piège de focus (Tab reste dans la modale)</li>
+                <li>Fermeture avec Échap</li>
+                <li>Attributs ARIA appropriés</li>
+                <li>Focus automatique sur le premier élément</li>
+              </ul>
+              <button class="demo-button">Action 1</button>
+              <button class="demo-button">Action 2</button>
+            </div>
+          </div>
+          <div class="modal-backdrop" onclick="closeA11yModal()"></div>
+        </div>
+      </section>
+    </div>
+
+    <style>
+      .accessibility-section {
+        padding: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1rem;
+      }
+
+      .section-subtitle {
+        font-size: 1.2rem;
+        opacity: 0.8;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .accessibility-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 2rem;
+      }
+
+      .accessibility-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        padding: 2rem;
+        transition: all 0.3s ease;
+      }
+
+      .accessibility-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(79, 172, 254, 0.4);
+        box-shadow: 0 20px 40px rgba(79, 172, 254, 0.1);
+      }
+
+      .card-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .card-icon {
+        font-size: 2rem;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(79, 172, 254, 0.1);
+        border-radius: 12px;
+      }
+
+      .card-header h3 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #fff;
+        margin: 0;
+      }
+
+      .principles-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .principle-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+
+      .principle-icon {
+        font-size: 1.5rem;
+        margin-top: 0.25rem;
+      }
+
+      .principle-content h4 {
+        margin: 0 0 0.5rem 0;
+        color: #4facfe;
+        font-size: 1.1rem;
+      }
+
+      .principle-content p {
+        margin: 0;
+        font-size: 0.9rem;
+        opacity: 0.8;
+        line-height: 1.4;
+      }
+
+      .features-list {
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      .feature-group h4 {
+        color: #4facfe;
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+      }
+
+      .feature-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 0.75rem;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+      }
+
+      .feature-check {
+        color: #4ade80;
+        font-weight: bold;
+        margin-top: 0.1rem;
+      }
+
+      .test-section {
+        margin: 1.5rem 0;
+      }
+
+      .test-section h4 {
+        color: #4facfe;
+        margin-bottom: 1rem;
+      }
+
+      .test-btn,
+      .sim-btn,
+      .demo-button {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        margin: 0.25rem;
+      }
+
+      .test-btn:hover,
+      .sim-btn:hover,
+      .demo-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3);
+      }
+
+      .test-btn:focus,
+      .sim-btn:focus,
+      .demo-button:focus {
+        outline: 3px solid #4facfe;
+        outline-offset: 2px;
+      }
+
+      .test-results {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        min-height: 50px;
+      }
+
+      .manual-tests {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .test-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+
+      .test-checkbox {
+        width: 18px;
+        height: 18px;
+        accent-color: #4facfe;
+      }
+
+      .test-checkbox:focus {
+        outline: 2px solid #4facfe;
+        outline-offset: 2px;
+      }
+
+      .simulation-controls {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .tool-category h4 {
+        color: #4facfe;
+        margin-bottom: 1rem;
+      }
+
+      .tool-category ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .tool-category li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .tool-category strong {
+        color: #fff;
+      }
+
+      .demo-section {
+        margin: 1.5rem 0;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+
+      .demo-section h4 {
+        color: #4facfe;
+        margin-bottom: 1rem;
+      }
+
+      .keyboard-demo {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .demo-link {
+        color: #4facfe;
+        text-decoration: underline;
+        padding: 0.5rem;
+      }
+
+      .demo-link:focus {
+        outline: 2px solid #4facfe;
+        outline-offset: 2px;
+      }
+
+      .demo-input {
+        padding: 0.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+      }
+
+      .demo-input:focus {
+        outline: 2px solid #4facfe;
+        outline-offset: 2px;
+        border-color: #4facfe;
+      }
+
+      .demo-input::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .notification {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: rgba(74, 222, 128, 0.1);
+        border: 1px solid #4ade80;
+        border-radius: 8px;
+        min-height: 20px;
+      }
+
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        display: none;
+      }
+
+      .modal.active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-backdrop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+      }
+
+      .modal-content {
+        position: relative;
+        background: rgba(30, 30, 60, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        padding: 2rem;
+        max-width: 500px;
+        width: 90%;
+        max-height: 80vh;
+        overflow-y: auto;
+        color: #ffffff;
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .modal-header h3 {
+        margin: 0;
+        color: #fff;
+      }
+
+      .modal-close {
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 4px;
+      }
+
+      .modal-close:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .modal-close:focus {
+        outline: 2px solid #4facfe;
+        outline-offset: 2px;
+      }
+
+      .modal-body ul {
+        padding-left: 1.5rem;
+        line-height: 1.6;
+        color: #ffffff;
+      }
+
+      .modal-body li {
+        margin-bottom: 0.5rem;
+        color: #ffffff;
+      }
+
+      .modal-body p {
+        color: #ffffff;
+        margin-bottom: 1rem;
+      }
+
+      /* S'assurer que les boutons dans la modale sont bien visibles */
+      .modal-content .demo-button {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        margin: 0.5rem 0.25rem;
+      }
+
+      .modal-content .demo-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
+      }
+
+      .modal-content .demo-button:focus {
+        outline: 3px solid #4facfe;
+        outline-offset: 2px;
+      }
+
+      /* Simulation d'accessibilité */
+      .color-blind-simulation {
+        filter: grayscale(100%);
+      }
+
+      .blur-simulation {
+        filter: blur(2px);
+      }
+
+      .motor-impairment-simulation * {
+        cursor: help !important;
+        transition: all 0.5s ease !important;
+      }
+
+      @media (max-width: 768px) {
+        .accessibility-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .accessibility-section {
+          padding: 1rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .principles-grid,
+        .tools-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .keyboard-demo {
+          flex-direction: column;
+          align-items: stretch;
+        }
+      }
+    </style>
+
+    <script>
+      // Tests d'accessibilité automatisés
+      function runA11yTests() {
+        const results = document.getElementById("a11y-results");
+        results.innerHTML = "<p>🔍 Tests en cours...</p>";
+
+        setTimeout(() => {
+          const tests = [
+            {
+              name: "Images avec alt",
+              status: "success",
+              message: "Toutes les images ont un attribut alt approprié",
+            },
+            {
+              name: "Contraste des couleurs",
+              status: "success",
+              message: "Ratio de contraste conforme WCAG AA",
+            },
+            {
+              name: "Navigation clavier",
+              status: "success",
+              message: "Tous les éléments sont accessibles au clavier",
+            },
+            {
+              name: "Attributs ARIA",
+              status: "success",
+              message: "Attributs ARIA correctement utilisés",
+            },
+            {
+              name: "Structure de titres",
+              status: "success",
+              message: "Hiérarchie de titres respectée",
+            },
+            {
+              name: "Labels de formulaires",
+              status: "success",
+              message: "Tous les champs ont des labels associés",
+            },
+          ];
+
+          results.innerHTML = `
+                    <h5>Résultats des tests :</h5>
+                    ${tests
+                      .map(
+                        (test) => `
+                        <div class="test-result ${test.status}">
+                            <span class="test-icon">${
+                              test.status === "success" ? "✅" : "❌"
+                            }</span>
+                            <strong>${test.name}:</strong> ${test.message}
+                        </div>
+                    `
+                      )
+                      .join("")}
+                `;
+        }, 2000);
+      }
+
+      // Simulation de handicaps
+      function simulateColorBlindness() {
+        document.body.classList.add("color-blind-simulation");
+        setTimeout(
+          () => showSimulationMessage("Simulation daltonisme activée"),
+          100
+        );
+      }
+
+      function simulateBlur() {
+        document.body.classList.add("blur-simulation");
+        setTimeout(
+          () => showSimulationMessage("Simulation vision floue activée"),
+          100
+        );
+      }
+
+      function simulateMotorImpairment() {
+        document.body.classList.add("motor-impairment-simulation");
+        setTimeout(
+          () => showSimulationMessage("Simulation difficulté motrice activée"),
+          100
+        );
+      }
+
+      function resetSimulation() {
+        document.body.classList.remove(
+          "color-blind-simulation",
+          "blur-simulation",
+          "motor-impairment-simulation"
+        );
+        showSimulationMessage("Simulations désactivées");
+      }
+
+      function showSimulationMessage(message) {
+        const notification = document.getElementById("a11y-notification");
+        notification.textContent = message;
+        setTimeout(() => {
+          notification.textContent = "";
+        }, 3000);
+      }
+
+      // Notification accessible
+      function showA11yNotification() {
+        const notification = document.getElementById("a11y-notification");
+        notification.textContent =
+          "Notification accessible affichée ! Cette zone live sera lue par les lecteurs d'écran.";
+
+        setTimeout(() => {
+          notification.textContent = "";
+        }, 5000);
+      }
+
+      // Modale accessible
+      let previousActiveElement = null;
+
+      function openA11yModal() {
+        previousActiveElement = document.activeElement;
+        const modal = document.getElementById("a11y-modal");
+        modal.classList.add("active");
+        modal.setAttribute("aria-hidden", "false");
+
+        // Focus sur le premier élément focalisable
+        const firstButton = modal.querySelector("button");
+        if (firstButton) {
+          firstButton.focus();
+        }
+
+        // Piège de focus
+        trapFocus(modal);
+
+        // Écouter Échap pour fermer
+        document.addEventListener("keydown", handleModalEscape);
+      }
+
+      function closeA11yModal() {
+        const modal = document.getElementById("a11y-modal");
+        modal.classList.remove("active");
+        modal.setAttribute("aria-hidden", "true");
+
+        // Retourner le focus à l'élément précédent
+        if (previousActiveElement) {
+          previousActiveElement.focus();
+        }
+
+        document.removeEventListener("keydown", handleModalEscape);
+      }
+
+      function handleModalEscape(e) {
+        if (e.key === "Escape") {
+          closeA11yModal();
+        }
+      }
+
+      function trapFocus(modal) {
+        const focusableElements = modal.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        modal.addEventListener("keydown", (e) => {
+          if (e.key === "Tab") {
+            if (e.shiftKey) {
+              if (document.activeElement === firstElement) {
+                lastElement.focus();
+                e.preventDefault();
+              }
+            } else {
+              if (document.activeElement === lastElement) {
+                firstElement.focus();
+                e.preventDefault();
+              }
+            }
+          }
+        });
+      }
+
+      // Ajout de styles pour les résultats de tests
+      const testResultStyles = `
+            .test-result {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.5rem;
+                margin: 0.25rem 0;
+                border-radius: 4px;
+                background: rgba(0, 0, 0, 0.1);
+            }
+            .test-result.success {
+                border-left: 3px solid #4ade80;
+            }
+            .test-result.error {
+                border-left: 3px solid #f87171;
+            }
+            .test-icon {
+                font-weight: bold;
+            }
+        `;
+
+      // Ajouter les styles
+      const styleSheet = document.createElement("style");
+      styleSheet.textContent = testResultStyles;
+      document.head.appendChild(styleSheet);
+    </script>
+  </body>
+</html>

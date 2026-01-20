@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lexique CSS - Dictionnaire des propriétés</title>
+    <link rel="stylesheet" href="../assets/styles/style.css" />
+    <link rel="stylesheet" href="../assets/styles/lexique.css" />
+  </head>
+  <body>
+    <div class="course-content glass-container">
+      <header class="course-header">
+        <h1>📚 Lexique CSS - Dictionnaire des propriétés</h1>
+        <p class="course-subtitle">
+          Référence complète des propriétés CSS les plus couramment utilisées
+        </p>
+      </header>
+
+      <main class="course-main">
+        <!-- Barre de recherche -->
+        <section class="search-section">
+          <div class="search-container">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="🔍 Rechercher une propriété..."
+              class="search-input"
+            />
+          </div>
+        </section>
+
+        <!-- Propriétés de mise en page -->
+        <section class="lexique-section" data-category="layout">
+          <h2>📐 Propriétés de mise en page</h2>
+          <div class="lexique-grid">
+            <div class="lexique-item" data-property="display">
+              <h3>display</h3>
+              <p class="description">
+                Définit le type d'affichage d'un élément (block, inline, flex,
+                grid, etc.).
+              </p>
+              <div class="code-example">
+                <pre><code>.element {
+  display: block;      /* Élément de bloc */
+  display: inline;     /* Élément en ligne */
+  display: flex;       /* Conteneur flexible */
+  display: grid;       /* Grille CSS */
+  display: none;       /* Masqué */
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-property="position">
+              <h3>position</h3>
+              <p class="description">
+                Définit la méthode de positionnement d'un élément.
+              </p>
+              <div class="code-example">
+                <pre><code>.element {
+  position: static;    /* Par défaut */
+  position: relative;  /* Relatif à sa position normale */
+  position: absolute;  /* Absolue par rapport au parent */
+  position: fixed;     /* Fixe par rapport à la fenêtre */
+  position: sticky;    /* Collant */
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-property="float">
+              <h3>float</h3>
+              <p class="description">
+                Fait flotter un élément à gauche ou à droite.
+              </p>
+              <div class="code-example">
+                <pre><code>.element {
+  float: left;   /* Flotte à gauche */
+  float: right;  /* Flotte à droite */
+  float: none;   /* Pas de flottement */
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-property="clear">
+              <h3>clear</h3>
+              <p class="description">
+                Annule l'effet de flottement des éléments précédents.
+              </p>
+              <div class="code-example">
+                <pre><code>.element {
+  clear: left;   /* Annule float: left */
+  clear: right;  /* Annule float: right */
+  clear: both;   /* Annule tous les flottements */
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Propriétés de dimension -->
+        <section class="lexique-section" data-category="dimensions">
+          <h2>📏 Propriétés de dimension</h2>
+          <div class="lexique-grid">
+            <div class="lexique-item" data-property="width">
+              <h3>width</h3>
+              <p class="description">Définit la largeur d'un élément.</p>
+              <div class="code-example">
+                <pre><code>.element {
+  width: 100px;     /* Largeur fixe */
+  width: 50%;       /* Largeur relative */
+  width: auto;      /* Largeur automatique */
+  width: 100vw;     /* 100% de la viewport */
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-property="height">
+              <h3>height</h3>
+              <p class="description">Définit la hauteur d'un élément.</p>
+              <div class="code-example">
+                <pre><code>.element {
+  height: 200px;    /* Hauteur fixe */
+  height: 50%;      /* Hauteur relative */
+  height: auto;     /* Hauteur automatique */
+  height: 100vh;    /* 100% de la viewport */
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-property="min-width">
+              <h3>min-width / max-width</h3>
+              <p class="description">
+                Définit la largeur minimale/maximale d'un élément.
+              </p>
+              <div class="code-example">
+                <pre><code>.element {
+  min-width: 200px;   /* Largeur minimale */
+  max-width: 800px;   /* Largeur maximale */
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-property="min-height">
+              <h3>min-height / max-height</h3>
+              <p class="description">
+                Définit la hauteur minimale/maximale d'un élément.
+              </p>
+              <div class="code-example">
+                <pre><code>.element {
+  min-height: 100px;  /* Hauteur minimale */
+  max-height: 500px;  /* Hauteur maximale */
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Propriétés de marge et padding -->
+        <section class="lexique-section" data-category="spacing">
+          <h2>📦 Propriétés d'espacement</h2>
+          <div class="lexique-grid">
+            <div class="lexique-item" data-property="margin">
+              <h3>margin</h3>
+              <p class="description">
+                Définit l'espace externe autour d'un élément.
+              </p>
+              <div class="code-example">
+                <pre><code>.element {
+  margin: 10px;              /* Toutes les directions */
+  margin: 10px 20px;         /* Vertical | Horizontal */
+  margin: 10px 20px 15px;    /* Haut | H | Bas */
+  margin: 10px 20px 15px 5px; /* H | D | B | G */
+  margin-top: 10px;
+  margin-right: 20px;
+  margin-bottom: 15px;
+  margin-left: 5px;
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-property="padding">
+              <h3>padding</h3>
+              <p class="description">
+                Définit l'espace interne à l'intérieur d'un élément.
+              </p>
+              <div class="code-example">
+                <pre><code>.element {
+  padding: 10px;              /* Toutes les directions */
+  padding: 10px 20px;         /* Vertical | Horizontal */
+  padding: 10px 20px 15px;    /* Haut | H | Bas */
+  padding: 10px 20px 15px 5px; /* H | D | B | G */
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-bottom: 15px;
+  padding-left: 5px;
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Propriétés de couleur et fond -->
+        <section class="lexique-section" data-category="colors">
+          <h2>🎨 Propriétés de couleur et fond</h2>
+          <div class="lexique-grid">
+            <div class="lexique-item" data-property="color">
+              <h3>color</h3>
+              <p class="description">Définit la couleur du texte.</p>
+              <div class="code-example">
+                <pre><code>.element {
+  color: red;               /* Nom de couleur */
+  color: #ff0000;           /* Hexadécimal */
+  color: rgb(255, 0, 0);    /* RGB */
+  color: rgba(255, 0, 0, 0.5); /* RGBA avec transparence */
+  color: hsl(0, 100%, 50%); /* HSL */
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-property="background-color">
+              <h3>background-color</h3>
+              <p class="description">Définit la couleur d'arrière-plan.</p>
+              <div class="code-example">
+                <pre><code>.element {
+  background-color: blue;
+  background-color: #0066cc;
+  background-color: rgba(0, 102, 204, 0.8);
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-property="background-image">
+              <h3>background-image</h3>
+              <p class="description">Définit une image d'arrière-plan.</p>
+              <div class="code-example">
+                <pre><code>.element {
+  background-image: url('image.jpg');
+  background-image: linear-gradient(to right, red, blue);
+  background-image: radial-gradient(circle, red, blue);
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-property="background-size">
+              <h3>background-size</h3>
+              <p class="description">
+                Définit la taille de l'image d'arrière-plan.
+              </p>
+              <div class="code-example">
+                <pre><code>.element {
+  background-size: cover;    /* Couvre tout l'élément */
+  background-size: contain;  /* Contient dans l'élément */
+  background-size: 100px 200px; /* Taille spécifique */
+  background-size: 50%;      /* Pourcentage */
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Propriétés de texte -->
+        <section class="lexique-section" data-category="text">
+          <h2>📝 Propriétés de texte</h2>
+          <div class="lexique-grid">
+            <div class="lexique-item" data-property="font-family">
+              <h3>font-family</h3>
+              <p class="description">Définit la famille de police.</p>
+              <div class="code-example">
+                <pre><code>.element {
+  font-family: 'Arial', sans-serif;
+  font-family: 'Times New Roman', serif;
+  font-family: 'Courier New', monospace;
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-property="font-size">
+              <h3>font-size</h3>
+              <p class="description">Définit la taille de la police.</p>
+              <div class="code-example">
+                <pre><code>.element {
+  font-size: 16px;    /* Pixels */
+  font-size: 1.2em;   /* Em (relatif au parent) */
+  font-size: 1.5rem;  /* Rem (relatif à la racine) */
+  font-size: large;   /* Mots-clés */
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-property="font-weight">
+              <h3>font-weight</h3>
+              <p class="description">Définit l'épaisseur de la police.</p>
+              <div class="code-example">
+                <pre><code>.element {
+  font-weight: normal;  /* 400 */
+  font-weight: bold;    /* 700 */
+  font-weight: 100;     /* Très fin */
+  font-weight: 900;     /* Très gras */
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-property="text-align">
+              <h3>text-align</h3>
+              <p class="description">
+                Définit l'alignement horizontal du texte.
+              </p>
+              <div class="code-example">
+                <pre><code>.element {
+  text-align: left;     /* À gauche */
+  text-align: center;   /* Centré */
+  text-align: right;    /* À droite */
+  text-align: justify;  /* Justifié */
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-property="text-decoration">
+              <h3>text-decoration</h3>
+              <p class="description">Ajoute des décorations au texte.</p>
+              <div class="code-example">
+                <pre><code>.element {
+  text-decoration: none;        /* Aucune */
+  text-decoration: underline;   /* Souligné */
+  text-decoration: overline;    /* Ligne au-dessus */
+  text-decoration: line-through; /* Barré */
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-property="line-height">
+              <h3>line-height</h3>
+              <p class="description">Définit la hauteur de ligne.</p>
+              <div class="code-example">
+                <pre><code>.element {
+  line-height: 1.5;     /* Multiplicateur */
+  line-height: 24px;    /* Valeur fixe */
+  line-height: 150%;    /* Pourcentage */
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Propriétés de bordure -->
+        <section class="lexique-section" data-category="border">
+          <h2>🔲 Propriétés de bordure</h2>
+          <div class="lexique-grid">
+            <div class="lexique-item" data-property="border">
+              <h3>border</h3>
+              <p class="description">
+                Définit une bordure complète (raccourci).
+              </p>
+              <div class="code-example">
+                <pre><code>.element {
+  border: 1px solid black;           /* Épaisseur Style Couleur */
+  border: 2px dashed red;
+  border: 3px dotted blue;
+  border-top: 1px solid black;       /* Bordure spécifique */
+  border-right: 2px dashed red;
+  border-bottom: 3px dotted blue;
+  border-left: 1px solid green;
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-property="border-radius">
+              <h3>border-radius</h3>
+              <p class="description">Arrondit les coins d'un élément.</p>
+              <div class="code-example">
+                <pre><code>.element {
+  border-radius: 10px;              /* Tous les coins */
+  border-radius: 10px 20px;         /* Haut-gauche/Bas-droite | Autres */
+  border-radius: 10px 20px 30px 40px; /* HG | HD | BD | BG */
+  border-radius: 50%;               /* Cercle parfait */
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-property="box-shadow">
+              <h3>box-shadow</h3>
+              <p class="description">Ajoute une ombre à un élément.</p>
+              <div class="code-example">
+                <pre><code>.element {
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  /* Offset-X | Offset-Y | Blur | Couleur */
+  
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2),
+              0 6px 20px rgba(0,0,0,0.1);
+  /* Ombres multiples */
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Propriétés Flexbox -->
+        <section class="lexique-section" data-category="flexbox">
+          <h2>🔧 Propriétés Flexbox</h2>
+          <div class="lexique-grid">
+            <div class="lexique-item" data-property="justify-content">
+              <h3>justify-content</h3>
+              <p class="description">
+                Aligne les éléments flexibles sur l'axe principal.
+              </p>
+              <div class="code-example">
+                <pre><code>.flex-container {
+  display: flex;
+  justify-content: flex-start;   /* Début */
+  justify-content: center;       /* Centre */
+  justify-content: flex-end;     /* Fin */
+  justify-content: space-between; /* Espacement égal */
+  justify-content: space-around;  /* Espacement autour */
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-property="align-items">
+              <h3>align-items</h3>
+              <p class="description">
+                Aligne les éléments flexibles sur l'axe secondaire.
+              </p>
+              <div class="code-example">
+                <pre><code>.flex-container {
+  display: flex;
+  align-items: stretch;    /* Étire (par défaut) */
+  align-items: flex-start; /* Début */
+  align-items: center;     /* Centre */
+  align-items: flex-end;   /* Fin */
+  align-items: baseline;   /* Ligne de base */
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-property="flex-direction">
+              <h3>flex-direction</h3>
+              <p class="description">
+                Définit la direction des éléments flexibles.
+              </p>
+              <div class="code-example">
+                <pre><code>.flex-container {
+  display: flex;
+  flex-direction: row;            /* Ligne (par défaut) */
+  flex-direction: row-reverse;    /* Ligne inversée */
+  flex-direction: column;         /* Colonne */
+  flex-direction: column-reverse; /* Colonne inversée */
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-property="flex-wrap">
+              <h3>flex-wrap</h3>
+              <p class="description">
+                Contrôle si les éléments flexibles peuvent passer à la ligne.
+              </p>
+              <div class="code-example">
+                <pre><code>.flex-container {
+  display: flex;
+  flex-wrap: nowrap;     /* Pas de retour à la ligne */
+  flex-wrap: wrap;       /* Retour à la ligne */
+  flex-wrap: wrap-reverse; /* Retour à la ligne inversé */
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Propriétés de transition et animation -->
+        <section class="lexique-section" data-category="animation">
+          <h2>🎬 Propriétés d'animation</h2>
+          <div class="lexique-grid">
+            <div class="lexique-item" data-property="transition">
+              <h3>transition</h3>
+              <p class="description">
+                Crée une transition fluide entre les états.
+              </p>
+              <div class="code-example">
+                <pre><code>.element {
+  transition: all 0.3s ease;
+  /* Propriété | Durée | Fonction de timing */
+  
+  transition: color 0.5s ease-in-out,
+              background-color 0.3s linear;
+  /* Transitions multiples */
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-property="transform">
+              <h3>transform</h3>
+              <p class="description">Applique des transformations 2D ou 3D.</p>
+              <div class="code-example">
+                <pre><code>.element {
+  transform: translateX(50px);     /* Translation */
+  transform: rotate(45deg);        /* Rotation */
+  transform: scale(1.5);           /* Mise à l'échelle */
+  transform: skew(20deg);          /* Inclinaison */
+  
+  /* Transformations combinées */
+  transform: translate(50px, 100px) rotate(45deg) scale(1.2);
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="lexique-item" data-property="opacity">
+              <h3>opacity</h3>
+              <p class="description">Définit la transparence d'un élément.</p>
+              <div class="code-example">
+                <pre><code>.element {
+  opacity: 1;     /* Complètement opaque */
+  opacity: 0.5;   /* Semi-transparent */
+  opacity: 0;     /* Complètement transparent */
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Script pour la recherche -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.getElementById("searchInput");
+        const lexiqueItems = document.querySelectorAll(".lexique-item");
+
+        searchInput.addEventListener("input", function () {
+          const searchTerm = this.value.toLowerCase();
+
+          lexiqueItems.forEach(function (item) {
+            const propertyName = item.dataset.property;
+            const description = item.querySelector(".description").textContent;
+            const content = (propertyName + " " + description).toLowerCase();
+
+            if (content.includes(searchTerm)) {
+              item.style.display = "block";
+            } else {
+              item.style.display = "none";
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cours JavaScript - Concepts de base</title>
+  </head>
+  <body>
+    <div class="course-content glass-container no-auto-highlight">
+      <header class="course-header">
+        <h1>⚡ Cours JavaScript - Les fondamentaux</h1>
+        <p class="course-subtitle">Apprenez à donner vie à vos pages web</p>
+      </header>
+
+      <main class="course-main">
+        <section class="course-section">
+          <h2>🚀 Introduction au JavaScript</h2>
+          <p>
+            JavaScript est un langage de programmation qui permet d'ajouter de
+            l'interactivité aux pages web. Il peut modifier le contenu, réagir
+            aux actions de l'utilisateur et communiquer avec des serveurs.
+          </p>
+
+          <h3>Comment ajouter JavaScript ?</h3>
+          <div class="code-example">
+            <h4>1. JavaScript inline :</h4>
+            <pre><code>&lt;button onclick="alert('Hello!')"&gt;Cliquez-moi&lt;/button&gt;</code></pre>
+
+            <h4>2. JavaScript interne :</h4>
+            <pre><code>&lt;script&gt;
+console.log('Hello World!');
+&lt;/script&gt;</code></pre>
+
+            <h4>3. JavaScript externe :</h4>
+            <pre><code>&lt;script src="script.js"&gt;&lt;/script&gt;</code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>📊 Variables et types de données</h2>
+
+          <h3>Déclaration de variables</h3>
+          <div class="code-example">
+            <pre><code>// Déclarations modernes (ES6+)
+let nom = "Alice";        // Variable modifiable
+const age = 25;           // Constante
+var ancienne = "style";   // Ancienne syntaxe (éviter)
+
+// Types de données primitifs
+let texte = "Hello";      // String
+let nombre = 42;          // Number
+let decimal = 3.14;       // Number
+let booleen = true;       // Boolean
+let indefini = undefined; // Undefined
+let vide = null;          // Null</code></pre>
+          </div>
+
+          <h3>Tableaux et objets</h3>
+          <div class="code-example">
+            <pre><code>// Tableau
+let fruits = ["pomme", "banane", "orange"];
+console.log(fruits[0]); // "pomme"
+
+// Objet
+let personne = {
+    nom: "Alice",
+    age: 25,
+    ville: "Paris"
+};
+console.log(personne.nom); // "Alice"</code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>🔧 Fonctions</h2>
+
+          <h3>Déclaration de fonctions</h3>
+          <div class="code-example">
+            <pre><code>// Fonction classique
+function saluer(nom) {
+    return "Bonjour " + nom + "!";
+}
+
+// Fonction fléchée (ES6)
+const saluerModerne = (nom) => {
+    return `Bonjour ${nom}!`;
+};
+
+// Fonction fléchée courte
+const doubler = x => x * 2;
+
+// Utilisation
+console.log(saluer("Alice")); // "Bonjour Alice!"</code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>🔄 Structures de contrôle</h2>
+
+          <h3>Conditions</h3>
+          <div class="code-example">
+            <pre><code>let age = 18;
+
+// If/else
+if (age >= 18) {
+    console.log("Majeur");
+} else {
+    console.log("Mineur");
+}
+
+// Switch
+let jour = "lundi";
+switch (jour) {
+    case "lundi":
+        console.log("Début de semaine");
+        break;
+    case "vendredi":
+        console.log("Fin de semaine");
+        break;
+    default:
+        console.log("Jour normal");
+}</code></pre>
+          </div>
+
+          <h3>Boucles</h3>
+          <div class="code-example">
+            <pre><code>// Boucle for
+for (let i = 0; i < 5; i++) {
+    console.log(i);
+}
+
+// Boucle while
+let compteur = 0;
+while (compteur < 3) {
+    console.log(compteur);
+    compteur++;
+}
+
+// Parcourir un tableau
+let fruits = ["pomme", "banane", "orange"];
+for (let fruit of fruits) {
+    console.log(fruit);
+}</code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>🌐 Manipulation du DOM</h2>
+          <p>
+            Le DOM (Document Object Model) permet d'interagir avec les éléments
+            HTML :
+          </p>
+
+          <h3>Sélectionner des éléments</h3>
+          <div class="code-example">
+            <pre><code>// Sélection par ID
+let element = document.getElementById('monId');
+
+// Sélection par classe
+let elements = document.getElementsByClassName('maClasse');
+
+// Sélection par sélecteur CSS
+let premier = document.querySelector('.maClasse');
+let tous = document.querySelectorAll('.maClasse');</code></pre>
+          </div>
+
+          <h3>Modifier le contenu</h3>
+          <div class="code-example">
+            <pre><code>// Modifier le texte
+element.textContent = "Nouveau texte";
+
+// Modifier le HTML
+element.innerHTML = "&lt;strong&gt;Texte en gras&lt;/strong&gt;";
+
+// Modifier les attributs
+element.setAttribute('class', 'nouvelle-classe');
+element.style.color = 'red';</code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>👆 Gestion des événements</h2>
+
+          <div class="code-example">
+            <pre><code>// Ajouter un gestionnaire d'événement
+let bouton = document.querySelector('#monBouton');
+
+bouton.addEventListener('click', function() {
+    alert('Bouton cliqué!');
+});
+
+// Avec une fonction fléchée
+bouton.addEventListener('click', () => {
+    console.log('Clic détecté');
+});
+
+// Événements courants
+element.addEventListener('mouseover', () => {}); // Survol
+element.addEventListener('keydown', () => {});   // Touche pressée
+window.addEventListener('load', () => {});       // Page chargée</code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>🛠️ Méthodes utiles</h2>
+
+          <h3>Méthodes de chaînes</h3>
+          <div class="code-example">
+            <pre><code>let texte = "  Bonjour JavaScript  ";
+
+console.log(texte.length);           // 21
+console.log(texte.trim());           // "Bonjour JavaScript"
+console.log(texte.toUpperCase());    // "  BONJOUR JAVASCRIPT  "
+console.log(texte.includes('Java')); // true
+console.log(texte.split(' '));       // ["", "", "Bonjour", "JavaScript", "", ""]</code></pre>
+          </div>
+
+          <h3>Méthodes de tableaux</h3>
+          <div class="code-example">
+            <pre><code>let nombres = [1, 2, 3, 4, 5];
+
+// Ajouter/supprimer
+nombres.push(6);        // Ajouter à la fin
+nombres.pop();          // Supprimer le dernier
+nombres.unshift(0);     // Ajouter au début
+
+// Transformation
+let doubles = nombres.map(x => x * 2);
+let pairs = nombres.filter(x => x % 2 === 0);
+let somme = nombres.reduce((acc, x) => acc + x, 0);</code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>🎯 Points clés à retenir</h2>
+          <ul>
+            <li>JavaScript rend les pages web interactives</li>
+            <li>
+              Utilisez <code>let</code> et <code>const</code> au lieu de
+              <code>var</code>
+            </li>
+            <li>Les fonctions sont des objets de première classe</li>
+            <li>Le DOM permet de manipuler les éléments HTML</li>
+            <li>Les événements gèrent les interactions utilisateur</li>
+            <li>Toujours déboguer avec la console du navigateur</li>
+          </ul>
+        </section>
+
+        <section class="course-section">
+          <h2>🚀 ES6+ - Fonctionnalités modernes</h2>
+
+          <h3>Destructuring (Déstructuration)</h3>
+          <p>
+            Technique pour extraire des valeurs de tableaux ou d'objets de
+            manière concise.
+          </p>
+          <div class="code-example">
+            <pre><code>// Déstructuration d'objets
+const personne = {
+    nom: "Alice",
+    age: 30,
+    ville: "Paris",
+    email: "alice@email.com"
+};
+
+// Méthode classique
+const nom = personne.nom;
+const age = personne.age;
+
+// Avec déstructuration (plus concis)
+const { nom, age, ville } = personne;
+
+// Avec renommage et valeurs par défaut
+const { email: adresseEmail, pays = "France" } = personne;
+
+// Déstructuration de tableaux
+const couleurs = ["rouge", "vert", "bleu"];
+const [primaire, secondaire, tertiaire] = couleurs;
+
+// Ignorer des éléments
+const [premier, , troisieme] = couleurs;
+
+// Rest operator
+const [premier, ...autres] = couleurs;
+console.log(autres); // ["vert", "bleu"]</code></pre>
+          </div>
+
+          <h3>Template Literals et Tagged Templates</h3>
+          <div class="code-example">
+            <pre><code>// Template literals basiques
+const nom = "Alice";
+const age = 30;
+const message = `Bonjour ${nom}, vous avez ${age} ans.`;
+
+// Multiligne
+const html = `
+<div class="card">
+<h2>${nom}</h2>
+<p>Âge: ${age} ans</p>
+</div>
+`;
+
+// Expressions dans les templates
+const prix = 29.99;
+const tva = 0.20;
+const total = `Total TTC: ${(prix * (1 + tva)).toFixed(2)}€`;
+
+// Tagged templates (avancé)
+function highlight(strings, ...values) {
+    return strings.reduce((result, string, i) => {
+        const value = values[i] ? `<mark>${values[i]}</mark>` : '';
+        return result + string + value;
+    }, '');
+}
+
+const texte = highlight`Le nom est ${nom} et l'âge est ${age}`;
+// Résultat: "Le nom est &lt;mark&gt;Alice&lt;/mark&gt; et l'âge est &lt;mark&gt;30&lt;/mark&gt;"</code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>⚡ Programmation asynchrone</h2>
+
+          <h3>Promises et async/await</h3>
+          <p>
+            Gérer les opérations asynchrones de manière élégante et lisible.
+          </p>
+          <div class="code-example">
+            <pre><code>// Promise basique
+function chargerDonnees(url) {
+    return new Promise((resolve, reject) => {
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erreur HTTP: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => resolve(data))
+            .catch(error => reject(error));
+    });
+}
+
+// Utilisation avec .then()
+chargerDonnees('/api/users')
+    .then(users => {
+        console.log('Utilisateurs chargés:', users);
+        return chargerDonnees('/api/posts');
+    })
+    .then(posts => {
+        console.log('Articles chargés:', posts);
+    })
+    .catch(error => {
+        console.error('Erreur:', error.message);
+    });
+
+// Version moderne avec async/await
+async function chargerToutesLesDonnees() {
+    try {
+        const users = await chargerDonnees('/api/users');
+        console.log('Utilisateurs:', users);
+        
+        const posts = await chargerDonnees('/api/posts');
+        console.log('Articles:', posts);
+        
+        // Chargement en parallèle
+        const [produits, commandes] = await Promise.all([
+            chargerDonnees('/api/products'),
+            chargerDonnees('/api/orders')
+        ]);
+        
+        return { users, posts, produits, commandes };
+    } catch (error) {
+        console.error('Erreur lors du chargement:', error);
+        throw error;
+    }
+}</code></pre>
+          </div>
+
+          <h3>Gestion d'erreurs avancée</h3>
+          <div class="code-example">
+            <pre><code>// Retry automatique avec délai exponentiel
+async function fetchAvecRetry(url, options = {}, maxRetries = 3) {
+    for (let i = 0; i <= maxRetries; i++) {
+        try {
+            const response = await fetch(url, options);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            
+            return await response.json();
+        } catch (error) {
+            if (i === maxRetries) {
+                throw new Error(`Échec après ${maxRetries} tentatives: ${error.message}`);
+            }
+            
+            // Délai exponentiel: 1s, 2s, 4s...
+            const delai = Math.pow(2, i) * 1000;
+            await new Promise(resolve => setTimeout(resolve, delai));
+            console.log(`Tentative ${i + 2}/${maxRetries + 1} dans ${delai}ms...`);
+        }
+    }
+}
+
+// Timeout pour les promesses
+function avecTimeout(promesse, timeout = 5000) {
+    return Promise.race([
+        promesse,
+        new Promise((_, reject) => {
+            setTimeout(() => reject(new Error('Timeout dépassé')), timeout);
+        })
+    ]);
+}</code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>🏗️ Classes et Programmation Orientée Objet</h2>
+
+          <h3>Classes ES6 et héritage</h3>
+          <div class="code-example">
+            <pre><code>// Classe de base
+class Animal {
+    // Propriétés privées (moderne)
+    #id = Math.random().toString(36);
+    
+    constructor(nom, type) {
+        this.nom = nom;
+        this.type = type;
+        this.age = 0;
+    }
+    
+    // Méthode publique
+    parler() {
+        return `${this.nom} fait du bruit.`;
+    }
+    
+    // Getter
+    get informations() {
+        return `${this.nom} (${this.type}) - ${this.age} ans`;
+    }
+    
+    // Setter
+    set ageAnimal(nouvelAge) {
+        if (nouvelAge >= 0) {
+            this.age = nouvelAge;
+        } else {
+            throw new Error("L'âge doit être positif");
+        }
+    }
+    
+    // Méthode statique
+    static comparer(animal1, animal2) {
+        return animal1.age - animal2.age;
+    }
+    
+    // Méthode privée
+    #genererID() {
+        return this.#id;
+    }
+}
+
+// Héritage
+class Chien extends Animal {
+    constructor(nom, race) {
+        super(nom, 'chien');  // Appel du constructeur parent
+        this.race = race;
+        this.dresse = false;
+    }
+    
+    // Override (redéfinition)
+    parler() {
+        return `${this.nom} aboie: Wouf wouf!`;
+    }
+    
+    // Nouvelle méthode
+    donnerPatte() {
+        if (this.dresse) {
+            return `${this.nom} donne la patte!`;
+        } else {
+            return `${this.nom} ne sait pas encore donner la patte.`;
+        }
+    }
+}
+
+// Utilisation
+const monChien = new Chien("Rex", "Labrador");
+monChien.ageAnimal = 3;
+console.log(monChien.parler());
+console.log(monChien.informations);</code></pre>
+          </div>
+
+          <h3>Modules ES6</h3>
+          <div class="code-example">
+            <pre><code>// fichier: math-utils.js
+export function additionner(a, b) {
+    return a + b;
+}
+
+export function multiplier(a, b) {
+    return a * b;
+}
+
+export const PI = 3.14159;
+
+// Export par défaut
+export default class Calculatrice {
+    static calculer(operation, a, b) {
+        switch (operation) {
+            case '+': return a + b;
+            case '*': return a * b;
+            default: throw new Error('Opération non supportée');
+        }
+    }
+}
+
+// fichier: app.js
+// Import nommé
+import { additionner, multiplier, PI } from './math-utils.js';
+
+// Import par défaut
+import Calculatrice from './math-utils.js';
+
+// Import avec renommage
+import { additionner as add } from './math-utils.js';
+
+// Import tout
+import * as MathUtils from './math-utils.js';
+
+// Import dynamique (chargement à la demande)
+async function chargerModule() {
+    const { additionner } = await import('./math-utils.js');
+    return additionner(5, 3);
+}</code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>🎭 Techniques avancées</h2>
+
+          <h3>Closure et Scope</h3>
+          <p>
+            Les closures permettent aux fonctions d'accéder aux variables de
+            leur environnement parent.
+          </p>
+          <div class="code-example">
+            <pre><code>// Factory function avec closure
+function creerCompteur(valeurInitiale = 0) {
+    let compteur = valeurInitiale;
+    
+    // La fonction retournée "ferme" sur la variable compteur
+    return {
+        incrementer: () => ++compteur,
+        decrementer: () => --compteur,
+        obtenir: () => compteur,
+        reinitialiser: () => compteur = valeurInitiale
+    };
+}
+
+const compteur1 = creerCompteur(10);
+const compteur2 = creerCompteur(0);
+
+console.log(compteur1.incrementer()); // 11
+console.log(compteur2.incrementer()); // 1
+// Chaque compteur garde son propre état
+
+// Module pattern avec IIFE
+const MonModule = (function() {
+    // Variables privées
+    let donneePrivee = "secret";
+    let compteur = 0;
+    
+    // Interface publique
+    return {
+        incrementer() {
+            return ++compteur;
+        },
+        
+        obtenirInfo() {
+            return `Compteur: ${compteur}`;
+        },
+        
+        // La donnée privée n'est pas accessible de l'extérieur
+        init() {
+            console.log("Module initialisé");
+        }
+    };
+})();
+
+// Utilisation
+MonModule.init();
+console.log(MonModule.incrementer()); // 1
+// console.log(MonModule.donneePrivee); // undefined - pas accessible</code></pre>
+          </div>
+
+          <h3>Programmation fonctionnelle</h3>
+          <div class="code-example">
+            <pre><code>// Higher-order functions
+const nombres = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// Composition de fonctions
+const estPair = n => n % 2 === 0;
+const carre = n => n * n;
+const plusGrandQue = seuil => n => n > seuil;
+
+// Chaînage fonctionnel
+const resultat = nombres
+    .filter(estPair)                    // [2, 4, 6, 8, 10]
+    .map(carre)                         // [4, 16, 36, 64, 100]
+    .filter(plusGrandQue(20))           // [36, 64, 100]
+    .reduce((acc, n) => acc + n, 0);    // 200
+
+console.log(resultat); // 200
+
+// Currying
+function multiplier(a) {
+    return function(b) {
+        return a * b;
+    };
+}
+
+// Version fléchée
+const multiplierCurry = a => b => a * b;
+
+const doubler = multiplierCurry(2);
+const tripler = multiplierCurry(3);
+
+console.log(doubler(5)); // 10
+console.log(tripler(4)); // 12
+
+// Pipe function pour composer
+function pipe(...functions) {
+    return function(value) {
+        return functions.reduce((acc, fn) => fn(acc), value);
+    };
+}
+
+const traitement = pipe(
+    x => x * 2,
+    x => x + 1,
+    x => x.toString()
+);
+
+console.log(traitement(5)); // "11"</code></pre>
+          </div>
+        </section>
+
+        <section class="course-section">
+          <h2>🌐 API modernes du navigateur</h2>
+
+          <h3>Local Storage et Session Storage</h3>
+          <div class="code-example">
+            <pre><code>// Gestion du localStorage avec gestion d'erreurs
+class StorageManager {
+    static set(key, value) {
+        try {
+            const data = {
+                value: value,
+                timestamp: Date.now(),
+                expires: null
+            };
+            localStorage.setItem(key, JSON.stringify(data));
+            return true;
+        } catch (error) {
+            console.error('Erreur localStorage:', error);
+            return false;
+        }
+    }
+    
+    static get(key) {
+        try {
+            const item = localStorage.getItem(key);
+            if (!item) return null;
+            
+            const data = JSON.parse(item);
+            
+            // Vérifier l'expiration
+            if (data.expires && Date.now() > data.expires) {
+                this.remove(key);
+                return null;
+            }
+            
+            return data.value;
+        } catch (error) {
+            console.error('Erreur lecture localStorage:', error);
+            return null;
+        }
+    }
+    
+    static setWithExpiry(key, value, hoursToExpire) {
+        try {
+            const data = {
+                value: value,
+                timestamp: Date.now(),
+                expires: Date.now() + (hoursToExpire * 60 * 60 * 1000)
+            };
+            localStorage.setItem(key, JSON.stringify(data));
+            return true;
+        } catch (error) {
+            console.error('Erreur localStorage:', error);
+            return false;
+        }
+    }
+    
+    static remove(key) {
+        localStorage.removeItem(key);
+    }
+    
+    static clear() {
+        localStorage.clear();
+    }
+}
+
+// Utilisation
+StorageManager.set('user', { nom: 'Alice', email: 'alice@email.com' });
+StorageManager.setWithExpiry('token', 'abc123', 24); // Expire dans 24h
+
+const user = StorageManager.get('user');
+console.log(user); // { nom: 'Alice', email: 'alice@email.com' }</code></pre>
+          </div>
+
+          <h3>Fetch API avancé et gestion des erreurs</h3>
+          <div class="code-example">
+            <pre><code>// Client HTTP avec gestion complète
+class HttpClient {
+    constructor(baseURL = '', defaultHeaders = {}) {
+        this.baseURL = baseURL;
+        this.defaultHeaders = {
+            'Content-Type': 'application/json',
+            ...defaultHeaders
+        };
+    }
+    
+    async request(endpoint, options = {}) {
+        const url = `${this.baseURL}${endpoint}`;
+        const config = {
+            headers: { ...this.defaultHeaders, ...options.headers },
+            ...options
+        };
+        
+        try {
+            const response = await fetch(url, config);
+            
+            // Gestion des codes d'erreur HTTP
+            if (!response.ok) {
+                const errorData = await this.parseErrorResponse(response);
+                throw new HttpError(response.status, errorData.message || response.statusText, errorData);
+            }
+            
+            // Parse de la réponse selon le type de contenu
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                return await response.json();
+            } else {
+                return await response.text();
+            }
+            
+        } catch (error) {
+            if (error instanceof HttpError) {
+                throw error;
+            }
+            throw new Error(`Erreur réseau: ${error.message}`);
+        }
+    }
+    
+    async parseErrorResponse(response) {
+        try {
+            return await response.json();
+        } catch {
+            return { message: response.statusText };
+        }
+    }
+    
+    get(endpoint, params = {}) {
+        const url = new URL(endpoint, this.baseURL);
+        Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+        return this.request(url.pathname + url.search);
+    }
+    
+    post(endpoint, data) {
+        return this.request(endpoint, {
+            method: 'POST',
+            body: JSON.stringify(data)
+        });
+    }
+    
+    put(endpoint, data) {
+        return this.request(endpoint, {
+            method: 'PUT',
+            body: JSON.stringify(data)
+        });
+    }
+    
+    delete(endpoint) {
+        return this.request(endpoint, { method: 'DELETE' });
+    }
+}
+
+// Classe d'erreur personnalisée
+class HttpError extends Error {
+    constructor(status, message, data = null) {
+        super(message);
+        this.name = 'HttpError';
+        this.status = status;
+        this.data = data;
+    }
+}
+
+// Utilisation
+const api = new HttpClient('https://api.exemple.com');
+
+async function chargerUtilisateurs() {
+    try {
+        const users = await api.get('/users', { page: 1, limit: 10 });
+        console.log('Utilisateurs:', users);
+        return users;
+    } catch (error) {
+        if (error instanceof HttpError) {
+            console.error(`Erreur API ${error.status}:`, error.message);
+        } else {
+            console.error('Erreur:', error.message);
+        }
+    }
+}</code></pre>
+          </div>
+        </section>
+      </main>
+
+      <footer class="course-footer">
+        <button class="download-pdf-btn glass-button">
+          📄 Télécharger le cours en PDF
+        </button>
+      </footer>
+    </div>
+  </body>
+</html>

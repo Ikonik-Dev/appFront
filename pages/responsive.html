@@ -1,0 +1,1172 @@
+<div class="page" id="page-responsive">
+    <div class="page-header">
+        <h1 class="page-title">📱 Design Responsive</h1>
+        <p class="page-subtitle">Media queries, mobile-first et adaptation multi-écrans</p>
+    </div>
+
+    <div class="sidebar-layout">
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#responsive-principles">Principes</a></li>
+                    <li><a href="#responsive-viewport">Viewport</a></li>
+                    <li><a href="#responsive-media">Media Queries</a></li>
+                    <li><a href="#responsive-images">Images Responsive</a></li>
+                    <li><a href="#responsive-typography">Typographie</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <section id="responsive-principles" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Principes du Responsive Design</h2>
+                    <p class="section-description">
+                        Approche mobile-first et adaptation fluide aux différents écrans
+                    </p>
+                </div>
+
+                <div class="content-area">
+                    <h3>Simulateur de tailles d'écran</h3>
+                    
+                    <div class="demo-area">
+                        <div class="viewport-simulator">
+                            <div class="device-controls">
+                                <h4>Choisir un appareil :</h4>
+                                <div class="device-buttons">
+                                    <button class="device-btn active" onclick="setViewport('mobile')">
+                                        📱 Mobile (320px)
+                                    </button>
+                                    <button class="device-btn" onclick="setViewport('tablet')">
+                                        📟 Tablette (768px)
+                                    </button>
+                                    <button class="device-btn" onclick="setViewport('desktop')">
+                                        💻 Desktop (1024px)
+                                    </button>
+                                    <button class="device-btn" onclick="setViewport('large')">
+                                        🖥️ Large (1440px)
+                                    </button>
+                                </div>
+                                
+                                <div class="custom-size">
+                                    <label>
+                                        Taille personnalisée :
+                                        <input type="range" id="customWidth" min="280" max="1600" value="320">
+                                        <span id="widthDisplay">320px</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="simulator-container">
+                                <div class="device-frame" id="deviceFrame">
+                                    <div class="responsive-demo-content">
+                                        <header class="demo-header-responsive">
+                                            <div class="logo">Logo</div>
+                                            <nav class="demo-nav-responsive">
+                                                <div class="nav-toggle" onclick="toggleMobileNav()">☰</div>
+                                                <ul class="nav-menu" id="navMenu">
+                                                    <li><a href="#">Accueil</a></li>
+                                                    <li><a href="#">Services</a></li>
+                                                    <li><a href="#">Contact</a></li>
+                                                </ul>
+                                            </nav>
+                                        </header>
+                                        
+                                        <main class="demo-main-responsive">
+                                            <section class="hero-responsive">
+                                                <h2>Titre Principal</h2>
+                                                <p>Description qui s'adapte à la taille d'écran</p>
+                                            </section>
+                                            
+                                            <section class="cards-responsive">
+                                                <div class="card-responsive">Card 1</div>
+                                                <div class="card-responsive">Card 2</div>
+                                                <div class="card-responsive">Card 3</div>
+                                            </section>
+                                        </main>
+                                    </div>
+                                </div>
+                                
+                                <div class="breakpoint-info" id="breakpointInfo">
+                                    <strong>Mobile</strong> - 320px
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-area">
+                        <pre><code class="code-highlight">
+<span class="comment">/* Approche Mobile-First */</span>
+<span class="keyword">.container</span> {
+    <span class="string">width: 100%;</span>
+    <span class="string">padding: 1rem;</span>
+    <span class="string">max-width: 1200px;</span>
+    <span class="string">margin: 0 auto;</span>
+}
+
+<span class="comment">/* Tablette et plus */</span>
+<span class="keyword">@media</span> <span class="string">(min-width: 768px)</span> {
+    <span class="keyword">.container</span> {
+        <span class="string">padding: 2rem;</span>
+    }
+    
+    <span class="keyword">.cards</span> {
+        <span class="string">display: grid;</span>
+        <span class="string">grid-template-columns: repeat(2, 1fr);</span>
+        <span class="string">gap: 2rem;</span>
+    }
+}
+
+<span class="comment">/* Desktop et plus */</span>
+<span class="keyword">@media</span> <span class="string">(min-width: 1024px)</span> {
+    <span class="keyword">.cards</span> {
+        <span class="string">grid-template-columns: repeat(3, 1fr);</span>
+    }
+}
+                        </code></pre>
+                    </div>
+                </div>
+
+                <div class="content-area">
+                    <h3>Grilles responsives</h3>
+                    
+                    <div class="demo-area">
+                        <div class="grid-responsive-demo">
+                            <div class="grid-controls-responsive">
+                                <label>
+                                    Type de grille :
+                                    <select id="gridType">
+                                        <option value="auto-fit">Auto-fit</option>
+                                        <option value="auto-fill">Auto-fill</option>
+                                        <option value="fixed">Colonnes fixes</option>
+                                    </select>
+                                </label>
+                                
+                                <label>
+                                    Taille minimum :
+                                    <input type="range" id="minSize" min="150" max="300" value="200">
+                                    <span id="minSizeDisplay">200px</span>
+                                </label>
+                            </div>
+                            
+                            <div class="responsive-grid" id="responsiveGrid">
+                                <div class="grid-item-responsive">Item 1</div>
+                                <div class="grid-item-responsive">Item 2</div>
+                                <div class="grid-item-responsive">Item 3</div>
+                                <div class="grid-item-responsive">Item 4</div>
+                                <div class="grid-item-responsive">Item 5</div>
+                                <div class="grid-item-responsive">Item 6</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-area">
+                        <pre><code class="code-highlight">
+<span class="comment">/* Grille auto-responsive */</span>
+<span class="keyword">.responsive-grid</span> {
+    <span class="string">display: grid;</span>
+    <span class="string">grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));</span>
+    <span class="string">gap: 1rem;</span>
+}
+
+<span class="comment">/* Alternative avec auto-fill */</span>
+<span class="keyword">.responsive-grid-fill</span> {
+    <span class="string">grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));</span>
+}
+
+<span class="comment">/* Grille responsive avec breakpoints */</span>
+<span class="keyword">.responsive-grid-breakpoints</span> {
+    <span class="string">grid-template-columns: 1fr;</span>
+}
+
+<span class="keyword">@media</span> <span class="string">(min-width: 600px)</span> {
+    <span class="keyword">.responsive-grid-breakpoints</span> {
+        <span class="string">grid-template-columns: repeat(2, 1fr);</span>
+    }
+}
+
+<span class="keyword">@media</span> <span class="string">(min-width: 900px)</span> {
+    <span class="keyword">.responsive-grid-breakpoints</span> {
+        <span class="string">grid-template-columns: repeat(3, 1fr);</span>
+    }
+}
+                        </code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="responsive-media" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Media Queries Avancées</h2>
+                    <p class="section-description">
+                        Requêtes media pour différents contextes et conditions
+                    </p>
+                </div>
+
+                <div class="content-area">
+                    <h3>Types de media queries</h3>
+                    
+                    <div class="demo-area">
+                        <div class="media-queries-demo">
+                            <div class="query-examples">
+                                <div class="query-box orientation-query">
+                                    <h4>Orientation</h4>
+                                    <p class="portrait-only">Mode Portrait uniquement</p>
+                                    <p class="landscape-only">Mode Paysage uniquement</p>
+                                </div>
+                                
+                                <div class="query-box print-query">
+                                    <h4>Media Print</h4>
+                                    <p class="screen-only">Visible à l'écran</p>
+                                    <p class="print-only">Visible à l'impression</p>
+                                </div>
+                                
+                                <div class="query-box motion-query">
+                                    <h4>Préférences motion</h4>
+                                    <p class="motion-normal">Animations normales</p>
+                                    <p class="motion-reduced">Motion réduite activée</p>
+                                </div>
+                                
+                                <div class="query-box dark-mode-query">
+                                    <h4>Préférence couleur</h4>
+                                    <p class="light-mode">Mode clair</p>
+                                    <p class="dark-mode">Mode sombre</p>
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-primary" onclick="testPrintStyles()">
+                                Tester les styles d'impression
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="code-area">
+                        <pre><code class="code-highlight">
+<span class="comment">/* Orientation */</span>
+<span class="keyword">@media</span> <span class="string">(orientation: portrait)</span> {
+    <span class="keyword">.content</span> { <span class="string">padding: 1rem;</span> }
+}
+
+<span class="keyword">@media</span> <span class="string">(orientation: landscape)</span> {
+    <span class="keyword">.content</span> { <span class="string">padding: 2rem 4rem;</span> }
+}
+
+<span class="comment">/* Type de média */</span>
+<span class="keyword">@media</span> <span class="string">print</span> {
+    <span class="keyword">.no-print</span> { <span class="string">display: none;</span> }
+    <span class="keyword">body</span> { <span class="string">color: black; background: white;</span> }
+}
+
+<span class="comment">/* Préférences utilisateur */</span>
+<span class="keyword">@media</span> <span class="string">(prefers-reduced-motion: reduce)</span> {
+    <span class="keyword">*</span> { <span class="string">animation-duration: 0.01ms !important;</span> }
+}
+
+<span class="keyword">@media</span> <span class="string">(prefers-color-scheme: dark)</span> {
+    <span class="keyword">body</span> { <span class="string">background: #1a1a1a; color: white;</span> }
+}
+
+<span class="comment">/* Résolution d'écran */</span>
+<span class="keyword">@media</span> <span class="string">(-webkit-min-device-pixel-ratio: 2)</span> {
+    <span class="keyword">.high-res-image</span> { <span class="string">background-image: url('image@2x.png');</span> }
+}
+
+<span class="comment">/* Largeur de viewport complexe */</span>
+<span class="keyword">@media</span> <span class="string">(min-width: 768px) and (max-width: 1024px)</span> {
+    <span class="keyword">.tablet-specific</span> { <span class="string">display: block;</span> }
+}
+                        </code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="responsive-images" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Images Responsives</h2>
+                    <p class="section-description">
+                        Techniques pour optimiser les images sur tous les appareils
+                    </p>
+                </div>
+
+                <div class="content-area">
+                    <h3>Images fluides et srcset</h3>
+                    
+                    <div class="demo-area">
+                        <div class="images-responsive-demo">
+                            <div class="image-example">
+                                <h4>Image fluide basique</h4>
+                                <div class="placeholder-image" style="width: 100%; height: 200px; background: linear-gradient(45deg, #4facfe, #00f2fe); display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; font-weight: bold; border-radius: 8px;">
+                                    Image Responsive 800x400
+                                </div>
+                            </div>
+                            
+                            <div class="image-example">
+                                <h4>Image avec art direction</h4>
+                                <div class="responsive-picture">
+                                    <div class="placeholder-desktop responsive-demo-image desktop-only" style="width: 100%; height: 200px; background: linear-gradient(45deg, #ff6b6b, #ee5a52); color: white; display: none; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; border-radius: 8px;">
+                                        Desktop: 1200x400
+                                    </div>
+                                    <div class="placeholder-mobile responsive-demo-image mobile-only" style="width: 100%; height: 300px; background: linear-gradient(45deg, #4ecdc4, #44a08d); color: white; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; border-radius: 8px;">
+                                        Mobile: 600x600
+                                    </div>
+                                </div>
+                                <p class="demo-note"><em>Cette démonstration change d'affichage selon la taille de l'écran</em></p>
+                            </div>
+                            
+                            <script>
+                                // Fonction pour gérer l'affichage responsive des images de démonstration
+                                function updateResponsiveDemo() {
+                                    const desktop = document.querySelector('.placeholder-desktop');
+                                    const mobile = document.querySelector('.placeholder-mobile');
+                                    
+                                    if (desktop && mobile) {
+                                        if (window.innerWidth >= 768) {
+                                            desktop.style.display = 'flex';
+                                            mobile.style.display = 'none';
+                                        } else {
+                                            desktop.style.display = 'none';
+                                            mobile.style.display = 'flex';
+                                        }
+                                    }
+                                }
+                                
+                                // Écouter les changements de taille
+                                window.addEventListener('resize', updateResponsiveDemo);
+                                updateResponsiveDemo(); // Appel initial
+                            </script>
+                                    >
+                                </picture>
+                            </div>
+                            
+                            <div class="image-controls">
+                                <label>
+                                    Simuler une connexion lente :
+                                    <input type="checkbox" id="slowConnection" onchange="toggleImageQuality()">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-area">
+                        <pre><code class="code-highlight">
+<span class="comment">/* Image fluide basique */</span>
+<span class="keyword">.responsive-image</span> {
+    <span class="string">max-width: 100%;</span>
+    <span class="string">height: auto;</span>
+    <span class="string">display: block;</span>
+}
+
+<span class="comment">/* Avec srcset pour différentes résolutions */</span>
+<span class="keyword">&lt;img</span> 
+    <span class="string">src="image-400.jpg"</span>
+    <span class="string">srcset="image-400.jpg 400w, 
+            image-800.jpg 800w, 
+            image-1200.jpg 1200w"</span>
+    <span class="string">sizes="(max-width: 768px) 100vw, 
+           (max-width: 1024px) 50vw, 
+           33vw"</span>
+    <span class="string">alt="Description"</span>
+<span class="keyword">&gt;</span>
+
+<span class="comment">/* Art direction avec picture */</span>
+<span class="keyword">&lt;picture&gt;</span>
+    <span class="keyword">&lt;source</span> 
+        <span class="string">media="(min-width: 768px)"</span> 
+        <span class="string">srcset="desktop-image.jpg"</span>
+    <span class="keyword">&gt;</span>
+    <span class="keyword">&lt;img</span> <span class="string">src="mobile-image.jpg"</span> <span class="string">alt="Description"</span><span class="keyword">&gt;</span>
+<span class="keyword">&lt;/picture&gt;</span>
+
+<span class="comment">/* Images de fond responsive */</span>
+<span class="keyword">.bg-responsive</span> {
+    <span class="string">background-image: url('mobile-bg.jpg');</span>
+    <span class="string">background-size: cover;</span>
+    <span class="string">background-position: center;</span>
+}
+
+<span class="keyword">@media</span> <span class="string">(min-width: 768px)</span> {
+    <span class="keyword">.bg-responsive</span> {
+        <span class="string">background-image: url('desktop-bg.jpg');</span>
+    }
+}
+                        </code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="responsive-typography" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Typographie Responsive</h2>
+                    <p class="section-description">
+                        Adaptation fluide des tailles de texte et de l'espacement
+                    </p>
+                </div>
+
+                <div class="content-area">
+                    <h3>Unités fluides et clamp()</h3>
+                    
+                    <div class="demo-area">
+                        <div class="typography-demo">
+                            <div class="text-example">
+                                <h1 class="fluid-title">Titre Fluide</h1>
+                                <p class="fluid-text">
+                                    Ce texte utilise des unités fluides pour s'adapter automatiquement 
+                                    à la taille de l'écran. La fonction clamp() permet de définir 
+                                    des valeurs minimum, préférée et maximum.
+                                </p>
+                            </div>
+                            
+                            <div class="typography-controls">
+                                <h4>Tester différentes approches :</h4>
+                                <div class="approach-buttons">
+                                    <button class="approach-btn active" onclick="setTypographyApproach('fluid')">
+                                        Fluide (clamp)
+                                    </button>
+                                    <button class="approach-btn" onclick="setTypographyApproach('breakpoints')">
+                                        Breakpoints
+                                    </button>
+                                    <button class="approach-btn" onclick="setTypographyApproach('vw')">
+                                        Viewport Width
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="scale-demo">
+                                <h2>Échelle typographique</h2>
+                                <h3>Sous-titre</h3>
+                                <h4>Titre de section</h4>
+                                <p>Paragraphe normal avec du texte de longueur moyenne</p>
+                                <small>Texte en petite taille</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-area">
+                        <pre><code class="code-highlight">
+<span class="comment">/* Typographie fluide avec clamp() */</span>
+<span class="keyword">.fluid-title</span> {
+    <span class="string">font-size: clamp(2rem, 5vw, 4rem);</span>
+    <span class="comment">/* min: 2rem, préféré: 5vw, max: 4rem */</span>
+}
+
+<span class="keyword">.fluid-text</span> {
+    <span class="string">font-size: clamp(1rem, 2.5vw, 1.25rem);</span>
+    <span class="string">line-height: clamp(1.4, 1.5vw, 1.6);</span>
+}
+
+<span class="comment">/* Approche par breakpoints */</span>
+<span class="keyword">.responsive-title</span> {
+    <span class="string">font-size: 2rem;</span>
+}
+
+<span class="keyword">@media</span> <span class="string">(min-width: 768px)</span> {
+    <span class="keyword">.responsive-title</span> {
+        <span class="string">font-size: 3rem;</span>
+    }
+}
+
+<span class="keyword">@media</span> <span class="string">(min-width: 1024px)</span> {
+    <span class="keyword">.responsive-title</span> {
+        <span class="string">font-size: 4rem;</span>
+    }
+}
+
+<span class="comment">/* Espacement fluide */</span>
+<span class="keyword">.container</span> {
+    <span class="string">padding: clamp(1rem, 5vw, 3rem);</span>
+    <span class="string">margin-bottom: clamp(2rem, 8vw, 6rem);</span>
+}
+
+<span class="comment">/* Variables CSS pour la cohérence */</span>
+<span class="keyword">:root</span> {
+    <span class="string">--font-size-sm: clamp(0.875rem, 2vw, 1rem);</span>
+    <span class="string">--font-size-base: clamp(1rem, 2.5vw, 1.125rem);</span>
+    <span class="string">--font-size-lg: clamp(1.25rem, 3vw, 1.5rem);</span>
+    <span class="string">--font-size-xl: clamp(2rem, 5vw, 3rem);</span>
+}
+                        </code></pre>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</div>
+
+<style>
+/* Styles spécifiques à la page Responsive */
+.viewport-simulator {
+    background: var(--glass-bg-dark);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-md);
+}
+
+.device-controls {
+    margin-bottom: var(--space-lg);
+}
+
+.device-controls h4 {
+    color: white;
+    margin-bottom: var(--space-sm);
+}
+
+.device-buttons {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-md);
+}
+
+.device-btn {
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    background: var(--glass-bg);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.device-btn:hover {
+    background: var(--glass-bg-light);
+    transform: translateY(-2px);
+}
+
+.device-btn.active {
+    background: var(--gradient-accent);
+    border-color: transparent;
+}
+
+.custom-size {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: white;
+}
+
+.custom-size input[type="range"] {
+    flex: 1;
+    max-width: 200px;
+}
+
+.simulator-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.device-frame {
+    background: #333;
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    width: 320px;
+    transition: all 0.5s ease;
+    overflow: hidden;
+    box-shadow: var(--shadow-glass);
+    border: 2px solid var(--glass-border);
+    position: relative;
+}
+
+.device-frame::before {
+    content: '';
+    position: absolute;
+    top: var(--space-xs);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: #666;
+    border-radius: 2px;
+}
+
+.responsive-demo-content {
+    background: white;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    min-height: 400px;
+}
+
+.demo-header-responsive {
+    background: #4facfe;
+    color: white;
+    padding: var(--space-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.demo-nav-responsive {
+    position: relative;
+}
+
+.nav-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: var(--space-md);
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    transition: background 0.3s ease;
+}
+
+.nav-menu a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.demo-main-responsive {
+    padding: var(--space-lg);
+}
+
+.hero-responsive {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+}
+
+.hero-responsive h2 {
+    color: #333;
+    margin-bottom: var(--space-sm);
+}
+
+.hero-responsive p {
+    color: #666;
+}
+
+.cards-responsive {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+}
+
+.card-responsive {
+    background: var(--gradient-accent);
+    color: white;
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    text-align: center;
+    font-weight: bold;
+}
+
+.breakpoint-info {
+    margin-top: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--glass-bg);
+    border-radius: var(--radius-sm);
+    color: white;
+    text-align: center;
+    font-family: var(--font-mono);
+}
+
+/* Responsive styles for the demo content */
+.device-frame[data-size="mobile"] {
+    width: 320px;
+}
+
+.device-frame[data-size="mobile"] .nav-toggle {
+    display: block;
+}
+
+.device-frame[data-size="mobile"] .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #4facfe;
+    flex-direction: column;
+    padding: var(--space-md);
+    border-radius: var(--radius-sm);
+    margin-top: var(--space-xs);
+}
+
+.device-frame[data-size="mobile"] .nav-menu.active {
+    display: flex;
+}
+
+.device-frame[data-size="tablet"] {
+    width: 768px;
+}
+
+.device-frame[data-size="tablet"] .cards-responsive {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.device-frame[data-size="desktop"] {
+    width: 1024px;
+}
+
+.device-frame[data-size="desktop"] .cards-responsive {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.device-frame[data-size="large"] {
+    width: 1200px;
+}
+
+.device-frame[data-size="large"] .cards-responsive {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* Grid responsive demo */
+.grid-responsive-demo {
+    background: var(--glass-bg-dark);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+}
+
+.grid-controls-responsive {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-lg);
+    color: white;
+}
+
+.grid-controls-responsive label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+/* Styles pour les selects dans responsive */
+.grid-controls-responsive select {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 0.5rem;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.grid-controls-responsive select option {
+    background: #2c3e50;
+    color: #ffffff;
+    padding: 0.5rem;
+    border: none;
+}
+
+.grid-controls-responsive select option:hover,
+.grid-controls-responsive select option:focus {
+    background: #4facfe;
+    color: #ffffff;
+}
+
+.grid-controls-responsive select option:checked {
+    background: #4facfe;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+}
+
+.grid-item-responsive {
+    background: var(--gradient-secondary);
+    color: white;
+    padding: var(--space-lg);
+    border-radius: var(--radius-sm);
+    text-align: center;
+    font-weight: bold;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Media queries demo */
+.media-queries-demo {
+    background: var(--glass-bg-dark);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+}
+
+.query-examples {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.query-box {
+    background: var(--glass-bg);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    color: white;
+}
+
+.query-box h4 {
+    margin-bottom: var(--space-sm);
+    color: var(--accent);
+}
+
+/* Orientation queries */
+.portrait-only {
+    display: block;
+}
+
+.landscape-only {
+    display: none;
+}
+
+@media (orientation: landscape) {
+    .portrait-only {
+        display: none;
+    }
+    
+    .landscape-only {
+        display: block;
+    }
+}
+
+/* Print queries */
+.screen-only {
+    display: block;
+}
+
+.print-only {
+    display: none;
+}
+
+@media print {
+    .screen-only {
+        display: none;
+    }
+    
+    .print-only {
+        display: block;
+    }
+}
+
+/* Motion preference queries */
+.motion-normal {
+    display: block;
+}
+
+.motion-reduced {
+    display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .motion-normal {
+        display: none;
+    }
+    
+    .motion-reduced {
+        display: block;
+    }
+}
+
+/* Color scheme queries */
+.light-mode {
+    display: block;
+}
+
+.dark-mode {
+    display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    .light-mode {
+        display: none;
+    }
+    
+    .dark-mode {
+        display: block;
+    }
+}
+
+/* Images responsive demo */
+.images-responsive-demo {
+    background: var(--glass-bg-dark);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+}
+
+.image-example {
+    margin-bottom: var(--space-lg);
+}
+
+.image-example h4 {
+    color: white;
+    margin-bottom: var(--space-sm);
+}
+
+.responsive-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-glass);
+}
+
+.responsive-picture {
+    display: block;
+}
+
+.image-controls {
+    margin-top: var(--space-md);
+    color: white;
+}
+
+/* Typography demo */
+.typography-demo {
+    background: var(--glass-bg-dark);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+}
+
+.text-example {
+    margin-bottom: var(--space-lg);
+    padding: var(--space-lg);
+    background: white;
+    border-radius: var(--radius-md);
+}
+
+.fluid-title {
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: #333;
+    margin-bottom: var(--space-md);
+    line-height: 1.2;
+}
+
+.fluid-text {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    line-height: clamp(1.4, 1.5vw, 1.6);
+    color: #666;
+}
+
+.typography-controls {
+    margin-bottom: var(--space-lg);
+}
+
+.typography-controls h4 {
+    color: white;
+    margin-bottom: var(--space-sm);
+}
+
+.approach-buttons {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+.approach-btn {
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    background: var(--glass-bg);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.approach-btn:hover {
+    background: var(--glass-bg-light);
+}
+
+.approach-btn.active {
+    background: var(--gradient-accent);
+    border-color: transparent;
+}
+
+.scale-demo {
+    padding: var(--space-lg);
+    background: white;
+    border-radius: var(--radius-md);
+}
+
+.scale-demo h2,
+.scale-demo h3,
+.scale-demo h4 {
+    color: #333;
+    margin-bottom: var(--space-sm);
+}
+
+.scale-demo p {
+    color: #666;
+    margin-bottom: var(--space-sm);
+}
+
+.scale-demo small {
+    color: #999;
+}
+
+/* Typography approaches */
+.typography-fluid .scale-demo h2 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.typography-fluid .scale-demo h3 {
+    font-size: clamp(1.25rem, 3vw, 2rem);
+}
+
+.typography-fluid .scale-demo h4 {
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+}
+
+.typography-fluid .scale-demo p {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+}
+
+.typography-breakpoints .scale-demo h2 {
+    font-size: 1.5rem;
+}
+
+.typography-breakpoints .scale-demo h3 {
+    font-size: 1.25rem;
+}
+
+.typography-breakpoints .scale-demo h4 {
+    font-size: 1.125rem;
+}
+
+@media (min-width: 768px) {
+    .typography-breakpoints .scale-demo h2 {
+        font-size: 2rem;
+    }
+    
+    .typography-breakpoints .scale-demo h3 {
+        font-size: 1.5rem;
+    }
+    
+    .typography-breakpoints .scale-demo h4 {
+        font-size: 1.25rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .typography-breakpoints .scale-demo h2 {
+        font-size: 2.5rem;
+    }
+    
+    .typography-breakpoints .scale-demo h3 {
+        font-size: 2rem;
+    }
+    
+    .typography-breakpoints .scale-demo h4 {
+        font-size: 1.5rem;
+    }
+}
+
+.typography-vw .scale-demo h2 {
+    font-size: 4vw;
+}
+
+.typography-vw .scale-demo h3 {
+    font-size: 3vw;
+}
+
+.typography-vw .scale-demo h4 {
+    font-size: 2.5vw;
+}
+
+.typography-vw .scale-demo p {
+    font-size: 2vw;
+}
+
+@media (max-width: 768px) {
+    .device-buttons {
+        flex-direction: column;
+    }
+    
+    .device-frame {
+        max-width: 100%;
+        width: 100% !important;
+    }
+    
+    .custom-size {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .grid-controls-responsive {
+        flex-direction: column;
+    }
+    
+    .approach-buttons {
+        flex-direction: column;
+    }
+}
+</style>
+
+<script>
+// Scripts pour la page Responsive - Version simplifiée pour SPA
+(function() {
+    // Utiliser le module ResponsiveDemo si disponible
+    if (typeof ResponsiveDemo !== "undefined") {
+        ResponsiveDemo.initializeAll();
+    } else {
+        // Fallback avec retry si ResponsiveDemo n'est pas encore chargé
+        let attempts = 0;
+        const maxAttempts = 20;
+        
+        const waitForResponsiveDemo = () => {
+            if (typeof ResponsiveDemo !== "undefined") {
+                ResponsiveDemo.initializeAll();
+            } else if (attempts < maxAttempts) {
+                attempts++;
+                console.log(`Waiting for ResponsiveDemo... attempt ${attempts}`);
+                setTimeout(waitForResponsiveDemo, 200);
+            } else {
+                console.warn("ResponsiveDemo not available after maximum attempts");
+                // Fallback pour les fonctions essentielles
+                initializeFallbackFunctions();
+            }
+        };
+        
+        waitForResponsiveDemo();
+    }
+
+    // Fonctions de fallback en cas d'échec du module principal
+    function initializeFallbackFunctions() {
+        // Exposer les fonctions de base pour les onclick
+        window.setViewport = function(size) {
+            console.log("Fallback setViewport:", size);
+        };
+        
+        window.toggleMobileNav = function() {
+            const navMenu = document.getElementById('navMenu');
+            if (navMenu) {
+                navMenu.classList.toggle('active');
+            }
+        };
+        
+        window.testPrintStyles = function() {
+            window.print();
+        };
+        
+        window.setTypographyApproach = function(approach) {
+            console.log("Fallback setTypographyApproach:", approach);
+        };
+        
+        window.toggleImageQuality = function() {
+            console.log("Fallback toggleImageQuality");
+        };
+    }
+})();
+</script>

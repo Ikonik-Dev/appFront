@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monitoring Complet - RNCP DWWM 2023</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #0c1426 0%, #1a1a2e 100%);
+        color: #fff;
+        min-height: 100vh;
+      }
+
+      .header {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 1rem 2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .header h1 {
+        color: #4facfe;
+        margin-bottom: 0.5rem;
+      }
+
+      .container {
+        padding: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        padding: 1.5rem;
+        transition: transform 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+      }
+
+      .card h2 {
+        color: #4facfe;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .status-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .status-item {
+        text-align: center;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 8px;
+      }
+
+      .status-value {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+
+      .status-label {
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+
+      .success {
+        color: #4ade80;
+      }
+      .warning {
+        color: #fbbf24;
+      }
+      .error {
+        color: #f87171;
+      }
+      .info {
+        color: #60a5fa;
+      }
+
+      .log-area {
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+        padding: 1rem;
+        height: 300px;
+        overflow-y: auto;
+        font-family: "Courier New", monospace;
+        font-size: 0.85rem;
+        line-height: 1.4;
+      }
+
+      .log-entry {
+        margin-bottom: 0.5rem;
+        padding: 0.25rem;
+        border-radius: 4px;
+      }
+
+      .log-entry.success {
+        background: rgba(74, 222, 128, 0.1);
+        border-left: 3px solid #4ade80;
+      }
+      .log-entry.warning {
+        background: rgba(251, 191, 36, 0.1);
+        border-left: 3px solid #fbbf24;
+      }
+      .log-entry.error {
+        background: rgba(248, 113, 113, 0.1);
+        border-left: 3px solid #f87171;
+      }
+      .log-entry.info {
+        background: rgba(96, 165, 250, 0.1);
+        border-left: 3px solid #60a5fa;
+      }
+
+      .controls {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+      }
+
+      .btn {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(79, 172, 254, 0.3);
+      }
+
+      .btn.secondary {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        overflow: hidden;
+        margin: 1rem 0;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #4ade80 0%, #22c55e 100%);
+        transition: width 0.3s ease;
+      }
+
+      .iframe-container {
+        grid-column: 1 / -1;
+        height: 600px;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .iframe-container iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>🔍 Monitoring Complet - Application RNCP DWWM 2023</h1>
+      <p>
+        Surveillance en temps réel de l'état, des performances et des logs de
+        l'application
+      </p>
+    </div>
+
+    <div class="container">
+      <div class="controls">
+        <button class="btn" onclick="runFullDiagnostic()">
+          🔬 Diagnostic Complet
+        </button>
+        <button class="btn" onclick="testApplication()">
+          🧪 Test Application
+        </button>
+        <button class="btn secondary" onclick="clearAllLogs()">
+          🗑️ Vider Logs
+        </button>
+        <button class="btn secondary" onclick="exportReport()">
+          💾 Exporter Rapport
+        </button>
+        <button class="btn secondary" onclick="refreshData()">
+          🔄 Actualiser
+        </button>
+      </div>
+
+      <div class="grid">
+        <!-- État Global -->
+        <div class="card">
+          <h2>📊 État Global</h2>
+          <div class="status-grid">
+            <div class="status-item">
+              <div class="status-value success" id="app-status">⏳</div>
+              <div class="status-label">Application</div>
+            </div>
+            <div class="status-item">
+              <div class="status-value info" id="script-count">0</div>
+              <div class="status-label">Scripts</div>
+            </div>
+            <div class="status-item">
+              <div class="status-value warning" id="cache-size">0KB</div>
+              <div class="status-label">Cache</div>
+            </div>
+            <div class="status-item">
+              <div class="status-value info" id="page-count">0</div>
+              <div class="status-label">Pages</div>
+            </div>
+          </div>
+
+          <div class="progress-bar">
+            <div class="progress-fill" id="health-progress" style="width: 0%"></div>
+          </div>
+          <div style="text-align: center; margin-top: 0.5rem">
+            <span id="health-text">Initialisation...</span>
+          </div>
+        </div>
+
+        <!-- Performance -->
+        <div class="card">
+          <h2>⚡ Performance</h2>
+          <div class="status-grid">
+            <div class="status-item">
+              <div class="status-value success" id="memory-usage">0MB</div>
+              <div class="status-label">Mémoire</div>
+            </div>
+            <div class="status-item">
+              <div class="status-value info" id="dom-elements">0</div>
+              <div class="status-label">DOM</div>
+            </div>
+            <div class="status-item">
+              <div class="status-value warning" id="active-animations">0</div>
+              <div class="status-label">Animations</div>
+            </div>
+            <div class="status-item">
+              <div class="status-value info" id="load-time">0ms</div>
+              <div class="status-label">Chargement</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Logs en temps réel -->
+        <div class="card">
+          <h2>📝 Logs en Temps Réel</h2>
+          <div class="log-area" id="live-logs"></div>
+        </div>
+
+        <!-- Tests -->
+        <div class="card">
+          <h2>🧪 Résultats de Tests</h2>
+          <div class="status-grid">
+            <div class="status-item">
+              <div class="status-value success" id="tests-passed">0</div>
+              <div class="status-label">Réussis</div>
+            </div>
+            <div class="status-item">
+              <div class="status-value error" id="tests-failed">0</div>
+              <div class="status-label">Échoués</div>
+            </div>
+            <div class="status-item">
+              <div class="status-value warning" id="tests-warnings">0</div>
+              <div class="status-label">Avertissements</div>
+            </div>
+            <div class="status-item">
+              <div class="status-value info" id="test-duration">0ms</div>
+              <div class="status-label">Durée</div>
+            </div>
+          </div>
+          <div class="log-area" id="test-logs"></div>
+        </div>
+      </div>
+
+      <!-- Application en cours -->
+      <div class="grid">
+        <div class="iframe-container">
+          <iframe
+            src="./index.html"
+            title="Application RNCP DWWM 2023"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chargement des scripts -->
+    <script src="./test-runner.js"></script>
+    <script>
+      // État global du monitoring
+      const MonitoringState = {
+        logs: [],
+        stats: {
+          app: { ready: false, version: "N/A" },
+          scripts: { loaded: 0, total: 5 },
+          cache: { size: 0, pages: 0 },
+          performance: { memory: 0, dom: 0, animations: 0, loadTime: 0 },
+          tests: { passed: 0, failed: 0, warnings: 0, duration: 0 },
+        },
+      };
+
+      // Intercepter les logs de la console
+      const originalConsole = {
+        log: console.log,
+        error: console.error,
+        warn: console.warn,
+        info: console.info,
+      };
+
+      function interceptConsole() {
+        ["log", "error", "warn", "info"].forEach((method) => {
+          console[method] = (...args) => {
+            addLog(method, args.join(" "));
+            originalConsole[method](...args);
+          };
+        });
+      }
+
+      function addLog(level, message) {
+        const log = {
+          timestamp: new Date().toLocaleTimeString(),
+          level,
+          message,
+        };
+
+        MonitoringState.logs.push(log);
+
+        // Garder seulement les 50 derniers logs
+        if (MonitoringState.logs.length > 50) {
+          MonitoringState.logs = MonitoringState.logs.slice(-50);
+        }
+
+        updateLogsDisplay();
+      }
+
+      function updateLogsDisplay() {
+        const container = document.getElementById("live-logs");
+        container.innerHTML = MonitoringState.logs
+          .map(
+            (log) =>
+              `<div class="log-entry ${log.level}">
+                    <span style="opacity: 0.6">[${log.timestamp}]</span> ${log.message}
+                </div>`
+          )
+          .join("");
+        container.scrollTop = container.scrollHeight;
+      }
+
+      function updateStats() {
+        const stats = MonitoringState.stats;
+
+        // État global
+        document.getElementById("app-status").textContent = stats.app.ready
+          ? "✅"
+          : "⏳";
+        document.getElementById("script-count").textContent =
+          stats.scripts.loaded;
+        document.getElementById("cache-size").textContent = `${Math.round(
+          stats.cache.size / 1024
+        )}KB`;
+        document.getElementById("page-count").textContent = stats.cache.pages;
+
+        // Performance
+        document.getElementById(
+          "memory-usage"
+        ).textContent = `${stats.performance.memory}MB`;
+        document.getElementById("dom-elements").textContent =
+          stats.performance.dom;
+        document.getElementById("active-animations").textContent =
+          stats.performance.animations;
+        document.getElementById(
+          "load-time"
+        ).textContent = `${stats.performance.loadTime}ms`;
+
+        // Tests
+        document.getElementById("tests-passed").textContent =
+          stats.tests.passed;
+        document.getElementById("tests-failed").textContent =
+          stats.tests.failed;
+        document.getElementById("tests-warnings").textContent =
+          stats.tests.warnings;
+        document.getElementById(
+          "test-duration"
+        ).textContent = `${stats.tests.duration}ms`;
+
+        // Santé générale
+        const healthScore = calculateHealthScore();
+        document.getElementById(
+          "health-progress"
+        ).style.width = `${healthScore}%`;
+        document.getElementById("health-text").textContent =
+          getHealthText(healthScore);
+      }
+
+      function calculateHealthScore() {
+        let score = 0;
+        const stats = MonitoringState.stats;
+
+        if (stats.app.ready) score += 30;
+        if (stats.scripts.loaded >= 4) score += 20;
+        if (stats.tests.failed === 0) score += 25;
+        if (stats.performance.memory < 50) score += 15;
+        if (stats.performance.animations < 10) score += 10;
+
+        return Math.min(score, 100);
+      }
+
+      function getHealthText(score) {
+        if (score >= 90) return "🟢 Excellent";
+        if (score >= 70) return "🟡 Bon";
+        if (score >= 50) return "🟠 Moyen";
+        return "🔴 Problèmes détectés";
+      }
+
+      async function runFullDiagnostic() {
+        addLog("info", "🔬 Démarrage du diagnostic complet...");
+
+        try {
+          // Collecter les informations
+          await collectSystemInfo();
+          await collectPerformanceInfo();
+          await collectApplicationInfo();
+
+          updateStats();
+          addLog("info", "✅ Diagnostic terminé avec succès");
+        } catch (error) {
+          addLog("error", `❌ Erreur lors du diagnostic: ${error.message}`);
+        }
+      }
+
+      async function collectSystemInfo() {
+        // Scripts chargés
+        const requiredScripts = [
+          "APP_CONFIG",
+          "APP_STATE",
+          "DEBUG",
+          "DOMUtils",
+          "RouterManager",
+        ];
+        const loadedScripts = requiredScripts.filter(
+          (script) => typeof window[script] !== "undefined"
+        );
+        MonitoringState.stats.scripts.loaded = loadedScripts.length;
+
+        addLog(
+          "info",
+          `📦 ${loadedScripts.length}/${requiredScripts.length} scripts chargés`
+        );
+      }
+
+      async function collectPerformanceInfo() {
+        // Mémoire
+        if (performance.memory) {
+          MonitoringState.stats.performance.memory = Math.round(
+            performance.memory.usedJSHeapSize / 1024 / 1024
+          );
+        }
+
+        // DOM
+        MonitoringState.stats.performance.dom =
+          document.querySelectorAll("*").length;
+
+        // Temps de chargement
+        if (performance.timing) {
+          MonitoringState.stats.performance.loadTime =
+            performance.timing.loadEventEnd -
+            performance.timing.navigationStart;
+        }
+
+        addLog(
+          "info",
+          `⚡ Performance: ${MonitoringState.stats.performance.memory}MB mémoire, ${MonitoringState.stats.performance.dom} éléments DOM`
+        );
+      }
+
+      async function collectApplicationInfo() {
+        // Vérifier si l'application est chargée dans l'iframe
+        try {
+          const iframe = document.querySelector("iframe");
+          const iframeWindow = iframe.contentWindow;
+
+          if (iframeWindow.app) {
+            MonitoringState.stats.app.ready = iframeWindow.app.isReady();
+            MonitoringState.stats.app.version = iframeWindow.app.getVersion();
+
+            // Cache info
+            if (iframeWindow.router && iframeWindow.router.getCacheStats) {
+              const cacheStats = iframeWindow.router.getCacheStats();
+              MonitoringState.stats.cache.size = cacheStats.totalSize;
+              MonitoringState.stats.cache.pages = cacheStats.pages;
+            }
+
+            // Animations
+            if (
+              iframeWindow.AnimationUtils &&
+              iframeWindow.AnimationUtils.getAnimationStats
+            ) {
+              const animStats = iframeWindow.AnimationUtils.getAnimationStats();
+              MonitoringState.stats.performance.animations =
+                animStats.activeCount;
+            }
+
+            addLog(
+              "success",
+              `✅ Application v${MonitoringState.stats.app.version} prête`
+            );
+          } else {
+            addLog("warning", "⚠️ Application non détectée dans l'iframe");
+          }
+        } catch (error) {
+          addLog(
+            "warning",
+            `⚠️ Impossible d'accéder à l'iframe: ${error.message}`
+          );
+        }
+      }
+
+      async function testApplication() {
+        addLog("info", "🧪 Démarrage des tests automatisés...");
+
+        try {
+          // Charger et exécuter le test runner
+          if (typeof TestRunner !== "undefined") {
+            const report = await TestRunner.run();
+
+            // Mettre à jour les stats de test
+            if (report && report.summary) {
+              MonitoringState.stats.tests.passed = report.summary.success || 0;
+              MonitoringState.stats.tests.failed = report.summary.error || 0;
+              MonitoringState.stats.tests.warnings =
+                report.summary.warning || 0;
+              MonitoringState.stats.tests.duration =
+                parseInt(report.duration) || 0;
+            }
+
+            updateStats();
+            addLog("success", "✅ Tests terminés - voir console pour détails");
+          } else {
+            addLog("error", "❌ Test Runner non disponible");
+          }
+        } catch (error) {
+          addLog("error", `❌ Erreur lors des tests: ${error.message}`);
+        }
+      }
+
+      function clearAllLogs() {
+        MonitoringState.logs = [];
+        updateLogsDisplay();
+        document.getElementById("test-logs").innerHTML = "";
+        addLog("info", "🗑️ Logs effacés");
+      }
+
+      function exportReport() {
+        const report = {
+          timestamp: new Date().toISOString(),
+          stats: MonitoringState.stats,
+          logs: MonitoringState.logs,
+          healthScore: calculateHealthScore(),
+        };
+
+        const blob = new Blob([JSON.stringify(report, null, 2)], {
+          type: "application/json",
+        });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `monitoring-report-${new Date()
+          .toISOString()
+          .slice(0, 19)}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+
+        addLog("success", "💾 Rapport exporté");
+      }
+
+      function refreshData() {
+        addLog("info", "🔄 Actualisation des données...");
+        runFullDiagnostic();
+      }
+
+      // Initialisation
+      document.addEventListener("DOMContentLoaded", () => {
+        interceptConsole();
+        addLog("info", "🔍 Monitoring initialisé");
+
+        // Diagnostic initial
+        setTimeout(runFullDiagnostic, 1000);
+
+        // Actualisation automatique
+        setInterval(runFullDiagnostic, 10000); // Toutes les 10 secondes
+      });
+    </script>
+  </body>
+</html>
